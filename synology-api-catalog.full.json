@@ -1,0 +1,7170 @@
+{
+  "success": true,
+  "count": 1194,
+  "apis": [
+    {
+      "name": "SYNO.AI.Activation",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.App.String",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Completion",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Config",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Deid.Matcher",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Deid.Recognizer",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Deid.Recognizer.Status",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Deid.Regex",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Deid.Status",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Metrics",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Permission",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Policy.Application",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Presidio",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Presidio.Memory.Info",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Presidio.Setting",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Presidio.Status",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Proxy.Provider",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Proxy.Provider.Azure.Deployment",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Proxy.Provider.Bedrock.Model",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Proxy.Provider.OpenAICompat.Model",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Resource.Config",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Statistics.Admin.Log",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Statistics.Admin.Log.User",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Statistics.Request.Log",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Statistics.Request.Log.APIIntegration",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Statistics.Request.Log.Action",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Statistics.Request.Log.Count",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Statistics.Request.Log.Image",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Statistics.Request.Log.RetentionRate",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Statistics.Request.Log.Setting",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Statistics.Request.Log.Tokens",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Statistics.Request.Log.User",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Thread",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AI.Welcome.Wizard",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AME.Pack",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.API.Auth",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 7
+    },
+    {
+      "name": "SYNO.API.Auth.Key",
+      "path": "entry.cgi",
+      "minVersion": 7,
+      "maxVersion": 7
+    },
+    {
+      "name": "SYNO.API.Auth.Key.Code",
+      "path": "entry.cgi",
+      "minVersion": 7,
+      "maxVersion": 7
+    },
+    {
+      "name": "SYNO.API.Auth.RedirectURI",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.API.Auth.Type",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.API.Auth.UIConfig",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.API.Encryption",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.API.Info",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.API.OTP",
+      "path": "otp.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.ActiveBackup.AEM",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.AEM.Activity",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.AEM.AgentInstaller",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.AEM.NFS",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.AEM.Script",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.AEM.Task",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.AEM.TaskTemplate",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.AEM.Version",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.Activation",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.Agent",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.Agent.Device",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.Agentless",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.Delegation",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.Device",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.General",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.Inventory",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.Log",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.Overview",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.Plan",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.Report",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.ReportConfig",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.ReportGet",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.Restore",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.RestoreVM",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.Setting",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.Share",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.Storage",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.Task",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.TaskTemplate",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.UserGroup",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.Version",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.Workload",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.Wrapper.Domain",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.Wrapper.LDAP",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.Wrapper.NFS",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveBackup.Wrapper.NFSPrivilege",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveInsight.CompleteCollection",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveInsight.FileActivity",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveInsight.License",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveInsight.Package",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveInsight.RelationManager",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ActiveInsight.Setting",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.AddressBook.Contact",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 4
+    },
+    {
+      "name": "SYNO.AddressBook.ContactGroup",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 4
+    },
+    {
+      "name": "SYNO.AddressBook.Info",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AudioPlayer",
+      "path": "entry.cgi",
+      "minVersion": 2,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.AudioPlayer.Stream",
+      "path": "entry.cgi",
+      "minVersion": 2,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.AudioStation.Album",
+      "path": "AudioStation/album.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.AudioStation.Artist",
+      "path": "AudioStation/artist.cgi",
+      "minVersion": 1,
+      "maxVersion": 4
+    },
+    {
+      "name": "SYNO.AudioStation.Browse.Playlist",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AudioStation.Composer",
+      "path": "AudioStation/composer.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.AudioStation.Cover",
+      "path": "AudioStation/cover.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.AudioStation.Download",
+      "path": "AudioStation/download.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AudioStation.Folder",
+      "path": "AudioStation/folder.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.AudioStation.Genre",
+      "path": "AudioStation/genre.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.AudioStation.Info",
+      "path": "AudioStation/info.cgi",
+      "minVersion": 1,
+      "maxVersion": 6
+    },
+    {
+      "name": "SYNO.AudioStation.Lyrics",
+      "path": "AudioStation/lyrics.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.AudioStation.LyricsSearch",
+      "path": "AudioStation/lyrics_search.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.AudioStation.MediaServer",
+      "path": "AudioStation/media_server.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AudioStation.Pin",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AudioStation.Playlist",
+      "path": "AudioStation/playlist.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.AudioStation.Proxy",
+      "path": "AudioStation/proxy.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.AudioStation.Radio",
+      "path": "AudioStation/radio.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.AudioStation.RemotePlayer",
+      "path": "AudioStation/remote_player.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.AudioStation.RemotePlayerStatus",
+      "path": "AudioStation/remote_player_status.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.AudioStation.Search",
+      "path": "AudioStation/search.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AudioStation.Song",
+      "path": "AudioStation/song.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.AudioStation.Stream",
+      "path": "AudioStation/stream.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.AudioStation.Tag",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AudioStation.VoiceAssistant.Browse",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AudioStation.VoiceAssistant.Challenge",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AudioStation.VoiceAssistant.Info",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AudioStation.VoiceAssistant.Stream",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.AudioStation.WebPlayer",
+      "path": "AudioStation/web_player.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Auth.ForgotPwd",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Auth.RescueEmail",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Backup.App",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Backup.App.Backup",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Backup.App.Restore",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Backup.Config.AutoBackup",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Backup.Config.Backup",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Backup.Config.Restore",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Backup.Service.NetworkBackup",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Btrfs.Replica",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Btrfs.Replica.Core",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.C2FS.Account",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.C2FS.Bucket",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.C2FS.Conf",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.C2FS.File",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.C2FS.Share",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.C2FS.Share.Status",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.C2FS.Snapshot",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.C2FS.Transform",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.C2FS.Utils",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Cal.AuthForeign",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Cal.Cal",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 5
+    },
+    {
+      "name": "SYNO.Cal.Chatbot",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Cal.Contact",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Cal.Event",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 6
+    },
+    {
+      "name": "SYNO.Cal.InviteMail",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Cal.InviteMailInit",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 5
+    },
+    {
+      "name": "SYNO.Cal.Proxy",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 5
+    },
+    {
+      "name": "SYNO.Cal.SendMail",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Cal.Setting",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 5
+    },
+    {
+      "name": "SYNO.Cal.Share.Priv",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Cal.Sharing",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Cal.SyncUser",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Cal.Timezone",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 5
+    },
+    {
+      "name": "SYNO.Cal.Todo",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 6
+    },
+    {
+      "name": "SYNO.Cal.UserAction",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Chat.Admin.Setting",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 5
+    },
+    {
+      "name": "SYNO.Chat.App",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Chat.Archive",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Chat.Bot",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Chat.Channel",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 5
+    },
+    {
+      "name": "SYNO.Chat.Channel.Anonymous",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Chat.Channel.Chatbot",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Chat.Channel.GuestUser",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Chat.Channel.Hashtag",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Chat.Channel.Hidden",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Chat.Channel.Member",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Chat.Channel.Named",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Chat.Channel.Preference",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.Chat.Chatbot",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Chat.External",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.Chat.Misc",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Chat.Post",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 8
+    },
+    {
+      "name": "SYNO.Chat.Post.Attachment",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Chat.Post.File",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Chat.Post.Hashtag",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Chat.Post.Reaction",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Chat.Post.Reminder",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Chat.Post.Schedule",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Chat.Post.Snippet",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Chat.Post.Subscribe",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Chat.Post.Vote",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Chat.Sticker",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Chat.User",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.Chat.User.Avatar",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Chat.User.Preference",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 4
+    },
+    {
+      "name": "SYNO.Chat.User.Status",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Chat.Webhook.Broadcast",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Chat.Webhook.BuiltIn",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Chat.Webhook.Incoming",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Chat.Webhook.Outgoing",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Chat.Webhook.Slash",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.CloudSync",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Contacts.Addressbook",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Contacts.AdminSetting",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Contacts.Contact",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Contacts.ExternalSource",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Contacts.Info",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Contacts.Label",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Contacts.OU",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.ACL",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.ActionPriv",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.ActionPriv.Role",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.AppNotify",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.AppPortal",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.AppPortal.AccessControl",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.AppPortal.Config",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.AppPortal.ReverseProxy",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.AppPriv",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.AppPriv.App",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.Core.AppPriv.Rule",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.BackgroundTask",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Backup.ED",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.BandwidthControl",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.BandwidthControl.Protocol",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.BandwidthControl.Status",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.CMS",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.CMS.Cache",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.CMS.Identity",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.CMS.Info",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.CMS.Policy",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.CMS.ServerInfo",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.CMS.Task",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.CMS.Token",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Certificate",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Certificate.CRT",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Certificate.CSR",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Certificate.LetsEncrypt",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Certificate.LetsEncrypt.Account",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Certificate.Service",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Certificate.Tencent",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.CurrentConnection",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.DDNS.Ethernet",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.DDNS.ExtIP",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.DDNS.Provider",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.DDNS.Record",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.DDNS.Synology",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.DDNS.TWNIC",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.DSMNotify",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.DSMNotify.MailContent",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.DSMNotify.Strings",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.DataCollect",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.DataCollect.Application",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Desktop.Defs",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Desktop.Initdata",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Desktop.JSUIString",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Desktop.PersonalUpdater",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Desktop.SessionData",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Desktop.Timeout",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Desktop.UIString",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Desktop.Upgrade",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Directory.Azure.SSO",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Directory.Domain",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.Core.Directory.Domain.Conf",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.Core.Directory.Domain.Schedule",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Directory.Domain.Trust",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Directory.LDAP",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Directory.LDAP.BaseDN",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Directory.LDAP.Login.Notify",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Directory.LDAP.Profile",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Directory.LDAP.Refresh",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Directory.LDAP.User",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Directory.OIDC.SSO",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Directory.SSO",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Directory.SSO.CAS",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Directory.SSO.IWA",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Directory.SSO.Profile",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Directory.SSO.SAML",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Directory.SSO.SAML.Metadata",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Directory.SSO.SAML.Status",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Directory.SSO.Setting",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Directory.SSO.Status",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Directory.SSO.utils",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Directory.WebSphere.SSO",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.DirectoryServiceCheck.Common",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.DirectoryServiceCheck.Debug",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.DirectoryServiceCheck.Domain",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.DirectoryServiceCheck.DomainJoin",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.DirectoryServiceCheck.DomainService",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.DirectoryServiceCheck.DomainValidation",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.DirectoryServiceCheck.LDAP",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.DirectoryServiceCheck.Progress",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.DisableAdmin",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.EW.Info",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.EventScheduler",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.EventScheduler.Root",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.ExternalDevice.Bluetooth",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.ExternalDevice.Bluetooth.Device",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.ExternalDevice.Bluetooth.Settings",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.ExternalDevice.DefaultPermission",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.ExternalDevice.Printer",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.ExternalDevice.Printer.BonjourSharing",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.ExternalDevice.Printer.Driver",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.ExternalDevice.Printer.Network",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.ExternalDevice.Printer.Network.Host",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.ExternalDevice.Printer.OAuth",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.ExternalDevice.Printer.USB",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.ExternalDevice.Storage.EUnit",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.ExternalDevice.Storage.Setting",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.ExternalDevice.Storage.USB",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.ExternalDevice.Storage.eSATA",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.ExternalDevice.UPS",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Factory.Config",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Factory.Manutild",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.File",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.File.Thumbnail",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.FileHandle",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.FileServ.AFP",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.FileServ.FTP",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.Core.FileServ.FTP.ChrootUser",
+      "path": "entry.cgi",
+      "minVersion": 2,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.FileServ.FTP.SFTP",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.FileServ.FTP.Security",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.FileServ.NFS",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.Core.FileServ.NFS.AdvancedSetting",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.FileServ.NFS.ConfBackup",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.FileServ.NFS.IDMap",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.FileServ.NFS.Kerberos",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.FileServ.NFS.SharePrivilege",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.FileServ.ReflinkCopy",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.FileServ.Rsync.Account",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.FileServ.SMB",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.Core.FileServ.SMB.ConfBackup",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.FileServ.SMB.Control",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.FileServ.SMB.MSDFS",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.FileServ.ServiceDiscovery",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.FileServ.ServiceDiscovery.WSTransfer",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Findhost",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Group",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Group.ExtraAdmin",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Group.Member",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Group.ValidLocalAdmin",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.GroupSettings",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Hardware.BeepControl",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Hardware.FanSpeed",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Hardware.Hibernation",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Hardware.LCM",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Hardware.Led.Brightness",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Hardware.MemoryLayout",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Hardware.NeedReboot",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Hardware.OOBManagement",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Hardware.PowerRecovery",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Hardware.PowerSchedule",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Hardware.RemoteFanStatus",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Hardware.SpectreMeltdown",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Hardware.VideoTranscoding",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Hardware.ZRAM",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Help",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.ISCSI.FCTarget",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.ISCSI.Host",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.ISCSI.LUN",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.ISCSI.Lunbkp",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.ISCSI.Node",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.ISCSI.Replication",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.ISCSI.Target",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.ISCSI.VMware",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.MediaIndexing",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.MediaIndexing.IndexFolder",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.MediaIndexing.MediaConverter",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.MediaIndexing.Scheduler",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.MediaIndexing.ThumbnailQuality",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.MyDSCenter",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.MyDSCenter.Account",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.MyDSCenter.Login",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.MyDSCenter.Logout",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.MyDSCenter.Purchase",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Network",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Network.Authentication",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Network.Authentication.Cert",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Network.Bond",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Network.Ethernet",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Network.Ethernet.External",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Network.IPv6",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Network.IPv6.Router",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Network.IPv6.Router.Prefix",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Network.Interface",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Network.MACClone",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Network.OVS",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Network.PPPoE",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Network.PPPoE.Relay",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Network.Proxy",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Network.Router.Gateway.List",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Network.Router.Static.Route",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Network.TrafficControl.RouterRules",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Network.TrafficControl.Rules",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Network.UPnPServer",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Network.VPN",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Network.VPN.L2TP",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Network.VPN.OpenVPN",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Network.VPN.OpenVPN.CA",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Network.VPN.OpenVPNWithConf",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Network.VPN.OpenVPNWithConf.Certs",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Network.VPN.PPTP",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Network.WOL",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.NormalUser",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.NormalUser.LoginNotify",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Notification.Advance.CustomizedData",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Notification.Advance.FilterSettings",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Notification.Advance.FilterSettings.Profile",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Notification.Advance.FilterSettings.Template",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Notification.Advance.Variables",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Notification.Advance.WarningPercentage",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Notification.CMS",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Notification.CMS.Conf",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Notification.Line",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Notification.Mail",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Notification.Mail.Auth",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Notification.Mail.Conf",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Notification.Mail.Oauth",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Notification.Mail.Profile.Conf",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Notification.Push",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Notification.Push.AuthToken",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Notification.Push.Conf",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Notification.Push.Mail",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Notification.Push.Mobile",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Notification.Push.Webhook.Provider",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Notification.SMS",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Notification.SMS.Conf",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Notification.SMS.Provider",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Notification.Sysnotify",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.OAuth.Scope",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.OAuth.Server",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.OTP",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.Core.OTP.Admin",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.OTP.EnforcePolicy",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.OTP.Ex",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.OTP.Mail",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Package",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Package.AutoUpgrade.Progress",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Package.Control",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Package.FakeIFrame",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Package.Feed",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Package.Info",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Package.Installation",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Package.Installation.Download",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Package.Legal.PreRelease",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Package.Log",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Package.MyDS",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Package.MyDS.Purchase",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Package.Progress",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Package.Screenshot",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Package.Screenshot.Server",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Package.Server",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Package.Setting",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Package.Setting.Update",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Package.Setting.Volume",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Package.Thumb",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Package.Thumb.Server",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Package.Uninstallation",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.PersonalNotification.Device",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.PersonalNotification.Event",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.PersonalNotification.Filter",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.PersonalNotification.Mobile",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.PersonalNotification.Settings",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.PersonalSettings",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.PhotoViewer",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Polling.Data",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.PortForwarding",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.PortForwarding.Compatibility",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.PortForwarding.RouterConf",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.PortForwarding.RouterInfo",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.PortForwarding.RouterList",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.PortForwarding.Rules",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.PortForwarding.Rules.Serv",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Promotion.Info",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Promotion.PreInstall",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.QuickConnect",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.Core.QuickConnect.Hostname",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.QuickConnect.Permission",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.QuickConnect.RegisterSite",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.QuickConnect.SNI",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.QuickConnect.Upnp",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.QuickStart.Info",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.Core.QuickStart.Install",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Quota",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.RecycleBin",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.RecycleBin.User",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Region.Language",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Region.NTP",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.Core.Region.NTP.DateTimeFormat",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Region.NTP.Server",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Report",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Report.Analyzer",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Report.Analyzer.File",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Report.Analyzer.Share",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Report.Config",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Report.History",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Report.Redirect",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Report.Util",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.ResetAdmin",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.SNMP",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Security.AutoBlock",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Security.AutoBlock.Rules",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Security.DSM",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 6
+    },
+    {
+      "name": "SYNO.Core.Security.DSM.Embed",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Security.DSM.Proxy",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Security.DoS",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Security.Firewall",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Security.Firewall.Adapter",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Security.Firewall.Conf",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Security.Firewall.Geoip",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Security.Firewall.Profile",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Security.Firewall.Profile.Apply",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Security.Firewall.Rules",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Security.Firewall.Rules.Serv",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.SecurityScan.Conf",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.SecurityScan.Operation",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.SecurityScan.Status",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Service",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.Core.Service.Conf",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Service.PortInfo",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Share",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Share.Crypto",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Share.Crypto.Key",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Share.CryptoFile",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Share.KeyManager.AutoKey",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Share.KeyManager.Key",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Share.KeyManager.MachineKey",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Share.KeyManager.Store",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Share.Migration",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Share.Migration.Task",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Share.Permission",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Share.PermissionReport",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Share.ShellFile",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Share.Snapshot",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Sharing",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Sharing.Initdata",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Sharing.Login",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Sharing.Session",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.SmartBlock",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.SmartBlock.Device",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.SmartBlock.Trusted",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.SmartBlock.Untrusted",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.SmartBlock.User",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Storage.Disk",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Storage.Disk.FWUpgrade",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Storage.Pool",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Storage.Volume",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Storage.iSCSILUN",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.SupportForm.Form",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.SupportForm.Log",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.SupportForm.Service",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Synohdpack",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.SyslogClient.FileTransfer",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.SyslogClient.Log",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.SyslogClient.PersonalActivity",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.SyslogClient.Setting.Notify",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.SyslogClient.Status",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.System",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.Core.System.Process",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.System.ProcessGroup",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.System.ResetButton",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.System.Status",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.System.SystemHealth",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.System.Utilization",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.TFTP",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.TaskScheduler",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 4
+    },
+    {
+      "name": "SYNO.Core.TaskScheduler.Root",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 4
+    },
+    {
+      "name": "SYNO.Core.Terminal",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.Core.Theme.AppPortalLogin",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Theme.Desktop",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Theme.FileSharingLogin",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Theme.Image",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Theme.Login",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.TrustDevice",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Tuned",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.UISearch",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Upgrade",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Upgrade.AutoUpgrade",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Upgrade.AutoUpgrade.Security",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Upgrade.Cluster.Patch",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Upgrade.Cluster.Server",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Upgrade.Cluster.Server.Download",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Upgrade.Group",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Upgrade.Group.Download",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Upgrade.Group.Setting",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Upgrade.GroupInstall",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Upgrade.GroupInstall.Network",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Upgrade.JuniorModeData",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Upgrade.Patch",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Upgrade.PreCheck",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Upgrade.RemoteAction",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Upgrade.Server",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 4
+    },
+    {
+      "name": "SYNO.Core.Upgrade.Server.Download",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Upgrade.Setting",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 4
+    },
+    {
+      "name": "SYNO.Core.User",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.User.Group",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.User.Home",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.User.PasswordConfirm",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.User.PasswordExpiry",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.User.PasswordMeter",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.User.PasswordPolicy",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.User.UsernamePolicy",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.UserSettings",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Virtualization.Host.Capability",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.VolEncKeepKey",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Web.DSM",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Core.Web.DSM.External",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Web.Security.HTTPCompression",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Core.Web.Security.TLSProfile",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DR.Credential",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DR.Node",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DR.Node.Credential",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DR.Node.Session",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.DR.Plan",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.DR.Plan.DRSite",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DR.Plan.MainSite",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DR.Plan.Site",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DR.Topology",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DSM.FindMe",
+      "path": "entry.cgi",
+      "minVersion": 2,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.DSM.Info",
+      "path": "entry.cgi",
+      "minVersion": 2,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.DSM.Network",
+      "path": "entry.cgi",
+      "minVersion": 2,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.DSM.PortEnable",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DSM.PushNotification",
+      "path": "entry.cgi",
+      "minVersion": 2,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Default.API",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DiagnosisTool.TcpDump",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DiagnosisTool.TcpDump.Interface",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DisasterRecovery.Log",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DisasterRecovery.Retention",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Docker.Container",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Docker.Container.Log",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Docker.Container.PkgProfile",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Docker.Container.Profile",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Docker.Container.Resource",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Docker.Image",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Docker.Log",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Docker.Migrate",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Docker.Network",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Docker.Project",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Docker.Registry",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Docker.Utils",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DownloadStation.BTSearch",
+      "path": "DownloadStation/btsearch.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DownloadStation.Info",
+      "path": "DownloadStation/info.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.DownloadStation.RSS.Feed",
+      "path": "DownloadStation/RSSfeed.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DownloadStation.RSS.Site",
+      "path": "DownloadStation/RSSsite.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DownloadStation.Schedule",
+      "path": "DownloadStation/schedule.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DownloadStation.Statistic",
+      "path": "DownloadStation/statistic.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DownloadStation.Task",
+      "path": "DownloadStation/task.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.DownloadStation2.BTSearch",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DownloadStation2.Captcha",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.DownloadStation2.Package.Info",
+      "path": "entry.cgi",
+      "minVersion": 2,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.DownloadStation2.Package.Module",
+      "path": "entry.cgi",
+      "minVersion": 2,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.DownloadStation2.Package.Service",
+      "path": "entry.cgi",
+      "minVersion": 2,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.DownloadStation2.RSS.Feed",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DownloadStation2.RSS.Filter",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DownloadStation2.RSS.Item",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DownloadStation2.Settings.AutoExtraction",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DownloadStation2.Settings.BT",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DownloadStation2.Settings.BTSearch",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DownloadStation2.Settings.Emule",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DownloadStation2.Settings.Emule.Location",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DownloadStation2.Settings.FileHosting",
+      "path": "entry.cgi",
+      "minVersion": 2,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.DownloadStation2.Settings.FtpHttp",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DownloadStation2.Settings.Global",
+      "path": "entry.cgi",
+      "minVersion": 2,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.DownloadStation2.Settings.Location",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DownloadStation2.Settings.Nzb",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DownloadStation2.Settings.Rss",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DownloadStation2.Settings.Scheduler",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DownloadStation2.Task",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.DownloadStation2.Task.BT",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.DownloadStation2.Task.BT.File",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.DownloadStation2.Task.BT.Peer",
+      "path": "entry.cgi",
+      "minVersion": 2,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.DownloadStation2.Task.BT.Tracker",
+      "path": "entry.cgi",
+      "minVersion": 2,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.DownloadStation2.Task.Complete",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DownloadStation2.Task.List",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.DownloadStation2.Task.List.Polling",
+      "path": "entry.cgi",
+      "minVersion": 2,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.DownloadStation2.Task.NZB.File",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DownloadStation2.Task.NZB.Log",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DownloadStation2.Task.Source",
+      "path": "entry.cgi",
+      "minVersion": 2,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.DownloadStation2.Task.Statistic",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DownloadStation2.Task.eMule",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DownloadStation2.Thumbnail",
+      "path": "entry.cgi",
+      "minVersion": 2,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.DownloadStation2.eMule.Search",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.DownloadStation2.eMule.Server",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Entry.Request",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Entry.Request.Polling",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Entry.SocketIo",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FileStation.BackgroundTask",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.FileStation.CheckExist",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.FileStation.CheckPermission",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.FileStation.Compress",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.FileStation.CopyMove",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.FileStation.CreateFolder",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.FileStation.Delete",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.FileStation.DirSize",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.FileStation.Download",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.FileStation.External.GoogleDrive",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.FileStation.Extract",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.FileStation.Favorite",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.FileStation.FormUpload",
+      "path": "entry.cgi",
+      "minVersion": 2,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.FileStation.Info",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.FileStation.List",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.FileStation.MD5",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.FileStation.Mount",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FileStation.Mount.List",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FileStation.Notify",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FileStation.PhotoUpload",
+      "path": "entry.cgi",
+      "minVersion": 2,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.FileStation.Property",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FileStation.Property.ACLOwner",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FileStation.Property.CompressSize",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FileStation.Property.Mtime",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FileStation.Rename",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.FileStation.Search",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.FileStation.Search.History",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FileStation.Settings",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FileStation.Sharing",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.FileStation.Sharing.Download",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FileStation.Snapshot",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.FileStation.Thumb",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.FileStation.ThumbInfo",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FileStation.Timeout",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FileStation.UIString",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FileStation.Upload",
+      "path": "entry.cgi",
+      "minVersion": 2,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.FileStation.UserGrp",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FileStation.VFS.Connection",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FileStation.VFS.File",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FileStation.VFS.GDrive",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FileStation.VFS.Profile",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FileStation.VFS.Protocol",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FileStation.VFS.User",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FileStation.VirtualFolder",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.FileStation.Worm",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.FileStation.Worm.Lock",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Finder.AppIndexing.Search",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Finder.Bookmark",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Finder.Elastic.SearchHistory",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Finder.Elastic.Spotlight",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Finder.Elastic.Term",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Finder.File",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Finder.File.Cover",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Finder.File.Thumbnail",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Finder.FileIndexing.Folder",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Finder.FileIndexing.Highlight",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Finder.FileIndexing.Indicate",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Finder.FileIndexing.Search",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Finder.FileIndexing.Status",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Finder.FileIndexing.Term",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Finder.Preference",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Finder.Settings",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Finder.UserGrp",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FolderSharing.Download",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.FolderSharing.List",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.FolderSharing.Thumb",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Foto.BackgroundTask.File",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Foto.BackgroundTask.Info",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Foto.Browse.Album",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 5
+    },
+    {
+      "name": "SYNO.Foto.Browse.Category",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.Foto.Browse.Concept",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Foto.Browse.ConditionAlbum",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.Foto.Browse.Diff",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 6
+    },
+    {
+      "name": "SYNO.Foto.Browse.Folder",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Foto.Browse.GeneralTag",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Foto.Browse.Geocoding",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Foto.Browse.Item",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 6
+    },
+    {
+      "name": "SYNO.Foto.Browse.NormalAlbum",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 4
+    },
+    {
+      "name": "SYNO.Foto.Browse.Person",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.Foto.Browse.RecentlyAdded",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 5
+    },
+    {
+      "name": "SYNO.Foto.Browse.Similar",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Foto.Browse.SimilarItem",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Foto.Browse.SimilarTimeline",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Foto.Browse.Timeline",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 5
+    },
+    {
+      "name": "SYNO.Foto.Browse.Unit",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.Foto.Development.Admin",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Foto.Download",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Foto.Favorite",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Foto.Index",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Foto.Migration",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Foto.Notification",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Foto.PhotoRequest",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Foto.PublicSharing",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Foto.RegeneratePreview",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Foto.Search.Filter",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.Foto.Search.Search",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 6
+    },
+    {
+      "name": "SYNO.Foto.Setting.Admin",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Foto.Setting.Guest",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Foto.Setting.MobileCompatibility",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Foto.Setting.TeamSpace",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Foto.Setting.User",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Foto.Setting.Wizard",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Foto.Sharing.Misc",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Foto.Sharing.Passphrase",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Foto.Streaming",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Foto.Thumbnail",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Foto.Udc",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Foto.Upload.ConvertedFile",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 5
+    },
+    {
+      "name": "SYNO.Foto.Upload.Face",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Foto.Upload.Item",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 7
+    },
+    {
+      "name": "SYNO.Foto.Upload.PhotoRequestItem",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.Foto.UserInfo",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FotoTeam.BackgroundTask.File",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FotoTeam.Browse.Concept",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.FotoTeam.Browse.Diff",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 6
+    },
+    {
+      "name": "SYNO.FotoTeam.Browse.Folder",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.FotoTeam.Browse.GeneralTag",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FotoTeam.Browse.Geocoding",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FotoTeam.Browse.Item",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 6
+    },
+    {
+      "name": "SYNO.FotoTeam.Browse.Person",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.FotoTeam.Browse.RecentlyAdded",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 5
+    },
+    {
+      "name": "SYNO.FotoTeam.Browse.Similar",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FotoTeam.Browse.SimilarItem",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FotoTeam.Browse.SimilarTimeline",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FotoTeam.Browse.Timeline",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 5
+    },
+    {
+      "name": "SYNO.FotoTeam.Browse.Unit",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.FotoTeam.Download",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.FotoTeam.Index",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FotoTeam.RegeneratePreview",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FotoTeam.Search.Filter",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.FotoTeam.Search.Search",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 6
+    },
+    {
+      "name": "SYNO.FotoTeam.Sharing.FolderBatchPermission",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FotoTeam.Sharing.FolderPermission",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FotoTeam.Sharing.Passphrase",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FotoTeam.Streaming",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.FotoTeam.Thumbnail",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.FotoTeam.Upload.ConvertedFile",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 5
+    },
+    {
+      "name": "SYNO.FotoTeam.Upload.Face",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.FotoTeam.Upload.Item",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 7
+    },
+    {
+      "name": "SYNO.License.HA",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.LogCenter.Client",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.LogCenter.Client.CA",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.LogCenter.History",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.LogCenter.Log",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.LogCenter.RecvRule",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.LogCenter.Setting.Storage",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Lunbackup",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailClient.AiSummary",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailClient.Attachment",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 8
+    },
+    {
+      "name": "SYNO.MailClient.CMSCertificate",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailClient.Draft",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 6
+    },
+    {
+      "name": "SYNO.MailClient.Filter",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.MailClient.Info",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 5
+    },
+    {
+      "name": "SYNO.MailClient.Label",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.MailClient.MailMerge",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailClient.MailTemplate",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailClient.MailTrack",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailClient.Mailbox",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 7
+    },
+    {
+      "name": "SYNO.MailClient.Message",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 10
+    },
+    {
+      "name": "SYNO.MailClient.PGPKey",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailClient.PromptHistory",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailClient.SearchHistory",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailClient.Setting",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.MailClient.Setting.Ai",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailClient.Setting.CustomAutoReply",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailClient.Setting.CustomLogo",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailClient.Setting.Encryption",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailClient.Setting.ForwardReply",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailClient.Setting.General",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailClient.Setting.Lab",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailClient.Setting.MailTrack",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailClient.Setting.ManualConfig",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailClient.Setting.Notification",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailClient.Setting.PGP",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailClient.Setting.POP3",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailClient.Setting.PriorityMailbox",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailClient.Setting.SMTP",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.MailClient.Setting.SharingLink",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailClient.Signature",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailClient.SpamRule",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailClient.Sticker",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.MailClient.Theme",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailClient.Thread",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 10
+    },
+    {
+      "name": "SYNO.MailClient.UserDataCollect",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailClient.UserPreference",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Account.Detail",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Account.Maildir",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Account.Quota",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Alias",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.MailPlusServer.Audit.AdminLog",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Audit.DovecotLog",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Audit.SearchTask",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Audit.SearchTaskResult",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Audit.TransactionLog",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Client",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Cluster",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.MailPlusServer.CreateWizard",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 7
+    },
+    {
+      "name": "SYNO.MailPlusServer.Delegation",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Diagnosis",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.MailPlusServer.Disclaimer",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Domain",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.MailPlusServer.Domain.AdditionalDomain",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Domain.BCC",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Domain.Group",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Domain.Settings",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Domain.User",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.FullTextSearch",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.IMAP_POP3",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.IMAP_POP3_ADVANCED",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.License",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.MailPlusServer.License.BitDefender",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.License.Payment",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Log",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Log.Mail",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Log.Security",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.MailImportExport",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.MailPlusServer.MailPlus",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.MailPlusServer.Migration",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Normal.Util",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Personal.AutoReply",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.MailPlusServer.Personal.Forward",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Personal.ForwardReply",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Queue",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.RemoteMigrate",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 5
+    },
+    {
+      "name": "SYNO.MailPlusServer.Report",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.SMTP",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.SMTP.Delivery",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.MailPlusServer.SMTP.General",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.MailPlusServer.SMTP.RelayControl",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.SMTP.Security",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Security",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 4
+    },
+    {
+      "name": "SYNO.MailPlusServer.Security.AttachmentFilter",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Security.BlackwhiteList",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.MailPlusServer.Security.DailyQuota",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Security.Dane",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Security.DkimTrustSender",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Security.Greylist",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Security.MCP",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Security.MCPQuarantine",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Security.PostScreen",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Security.VirusQuarantine",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.MailPlusServer.SecurityDashboard",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.ServerList",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Service.SMTP",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Spam.ReportedHam",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Spam.ReportedSpam",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Spam.SpamAssassin",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Statistic",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 4
+    },
+    {
+      "name": "SYNO.MailPlusServer.UserGroupPolicy",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.MailPlusServer.Util",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.MailPlusServer.Version",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.NoteStation.Export.Note",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.NoteStation.Export.Notebook",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.NoteStation.Export.Word",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.NoteStation.FTS",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.NoteStation.Import.Enex",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.NoteStation.Import.Evernote",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.NoteStation.Import.Notebook",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.NoteStation.Info",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.NoteStation.Note",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 4
+    },
+    {
+      "name": "SYNO.NoteStation.Note.AppLink",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.NoteStation.Note.AppTask",
+      "path": "entry.cgi",
+      "minVersion": 2,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.NoteStation.Note.Encrypt",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.NoteStation.Note.Ghost",
+      "path": "entry.cgi",
+      "minVersion": 2,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.NoteStation.Note.Polling",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.NoteStation.Note.Version",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.NoteStation.Notebook",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.NoteStation.Notebook.Polling",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.NoteStation.Notebook.Preset",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.NoteStation.Permission",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.NoteStation.Permission.Group",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.NoteStation.Permission.Public",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.NoteStation.Permission.User",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.NoteStation.Setting",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.NoteStation.Setting.DSM",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.NoteStation.Setting.Global",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.NoteStation.Setting.Volume",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.NoteStation.Shard",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.NoteStation.Shard.Link",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.NoteStation.Share.Priv",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.NoteStation.Shortcut",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.NoteStation.Smart",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.NoteStation.Stack",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.NoteStation.Tag",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.NoteStation.Todo",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.OAUTH.Client",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.OAUTH.Common",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.OAUTH.Log",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.OAUTH.Scope",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.OAUTH.Token",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Dictionary",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Doc.Snapshot",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Export",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.File",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Group",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Import",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Info",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Info.Constants",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Locale",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Log",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Metrics",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Node",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Office.Node.Attachment",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Office.Node.Delete",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Node.Encrypt",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Node.Owner",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Node.Version",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Notification",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.OFile",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Permission",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Permission.User",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Presentation.Snapshot",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Resource",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Office.Setting",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Setting.Font",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Setting.Person",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Setting.System",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Setting.UI",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Shard",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Shard.Def",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Shard.Framework",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Shard.Info",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Shard.JSConfig",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Shard.Session",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Shard.Token",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Shard.Type",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Sheet.MruFc",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Sheet.Snapshot",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Office.Sheet.Snapshot.History",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Snapshot",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 4
+    },
+    {
+      "name": "SYNO.Office.Template",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Template.Permission",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Template.Sharing.Group",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Template.Thumb",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Theme",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Theme.Thumb",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.UserStatistics.Event",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Video",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Office.Video.Thumb",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Package",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.PersonMailAccount",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.PersonMailAccount.Contacts",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.PersonMailAccount.Mail",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.PersonMailAccount.Mail.Oauth",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Personal.Application.Info",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Personal.Application.Info.Local",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Personal.MailAccount",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Personal.MailAccount.Contacts",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Personal.MailAccount.Mail",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Personal.Notification.Conf",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Personal.Notification.Device",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Personal.Notification.Event",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Personal.Notification.Filter",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Personal.Notification.GDPR",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Personal.Notification.Identifier",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Personal.Notification.Mobile",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.Personal.Notification.Settings",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Personal.Notification.Token",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Personal.Notification.VapidPublicKey",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Personal.Profile",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.Personal.Profile.Photo",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.Remote.Credential",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Remote.Credential.Challenge",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Remote.Credential.Info",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Remote.Credential.Verifier",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Replica.Share",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Replica.Volume",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.ResourceMonitor.EventRule",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.ResourceMonitor.Log",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.ResourceMonitor.Setting",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.S2S.Client",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.S2S.Client.Job",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.S2S.Server",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.S2S.Server.Pair",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SAS.APIRunner",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SAS.APIRunner.Chatbot",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SAS.Encryption",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SAS.Group",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SAS.Group.Members",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SAS.Guest",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SecureSignIn.AMFA.Mail.Ex",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SecureSignIn.AMFA.Policy",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SecureSignIn.AMFA.SuggestConn",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SecureSignIn.Authenticator",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SecureSignIn.Authenticator.Ex",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SecureSignIn.Authenticator.Info",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.SecureSignIn.Authenticator.Registration",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.SecureSignIn.Authenticator.Registration.Ex",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.SecureSignIn.Authenticator.Request",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SecureSignIn.Authenticator.Verdict",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.SecureSignIn.Fido.Manage",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SecureSignIn.Fido.Manage.Ex",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SecureSignIn.Fido.Register",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SecureSignIn.Fido.Register.Ex",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SecureSignIn.Method",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SecureSignIn.Method.Admin",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SecureSignIn.Method.Ex",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SecureSignIn.Package",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SecureSignIn.Package.Ex",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SecureSignIn.Package.Request",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SecurityAdvisor.Conf",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SecurityAdvisor.Conf.Checklist",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SecurityAdvisor.Conf.Checklist.Alert",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SecurityAdvisor.Conf.Location",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SecurityAdvisor.LoginActivity",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SecurityAdvisor.LoginActivity.User",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SecurityAdvisor.Report",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SecurityAdvisor.Report.HTML",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.ShareLink.Action",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.ShareLink.Download",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.ShareLink.Manage",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Snap.Usage.Share",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Storage.CGI.BtrfsDedupe",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Storage.CGI.Cache.Protection",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Storage.CGI.Check",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Storage.CGI.DetectedPool",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Storage.CGI.DualEnclosure",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Storage.CGI.Enclosure",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Storage.CGI.EncryptionKeyVault",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Storage.CGI.EncryptionKeyVault.UnlockMode",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Storage.CGI.Flashcache",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Storage.CGI.HddMan",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Storage.CGI.KMIP",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Storage.CGI.Pool",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Storage.CGI.Scrubbing",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Storage.CGI.Smart",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Storage.CGI.Smart.Scheduler",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Storage.CGI.Spare",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Storage.CGI.Spare.Conf",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Storage.CGI.Storage",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Storage.CGI.TaipeiEnclosure",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Storage.CGI.Volume",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Storage.CGI.Volume.Installer",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Storage.CGI.Volume.OfflineOp",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SupportService.Setting",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.SynologyDrive",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Activation",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.AdvanceSharing",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.AdvanceSharing.Public",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.AppIntegration",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Authentication",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.SynologyDrive.Config",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Connection",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.SynologyDrive.DBUsage",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.DSM",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Dashboard",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.FileRequest",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.FileRequest.Public",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Files",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 11
+    },
+    {
+      "name": "SYNO.SynologyDrive.HybridShare.Privilege",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Index",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Info",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.SynologyDrive.KeyManagement",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Labels",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.SynologyDrive.Log",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Metrics",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Metrics.Token",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Migration",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Migration.UserHome",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Mobile.Notification",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Node",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Node.Delete",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Node.Download",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Node.Restore",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.NodeLocking",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.NodeLockingOption",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Notifications",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.SynologyDrive.Office",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Photos",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.SynologyDrive.Privilege",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Profiles",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.SynologyDrive.Revisions",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.SynologyDrive.SCIM.Photo",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.SCIM.User",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Services.DocumentViewer",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Services.SynologyChat",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Services.VideoStation",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Settings",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 3
+    },
+    {
+      "name": "SYNO.SynologyDrive.Shard",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Share",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.SynologyDrive.Share.Priv",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Sharing",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.SynologyDrive.Sharing.Report",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Statistics",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.String",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Tasks",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.TeamFolders",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Trash",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.SynologyDrive.Users",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDrive.Webhooks",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 2
+    },
+    {
+      "name": "SYNO.SynologyDriveShareSync.Config",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDriveShareSync.Connection",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDriveShareSync.Session",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.SynologyDriveShareSync.Session.Set",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.TextEditor",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.TextEditor.Preference",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.USBCopy",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.Utils",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.VideoPlayer.Subtitle",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.VideoPlayer.SynologyDrive.Subtitle",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.WebRTC.Proxy",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.WebRTC.Proxy.Sharing",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.WebStation.Backup",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.WebStation.Default",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.WebStation.Docker",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.WebStation.ErrorPage",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.WebStation.HTTP.VHost",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.WebStation.PHP",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.WebStation.PHP.Profile",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.WebStation.Package",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.WebStation.Python",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.WebStation.Python.Profile",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.WebStation.ScriptLanguage",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.WebStation.ScriptLanguage.Utils",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.WebStation.Shortcut",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.WebStation.Status",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.WebStation.Task",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.WebStation.WebService.Portal",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.WebStation.WebService.Portal.Log",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    },
+    {
+      "name": "SYNO.WebStation.WebService.Service",
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1
+    }
+  ]
+}
