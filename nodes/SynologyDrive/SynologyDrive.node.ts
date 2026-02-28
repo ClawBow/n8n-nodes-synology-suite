@@ -6,6 +6,7 @@ import type {
 } from 'n8n-workflow';
 import { DsmClient, normalizeCredentials } from '../shared/DsmClient';
 import { executePerItem } from '../shared/NodeExecution';
+import axios from 'axios';
 
 export class SynologyDrive implements INodeType {
 	description: INodeTypeDescription = {
@@ -27,6 +28,7 @@ export class SynologyDrive implements INodeType {
 				options: [
 					{ name: 'List Files', value: 'listFiles' },
 					{ name: 'Search Files', value: 'searchFiles' },
+					{ name: 'Upload File', value: 'uploadFile' },
 					{ name: 'Create Folder', value: 'createFolder' },
 					{ name: 'Rename', value: 'rename' },
 					{ name: 'Delete', value: 'delete' },
@@ -69,7 +71,26 @@ export class SynologyDrive implements INodeType {
 			{ displayName: 'Link Password', name: 'linkPassword', type: 'string', typeOptions: { password: true }, default: '', displayOptions: { show: { operation: ['createShareLink'] } } },
 			{ displayName: 'Expire Date (YYYY-MM-DD)', name: 'expireDate', type: 'string', default: '', displayOptions: { show: { operation: ['createShareLink'] } } },
 			{ displayName: 'Enable Download', name: 'enableDownload', type: 'boolean', default: true, displayOptions: { show: { operation: ['createShareLink'] } } },
-			{ displayName: 'Extra Params (JSON)', name: 'extraParamsJson', type: 'json', default: '{}', displayOptions: { show: { operation: ['listFiles', 'searchFiles', 'createFolder', 'rename', 'delete', 'copyMove', 'createShareLink', 'listShareLinks'] } } },
+			{
+				displayName: 'Upload Mode',
+				name: 'uploadMode',
+				type: 'options',
+				options: [
+					{ name: 'Binary Data (from n8n)', value: 'binary' },
+					{ name: 'From URL', value: 'url' },
+				],
+				default: 'binary',
+				displayOptions: { show: { operation: ['uploadFile'] } },
+			},
+			{ displayName: 'Destination Folder', name: 'uploadDestPath', type: 'string', default: '/', displayOptions: { show: { operation: ['uploadFile'] } } },
+			{ displayName: 'Binary Data Field', name: 'uploadBinaryField', type: 'string', default: 'data', displayOptions: { show: { operation: ['uploadFile'], uploadMode: ['binary'] } } },
+			{ displayName: 'File Name', name: 'uploadFileName', type: 'string', default: '', displayOptions: { show: { operation: ['uploadFile'], uploadMode: ['binary'] } } },
+			{ displayName: 'File URL', name: 'uploadFileUrl', type: 'string', default: '', displayOptions: { show: { operation: ['uploadFile'], uploadMode: ['url'] } } },
+			{ displayName: 'Extract Filename from URL', name: 'uploadExtractFilename', type: 'boolean', default: true, displayOptions: { show: { operation: ['uploadFile'], uploadMode: ['url'] } } },
+			{ displayName: 'Custom File Name', name: 'uploadCustomFileName', type: 'string', default: '', displayOptions: { show: { operation: ['uploadFile'], uploadMode: ['url'], uploadExtractFilename: [false] } } },
+			{ displayName: 'Overwrite Existing', name: 'uploadOverwrite', type: 'boolean', default: true, displayOptions: { show: { operation: ['uploadFile'] } } },
+			{ displayName: 'Create Parent Folders', name: 'uploadCreateParents', type: 'boolean', default: true, displayOptions: { show: { operation: ['uploadFile'] } } },
+			{ displayName: 'Extra Params (JSON)', name: 'extraParamsJson', type: 'json', default: '{}', displayOptions: { show: { operation: ['listFiles', 'searchFiles', 'createFolder', 'rename', 'delete', 'copyMove', 'createShareLink', 'listShareLinks', 'uploadFile'] } } },
 			{ displayName: 'API Name', name: 'api', type: 'string', default: 'SYNO.FileStation.List', displayOptions: { show: { operation: ['customDriveCall'] } } },
 			{ displayName: 'Method', name: 'method', type: 'string', default: 'list', displayOptions: { show: { operation: ['customDriveCall'] } } },
 			{ displayName: 'Params (JSON)', name: 'paramsJson', type: 'json', default: '{}', displayOptions: { show: { operation: ['customDriveCall'] } } },
@@ -235,10 +256,98 @@ export class SynologyDrive implements INodeType {
 				});
 			}
 
+			if (operation === 'uploadFile') {
+				const uploadMode = this.getNodeParameter('uploadMode', i) as string;
+				const uploadDestPath = this.getNodeParameter('uploadDestPath', i) as string;
+				const uploadOverwrite = this.getNodeParameter('uploadOverwrite', i) as boolean;
+				const uploadCreateParents = this.getNodeParameter('uploadCreateParents', i) as boolean;
+
+				if (uploadMode === 'binary') {
+					const uploadBinaryField = this.getNodeParameter('uploadBinaryField', i) as string;
+					let uploadFileName = this.getNodeParameter('uploadFileName', i) as string;
+
+					try {
+						const buffer = await this.helpers.getBinaryDataBuffer(i, uploadBinaryField);
+						if (!uploadFileName) {
+							uploadFileName = `upload_${Date.now()}.bin`;
+						}
+						return await performUpload(dsm, creds as any, buffer, uploadFileName, uploadDestPath, uploadOverwrite, uploadCreateParents);
+					} catch (error) {
+						return { success: false, error: `Binary upload failed: ${error}` };
+					}
+				} else if (uploadMode === 'url') {
+					const uploadFileUrl = this.getNodeParameter('uploadFileUrl', i) as string;
+					const uploadExtractFilename = this.getNodeParameter('uploadExtractFilename', i) as boolean;
+					let uploadCustomFileName = this.getNodeParameter('uploadCustomFileName', i) as string;
+
+					let fileName: string;
+					if (uploadExtractFilename && !uploadCustomFileName) {
+						const urlParts = new URL(uploadFileUrl).pathname.split('/');
+						fileName = urlParts[urlParts.length - 1] || 'downloaded_file';
+					} else {
+						fileName = uploadCustomFileName || 'downloaded_file';
+					}
+
+					try {
+						const response = await axios.get(uploadFileUrl, { responseType: 'arraybuffer' });
+						const buffer = Buffer.from(response.data);
+						return await performUpload(dsm, creds as any, buffer, fileName, uploadDestPath, uploadOverwrite, uploadCreateParents);
+					} catch (error) {
+						return { success: false, error: `URL download failed: ${error}` };
+					}
+				}
+			}
+
 			const api = this.getNodeParameter('api', i) as string;
 			const method = this.getNodeParameter('method', i) as string;
 			const paramsJson = this.getNodeParameter('paramsJson', i) as IDataObject;
 			return dsm.callAuto(api, method, paramsJson || {});
 		});
+	}
+}
+
+async function performUpload(
+	dsm: DsmClient,
+	creds: any,
+	fileBuffer: Buffer,
+	fileName: string,
+	destPath: string,
+	overwrite: boolean,
+	createParents: boolean,
+): Promise<IDataObject> {
+	try {
+		const formData = new FormData();
+		formData.append('api', 'SYNO.FileStation.Upload');
+		formData.append('version', '2');
+		formData.append('method', 'upload');
+		formData.append('path', destPath);
+		formData.append('create_parents', createParents ? 'true' : 'false');
+		formData.append('overwrite', overwrite ? 'true' : 'false');
+
+		const blob = new Blob([fileBuffer], { type: 'application/octet-stream' });
+		formData.append('file', blob, fileName);
+
+		const protocol = creds.protocol === 'http' ? 'http' : 'https';
+		const host = creds.host as string;
+		const port = creds.port as number;
+		const sid = creds._sid as string;
+
+		const baseUrl = `${protocol}://${host}:${port}`;
+		const uploadUrl = `${baseUrl}/webapi/entry.cgi?_sid=${sid}`;
+
+		const response = await axios.post(uploadUrl, formData, {
+			headers: { 'Content-Type': 'multipart/form-data' },
+			validateStatus: () => true,
+		});
+
+		const result = response.data as IDataObject;
+
+		if (result.success === true) {
+			return { success: true, fileName, path: destPath, data: result.data };
+		} else {
+			return { success: false, error: result.error || 'Upload failed', data: result };
+		}
+	} catch (error) {
+		return { success: false, error: `Upload operation failed: ${error}` };
 	}
 }
