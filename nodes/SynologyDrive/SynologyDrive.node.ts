@@ -316,27 +316,64 @@ async function performUpload(
 	createParents: boolean,
 ): Promise<IDataObject> {
 	try {
-		const formData = new FormData();
-		formData.append('api', 'SYNO.FileStation.Upload');
-		formData.append('version', '2');
-		formData.append('method', 'upload');
-		formData.append('path', destPath);
-		formData.append('create_parents', createParents ? 'true' : 'false');
-		formData.append('overwrite', overwrite ? 'true' : 'false');
-
-		const blob = new Blob([fileBuffer], { type: 'application/octet-stream' });
-		formData.append('file', blob, fileName);
-
 		const protocol = creds.protocol === 'http' ? 'http' : 'https';
 		const host = creds.host as string;
 		const port = creds.port as number;
 		const sid = creds._sid as string;
 
-		const baseUrl = `${protocol}://${host}:${port}`;
-		const uploadUrl = `${baseUrl}/webapi/entry.cgi?_sid=${sid}`;
+		if (!host || !sid) {
+			return { success: false, error: 'Missing host or session ID in credentials' };
+		}
 
-		const response = await axios.post(uploadUrl, formData, {
-			headers: { 'Content-Type': 'multipart/form-data' },
+		const baseUrl = `${protocol}://${host}:${port}`;
+		const uploadUrl = `${baseUrl}/webapi/entry.cgi`;
+
+		// Build multipart body manually (n8n Node.js environment)
+		const boundary = '----WebKitFormBoundary7MA4YWxkTrZu0gW';
+		const lines: string[] = [];
+
+		lines.push(`--${boundary}`);
+		lines.push('Content-Disposition: form-data; name="api"');
+		lines.push('');
+		lines.push('SYNO.FileStation.Upload');
+
+		lines.push(`--${boundary}`);
+		lines.push('Content-Disposition: form-data; name="version"');
+		lines.push('');
+		lines.push('2');
+
+		lines.push(`--${boundary}`);
+		lines.push('Content-Disposition: form-data; name="method"');
+		lines.push('');
+		lines.push('upload');
+
+		lines.push(`--${boundary}`);
+		lines.push('Content-Disposition: form-data; name="path"');
+		lines.push('');
+		lines.push(destPath);
+
+		lines.push(`--${boundary}`);
+		lines.push('Content-Disposition: form-data; name="create_parents"');
+		lines.push('');
+		lines.push(createParents ? 'true' : 'false');
+
+		lines.push(`--${boundary}`);
+		lines.push('Content-Disposition: form-data; name="overwrite"');
+		lines.push('');
+		lines.push(overwrite ? 'true' : 'false');
+
+		lines.push(`--${boundary}`);
+		lines.push(`Content-Disposition: form-data; name="file"; filename="${fileName}"`);
+		lines.push('Content-Type: application/octet-stream');
+		lines.push('');
+
+		const header = Buffer.from(lines.join('\r\n') + '\r\n');
+		const footer = Buffer.from(`\r\n--${boundary}--\r\n`);
+		const body = Buffer.concat([header, fileBuffer, footer]);
+
+		const response = await axios.post(uploadUrl, body, {
+			params: { _sid: sid },
+			headers: { 'Content-Type': `multipart/form-data; boundary=${boundary}` },
 			validateStatus: () => true,
 		});
 
