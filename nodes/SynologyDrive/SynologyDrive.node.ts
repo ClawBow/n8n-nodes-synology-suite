@@ -271,7 +271,7 @@ export class SynologyDrive implements INodeType {
 						if (!uploadFileName) {
 							uploadFileName = `upload_${Date.now()}.bin`;
 						}
-						return await performUpload(dsm, creds as any, buffer, uploadFileName, uploadDestPath, uploadOverwrite, uploadCreateParents);
+						return dsm.uploadFile(buffer, uploadFileName, uploadDestPath, uploadOverwrite, uploadCreateParents);
 					} catch (error) {
 						return { success: false, error: `Binary upload failed: ${error}` };
 					}
@@ -291,7 +291,7 @@ export class SynologyDrive implements INodeType {
 					try {
 						const response = await axios.get(uploadFileUrl, { responseType: 'arraybuffer' });
 						const buffer = Buffer.from(response.data);
-						return await performUpload(dsm, creds as any, buffer, fileName, uploadDestPath, uploadOverwrite, uploadCreateParents);
+						return dsm.uploadFile(buffer, fileName, uploadDestPath, uploadOverwrite, uploadCreateParents);
 					} catch (error) {
 						return { success: false, error: `URL download failed: ${error}` };
 					}
@@ -303,88 +303,5 @@ export class SynologyDrive implements INodeType {
 			const paramsJson = this.getNodeParameter('paramsJson', i) as IDataObject;
 			return dsm.callAuto(api, method, paramsJson || {});
 		});
-	}
-}
-
-async function performUpload(
-	dsm: DsmClient,
-	creds: any,
-	fileBuffer: Buffer,
-	fileName: string,
-	destPath: string,
-	overwrite: boolean,
-	createParents: boolean,
-): Promise<IDataObject> {
-	try {
-		const protocol = creds.protocol === 'http' ? 'http' : 'https';
-		const host = creds.host as string;
-		const port = creds.port as number;
-		const sid = creds._sid as string;
-
-		if (!host || !sid) {
-			return { success: false, error: 'Missing host or session ID in credentials' };
-		}
-
-		const baseUrl = `${protocol}://${host}:${port}`;
-		const uploadUrl = `${baseUrl}/webapi/entry.cgi`;
-
-		// Build multipart body manually (n8n Node.js environment)
-		const boundary = '----WebKitFormBoundary7MA4YWxkTrZu0gW';
-		const lines: string[] = [];
-
-		lines.push(`--${boundary}`);
-		lines.push('Content-Disposition: form-data; name="api"');
-		lines.push('');
-		lines.push('SYNO.FileStation.Upload');
-
-		lines.push(`--${boundary}`);
-		lines.push('Content-Disposition: form-data; name="version"');
-		lines.push('');
-		lines.push('2');
-
-		lines.push(`--${boundary}`);
-		lines.push('Content-Disposition: form-data; name="method"');
-		lines.push('');
-		lines.push('upload');
-
-		lines.push(`--${boundary}`);
-		lines.push('Content-Disposition: form-data; name="path"');
-		lines.push('');
-		lines.push(destPath);
-
-		lines.push(`--${boundary}`);
-		lines.push('Content-Disposition: form-data; name="create_parents"');
-		lines.push('');
-		lines.push(createParents ? 'true' : 'false');
-
-		lines.push(`--${boundary}`);
-		lines.push('Content-Disposition: form-data; name="overwrite"');
-		lines.push('');
-		lines.push(overwrite ? 'true' : 'false');
-
-		lines.push(`--${boundary}`);
-		lines.push(`Content-Disposition: form-data; name="file"; filename="${fileName}"`);
-		lines.push('Content-Type: application/octet-stream');
-		lines.push('');
-
-		const header = Buffer.from(lines.join('\r\n') + '\r\n');
-		const footer = Buffer.from(`\r\n--${boundary}--\r\n`);
-		const body = Buffer.concat([header, fileBuffer, footer]);
-
-		const response = await axios.post(uploadUrl, body, {
-			params: { _sid: sid },
-			headers: { 'Content-Type': `multipart/form-data; boundary=${boundary}` },
-			validateStatus: () => true,
-		});
-
-		const result = response.data as IDataObject;
-
-		if (result.success === true) {
-			return { success: true, fileName, path: destPath, data: result.data };
-		} else {
-			return { success: false, error: result.error || 'Upload failed', data: result };
-		}
-	} catch (error) {
-		return { success: false, error: `Upload operation failed: ${error}` };
 	}
 }

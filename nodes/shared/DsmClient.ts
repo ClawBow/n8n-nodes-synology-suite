@@ -47,6 +47,74 @@ export class DsmClient {
 		});
 	}
 
+	async uploadFile(fileBuffer: Buffer, fileName: string, destPath: string, overwrite: boolean, createParents: boolean): Promise<IDataObject> {
+		if (!this.sid) {
+			throw new Error('Not authenticated. Call login() first.');
+		}
+
+		try {
+			// Build multipart body manually
+			const boundary = '----WebKitFormBoundary7MA4YWxkTrZu0gW';
+			const lines: string[] = [];
+
+			lines.push(`--${boundary}`);
+			lines.push('Content-Disposition: form-data; name="api"');
+			lines.push('');
+			lines.push('SYNO.FileStation.Upload');
+
+			lines.push(`--${boundary}`);
+			lines.push('Content-Disposition: form-data; name="version"');
+			lines.push('');
+			lines.push('2');
+
+			lines.push(`--${boundary}`);
+			lines.push('Content-Disposition: form-data; name="method"');
+			lines.push('');
+			lines.push('upload');
+
+			lines.push(`--${boundary}`);
+			lines.push('Content-Disposition: form-data; name="path"');
+			lines.push('');
+			lines.push(destPath);
+
+			lines.push(`--${boundary}`);
+			lines.push('Content-Disposition: form-data; name="create_parents"');
+			lines.push('');
+			lines.push(createParents ? 'true' : 'false');
+
+			lines.push(`--${boundary}`);
+			lines.push('Content-Disposition: form-data; name="overwrite"');
+			lines.push('');
+			lines.push(overwrite ? 'true' : 'false');
+
+			lines.push(`--${boundary}`);
+			lines.push(`Content-Disposition: form-data; name="file"; filename="${fileName}"`);
+			lines.push('Content-Type: application/octet-stream');
+			lines.push('');
+
+			const header = Buffer.from(lines.join('\r\n') + '\r\n');
+			const footer = Buffer.from(`\r\n--${boundary}--\r\n`);
+			const body = Buffer.concat([header, fileBuffer, footer]);
+
+			const uploadUrl = `${this.creds.baseUrl}/webapi/entry.cgi`;
+			const response = await this.client.post(uploadUrl, body, {
+				params: { _sid: this.sid },
+				headers: { 'Content-Type': `multipart/form-data; boundary=${boundary}` },
+				validateStatus: () => true,
+			});
+
+			const result = response.data as IDataObject;
+
+			if (result.success === true) {
+				return { success: true, fileName, path: destPath, data: result.data };
+			} else {
+				return { success: false, error: result.error || 'Upload failed', data: result };
+			}
+		} catch (error) {
+			return { success: false, error: `Upload operation failed: ${error}` };
+		}
+	}
+
 	async login(): Promise<void> {
 		const { data } = await this.client.get(`${this.creds.baseUrl}/webapi/entry.cgi`, {
 			params: {
