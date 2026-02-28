@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-synology-suite",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "n8n community nodes for Synology DSM (Drive, Office/Sheets, MailPlus)",
   "license": "MIT",
   "author": "Maxime Olivier",

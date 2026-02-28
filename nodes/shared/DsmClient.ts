@@ -49,7 +49,7 @@ export class DsmClient {
 
 	async uploadFile(fileBuffer: Buffer, fileName: string, destPath: string, overwrite: boolean, createParents: boolean): Promise<IDataObject> {
 		if (!this.sid) {
-			throw new Error('Not authenticated. Call login() first.');
+			await this.login();
 		}
 
 		try {
