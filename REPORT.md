@@ -87,7 +87,31 @@
 
 **Published:** NPM `n8n-nodes-synology-suite@0.8.0` ✅
 
-**Next:** Maxime to install v0.8.0, restart n8n, verify 4 tools appear with full UI parameter blocks
+✅ **PHASE 6: GENERIC API TOOL (v0.8.1) ⭐⭐⭐⭐**
+- Refactored Synology API Tool to be fully generic
+- No longer limited to storage stats only
+- AI Agent can now call ANY Synology DSM API
+
+**Synology API Tool (Generic)**
+- API Name: User specifies (SYNO.API.Info, SYNO.DiskIO.Status, etc.)
+- Method: User specifies (query, get, list, create, etc.)
+- Version Mode: Auto (uses maxVersion) or Manual
+- Version: Specify if manual mode
+- Parameters: JSON object with any API-specific params
+
+**Input Example:**
+```json
+{
+  "api": "SYNO.API.Info",
+  "method": "query",
+  "params": {"query": "all"},
+  "versionMode": "auto"
+}
+```
+
+**Published:** NPM `n8n-nodes-synology-suite@0.8.1` ✅
+
+**Next:** Maxime to uninstall v0.8.0, install v0.8.1, update PostgreSQL with v0.8.1 records, restart n8n
 
 ---
 
