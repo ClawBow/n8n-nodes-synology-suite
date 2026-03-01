@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-synology-suite",
-  "version": "0.5.3",
+  "version": "0.6.0",
   "description": "n8n community nodes for Synology DSM (Drive, Office/Sheets, MailPlus)",
   "license": "MIT",
   "author": "Maxime Olivier",
@@ -59,8 +59,16 @@
       "dist/nodes/SynologyMailPlus/SynologyMailPlus.node.js",
       "dist/nodes/SynologyMailPlusTrigger/SynologyMailPlusTrigger.node.js",
       "dist/nodes/tools/SynologyMailPlusSendEmailTool.node.js",
+      "dist/nodes/tools/SynologyMailPlusListMailboxesTool.node.js",
+      "dist/nodes/tools/SynologyMailPlusListMessagesTool.node.js",
+      "dist/nodes/tools/SynologyMailPlusMoveMessageTool.node.js",
       "dist/nodes/tools/SynologyDriveUploadFileTool.node.js",
       "dist/nodes/tools/SynologyDriveListFilesTool.node.js",
+      "dist/nodes/tools/SynologyDriveSearchFilesTool.node.js",
+      "dist/nodes/tools/SynologyDriveDeleteFileTool.node.js",
+      "dist/nodes/tools/SynologyOfficeListSpreadsheetsTool.node.js",
+      "dist/nodes/tools/SynologyOfficeReadRangeTool.node.js",
+      "dist/nodes/tools/SynologyOfficeAppendRowTool.node.js",
       "dist/nodes/tools/SynologyGetStorageStatsTool.node.js"
     ]
   }
