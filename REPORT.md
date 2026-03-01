@@ -1,6 +1,16 @@
 # REPORT
 
-## Current Status (2026-03-01 20:16) — Proper usableAsTool Implementation Complete
+## Current Status (2026-03-01 20:45) — FIXED & PRODUCTION READY ✅
+
+### 🎉 FINAL STATUS: v0.10.2 COMPLETE & TESTED
+
+**✅ Install/Update via n8n UI now works perfectly (first time since v0.7.0!)**
+- Tested: v0.10.1 → v0.10.2 update via UI = **CLEAN, NO ERRORS**
+- Root cause fixed: Duplicate displayNames between regular nodes and tool nodes
+- All 4 AI Agent tools + 5 regular nodes = **9 unique node names**
+- Ready for production use with standard n8n package management
+
+---
 
 ✅ **PHASE 1: Fixed Architecture (v0.5.2-0.5.3)**
 - Rewritten with correct `supplyData()` pattern
@@ -152,6 +162,27 @@
 **Published:** NPM `n8n-nodes-synology-suite@0.9.0` ✅
 
 **Next:** Maxime to uninstall v0.8.2, install v0.9.0, update PostgreSQL, verify magic wand buttons work on AI Agent nodes
+
+✅ **PHASE 8: CRITICAL INSTALL/UPDATE BUG FIX (v0.10.1) - PRODUCTION READY ⭐⭐⭐⭐⭐⭐**
+- **BUG:** Every install/update via n8n UI failed with "duplicate key constraint violation" (v0.7.0 - v0.10.0)
+- **ROOT CAUSE IDENTIFIED:** Tool nodes had identical `displayName` to regular nodes
+  - "Synology Drive" (regular) + "Synology Drive" (tool) = DUPLICATE NAME
+  - PostgreSQL PRIMARY KEY constraint on `installed_nodes.name` rejected duplicate
+  - Manual workaround required for every version (DELETE, rm, INSERT)
+- **SOLUTION:** Renamed all tool node displayNames with "(AI Agent)" suffix for uniqueness
+  - "Synology Drive (AI Agent)"
+  - "Synology Mail (AI Agent)"
+  - "Synology Office (AI Agent)"
+  - "Synology API (AI Agent)"
+- **RESULT:** 
+  - ✅ Install via n8n UI: **CLEAN, NO ERRORS**
+  - ✅ Update via n8n UI: **CLEAN, NO ERRORS** (tested v0.10.1 → v0.10.2)
+  - ✅ Works like all other community nodes (no manual SQL needed)
+- **Documentation:** INSTALL_FIX.md explains root cause and lesson for multi-node packages
+
+**Lesson for Multi-Node Packages:** All node displayNames must be **globally unique** within a package to avoid PostgreSQL constraint violations during n8n registration.
+
+**Published:** NPM `n8n-nodes-synology-suite@0.10.2` ✅
 
 ---
 
