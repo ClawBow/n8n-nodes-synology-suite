@@ -1,6 +1,6 @@
 # REPORT
 
-## Current Status (2026-03-01 18:08) — Comprehensive Tool Suite Complete
+## Current Status (2026-03-01 18:14) — Structured Service-Based Tools Complete
 
 ✅ **PHASE 1: Fixed Architecture (v0.5.2-0.5.3)**
 - Rewritten with correct `supplyData()` pattern
@@ -13,31 +13,47 @@
 - Auto-copy assets during build
 - Icons appear in n8n UI
 
-✅ **PHASE 3: COMPREHENSIVE TOOL SUITE (v0.6.0) ⭐**
-- **12 Specialized AI Agent Tools** organized by service
-- **MailPlus Tools (4):**
-  - SendEmail — Send emails via MailPlus
-  - ListMailboxes — List available mailboxes
-  - ListMessages — List messages from mailbox
-  - MoveMessage — Move messages between folders
+✅ **PHASE 3: 12 Individual Tools (v0.6.0)**
+- Created one Tool per action (SendEmail, ListFiles, DeleteFile, etc.)
+- Published to NPM but needed UI consolidation
 
-- **Drive Tools (4):**
-  - UploadFile — Upload files to Drive
-  - ListFiles — List files in folders
-  - SearchFiles — Search by filename/pattern
-  - DeleteFile — Delete files permanently
+✅ **PHASE 4: SERVICE-BASED STRUCTURE (v0.7.0) ⭐⭐**
+- **Restructured to 4 Main Service Tools** (cleaner, more organized)
 
-- **Office Tools (3):**
-  - ListSpreadsheets — List available spreadsheets
-  - ReadRange — Read cells/ranges from sheets
-  - AppendRow — Add rows to spreadsheets
+**Synology Drive Tool** (4 actions)
+- `upload` — Upload files to Drive
+- `list` — List files in folders
+- `search` — Search by filename/pattern
+- `delete` — Delete files permanently
+- 🎨 Icon: synology-drive.png
 
-- **System Tools (1):**
-  - GetStorageStats — Get NAS storage capacity/usage
+**Synology Mail Tool** (4 actions)
+- `sendemail` — Send emails via MailPlus
+- `listmailboxes` — List available mailboxes
+- `listmessages` — List messages from mailbox
+- `movemessage` — Move messages between folders
+- 🎨 Icon: synology-mailplus.png
 
-**Published:** NPM `n8n-nodes-synology-suite@0.6.0`
+**Synology Office Tool** (3 actions)
+- `listspreadsheets` — List available spreadsheets
+- `readrange` — Read cells/ranges from sheets
+- `appendrow` — Add rows to spreadsheets
+- 🎨 Icon: synology-office.png
 
-**Next:** Maxime to install v0.6.0, restart n8n, verify all 12 tools appear in AI Agent Tools panel organized by service icon
+**Synology API Tool** (1 action)
+- `storagestats` — Get NAS storage capacity/usage
+- 🎨 Icon: synology-api.png
+
+**Input Format:** JSON with `action` field + action-specific parameters
+```json
+{"action": "upload", "filename": "doc.pdf", "content": "..."}
+{"action": "list", "path": "/Documents"}
+{"action": "sendemail", "to": "user@example.com", "subject": "...", "body": "..."}
+```
+
+**Published:** NPM `n8n-nodes-synology-suite@0.7.0` ✅
+
+**Next:** Maxime to install v0.7.0, restart n8n, verify 4 tools appear in AI Agent Tools panel with proper icons
 
 ---
 
