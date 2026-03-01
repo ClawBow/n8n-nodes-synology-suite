@@ -17,7 +17,7 @@ export class SynologyDriveListFilesTool implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Synology List Files',
 		name: 'synologyDriveListFilesTool',
-		icon: 'file:synology.png',
+		icon: 'file:synology-drive.png',
 		group: ['output'],
 		version: 1,
 		description: 'List files in a Synology Drive folder',

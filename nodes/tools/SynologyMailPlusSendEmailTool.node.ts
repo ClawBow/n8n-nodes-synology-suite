@@ -17,7 +17,7 @@ export class SynologyMailPlusSendEmailTool implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Synology Send Email',
 		name: 'synologyMailPlusSendEmailTool',
-		icon: 'file:synology.png',
+		icon: 'file:synology-mailplus.png',
 		group: ['output'],
 		version: 1,
 		description: 'Send an email via Synology MailPlus',

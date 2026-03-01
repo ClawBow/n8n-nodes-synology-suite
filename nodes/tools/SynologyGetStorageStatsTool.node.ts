@@ -17,7 +17,7 @@ export class SynologyGetStorageStatsTool implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Synology Get Storage Stats',
 		name: 'synologyGetStorageStatsTool',
-		icon: 'file:synology.png',
+		icon: 'file:synology-api.png',
 		group: ['output'],
 		version: 1,
 		description: 'Get NAS storage capacity and usage statistics',

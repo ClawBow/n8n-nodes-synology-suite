@@ -17,7 +17,7 @@ export class SynologyDriveUploadFileTool implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Synology Upload File',
 		name: 'synologyDriveUploadFileTool',
-		icon: 'file:synology.png',
+		icon: 'file:synology-drive.png',
 		group: ['output'],
 		version: 1,
 		description: 'Upload a file to Synology Drive',

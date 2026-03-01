@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-synology-suite",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "n8n community nodes for Synology DSM (Drive, Office/Sheets, MailPlus)",
   "license": "MIT",
   "author": "Maxime Olivier",
@@ -25,7 +25,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && npm run copy:assets",
+    "copy:assets": "mkdir -p dist/nodes/tools && cp -v nodes/tools/*.png dist/nodes/tools/ && cp -v nodes/tools/*.svg dist/nodes/tools/ 2>/dev/null || true",
     "dev": "tsc -w",
     "lint": "eslint nodes credentials package.json",
     "smoke": "bash ./scripts/smoke-check.sh",
