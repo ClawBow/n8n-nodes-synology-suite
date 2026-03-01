@@ -111,7 +111,22 @@
 
 **Published:** NPM `n8n-nodes-synology-suite@0.8.1` ✅
 
-**Next:** Maxime to uninstall v0.8.0, install v0.8.1, update PostgreSQL with v0.8.1 records, restart n8n
+✅ **PHASE 7: UI POLISH - Magic Fill Support (v0.8.2) ⭐⭐⭐⭐⭐**
+- Added `placeholder` text to all input fields (shows examples)
+- Added `typeOptions: { rows: N }` for textarea fields
+- Better field descriptions for AI magic wand buttons
+- All string fields now support AI parameter fill
+
+**Examples now visible in UI:**
+- Filename: `document.pdf`
+- Path: `/Documents`
+- Pattern: `*.pdf`
+- Email: `user@example.com`
+- JSON params: `{"query":"all"}`
+
+**Published:** NPM `n8n-nodes-synology-suite@0.8.2` ✅
+
+**Next:** Maxime to uninstall v0.8.1, install v0.8.2, update PostgreSQL, verify magic wand buttons appear on text fields
 
 ---
 
