@@ -29,6 +29,7 @@ export class SynologyDrive implements INodeType {
 				options: [
 					{ name: 'List Files', value: 'listFiles' },
 					{ name: 'Search Files', value: 'searchFiles' },
+					{ name: 'Download File', value: 'downloadFile' },
 					{ name: 'Upload File', value: 'uploadFile' },
 					{ name: 'Create Folder', value: 'createFolder' },
 					{ name: 'Rename', value: 'rename' },
@@ -41,7 +42,7 @@ export class SynologyDrive implements INodeType {
 				],
 				default: 'listFiles',
 			},
-			{ displayName: 'Path', name: 'path', type: 'string', default: '/', displayOptions: { show: { operation: ['listFiles', 'searchFiles', 'createShareLink', 'rename', 'delete'] } } },
+			{ displayName: 'Path', name: 'path', type: 'string', default: '/', displayOptions: { show: { operation: ['listFiles', 'searchFiles', 'downloadFile', 'createShareLink', 'rename', 'delete'] } } },
 			{ displayName: 'Recursive', name: 'recursive', type: 'boolean', default: false, displayOptions: { show: { operation: ['listFiles', 'searchFiles', 'delete'] } } },
 			{ displayName: 'Offset', name: 'offset', type: 'number', default: 0, displayOptions: { show: { operation: ['listFiles'] } } },
 			{ displayName: 'Limit', name: 'limit', type: 'number', default: 50, displayOptions: { show: { operation: ['listFiles', 'searchFiles'] } } },
@@ -91,7 +92,8 @@ export class SynologyDrive implements INodeType {
 			{ displayName: 'Custom File Name', name: 'uploadCustomFileName', type: 'string', default: '', displayOptions: { show: { operation: ['uploadFile'], uploadMode: ['url'], uploadExtractFilename: [false] } } },
 			{ displayName: 'Overwrite Existing', name: 'uploadOverwrite', type: 'boolean', default: true, displayOptions: { show: { operation: ['uploadFile'] } } },
 			{ displayName: 'Create Parent Folders', name: 'uploadCreateParents', type: 'boolean', default: true, displayOptions: { show: { operation: ['uploadFile'] } } },
-			{ displayName: 'Extra Params (JSON)', name: 'extraParamsJson', type: 'json', default: '{}', displayOptions: { show: { operation: ['listFiles', 'searchFiles', 'createFolder', 'rename', 'delete', 'copyMove', 'createShareLink', 'listShareLinks', 'uploadFile'] } } },
+			{ displayName: 'Binary Field Name', name: 'downloadBinaryField', type: 'string', default: 'data', displayOptions: { show: { operation: ['downloadFile'] } }, description: 'The field name to store the downloaded file binary data' },
+			{ displayName: 'Extra Params (JSON)', name: 'extraParamsJson', type: 'json', default: '{}', displayOptions: { show: { operation: ['listFiles', 'searchFiles', 'downloadFile', 'createFolder', 'rename', 'delete', 'copyMove', 'createShareLink', 'listShareLinks', 'uploadFile'] } } },
 			{ displayName: 'API Name', name: 'api', type: 'string', default: 'SYNO.FileStation.List', displayOptions: { show: { operation: ['customDriveCall'] } } },
 			{ displayName: 'Method', name: 'method', type: 'string', default: 'list', displayOptions: { show: { operation: ['customDriveCall'] } } },
 			{ displayName: 'Params (JSON)', name: 'paramsJson', type: 'json', default: '{}', displayOptions: { show: { operation: ['customDriveCall'] } } },
@@ -255,6 +257,33 @@ export class SynologyDrive implements INodeType {
 					downloadable: enableDownload,
 					...extraParams,
 				});
+			}
+
+			if (operation === 'downloadFile') {
+				const path = this.getNodeParameter('path', i) as string;
+				const downloadBinaryField = this.getNodeParameter('downloadBinaryField', i) as string;
+
+				try {
+					const buffer = await dsm.downloadFile(path);
+					const fileName = path.split('/').pop() || 'downloaded_file';
+					
+					// Set the binary data to the specified field
+					return {
+						success: true,
+						[downloadBinaryField]: {
+							data: buffer.toString('base64'),
+							mimeType: 'application/octet-stream',
+							fileName: fileName,
+						},
+						metadata: {
+							fileName,
+							size: buffer.length,
+							path,
+						},
+					};
+				} catch (error) {
+					return { success: false, error: `Download failed: ${error}` };
+				}
 			}
 
 			if (operation === 'uploadFile') {

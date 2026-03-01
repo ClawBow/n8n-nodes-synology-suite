@@ -220,4 +220,40 @@ export class DsmClient {
 
 		return data as IDataObject;
 	}
+
+	async downloadFile(filePath: string): Promise<Buffer> {
+		if (!this.sid) {
+			await this.login();
+		}
+
+		try {
+			const downloadUrl = `${this.creds.baseUrl}/webapi/entry.cgi`;
+			const params = {
+				api: 'SYNO.FileStation.Download',
+				version: 2,
+				method: 'download',
+				path: filePath,
+				mode: 'download',
+				_sid: this.sid as string,
+			};
+
+			const response = await this.client.get(downloadUrl, {
+				params,
+				responseType: 'arraybuffer',
+			});
+
+			if (!response.data) {
+				throw new Error('No data received from download');
+			}
+
+			return Buffer.from(response.data);
+		} catch (error) {
+			if (error instanceof Error && error.message.includes('401')) {
+				// Session expired, retry with new login
+				await this.login();
+				return this.downloadFile(filePath);
+			}
+			throw error;
+		}
+	}
 }
