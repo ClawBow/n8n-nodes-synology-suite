@@ -15,7 +15,7 @@ export class SynologyDriveTool implements INodeType {
 		icon: 'file:synology-drive.png',
 		group: ['output'],
 		version: 1,
-		description: 'Manage files in Synology Drive (upload, list, search, delete)',
+		description: 'Manage files in Synology Drive',
 		defaults: { name: 'Synology Drive' },
 		credentials: [{ name: 'synologyDsmApi', required: true }],
 		inputs: [],
@@ -23,12 +23,81 @@ export class SynologyDriveTool implements INodeType {
 		outputNames: ['Tool'],
 		properties: [
 			{
-				displayName: 'Description',
-				name: 'toolDescription',
+				displayName: 'Action',
+				name: 'action',
+				type: 'options',
+				required: true,
+				default: 'list',
+				options: [
+					{ name: 'Upload File', value: 'upload' },
+					{ name: 'List Files', value: 'list' },
+					{ name: 'Search Files', value: 'search' },
+					{ name: 'Delete File', value: 'delete' },
+				],
+			},
+			// Upload params
+			{
+				displayName: 'File Name',
+				name: 'filename',
 				type: 'string',
 				required: true,
-				default: 'Manage files in Synology Drive',
-				description: 'Description for the AI Agent',
+				default: '',
+				description: 'Name of the file to upload',
+				displayOptions: { show: { action: ['upload'] } },
+			},
+			{
+				displayName: 'File Content',
+				name: 'content',
+				type: 'string',
+				required: true,
+				default: '',
+				typeOptions: { rows: 4 },
+				description: 'File content',
+				displayOptions: { show: { action: ['upload'] } },
+			},
+			{
+				displayName: 'Destination Path',
+				name: 'path',
+				type: 'string',
+				default: '/Documents',
+				description: 'Destination folder',
+				displayOptions: { show: { action: ['upload'] } },
+			},
+			{
+				displayName: 'Overwrite',
+				name: 'overwrite',
+				type: 'boolean',
+				default: false,
+				displayOptions: { show: { action: ['upload'] } },
+			},
+			// List params
+			{
+				displayName: 'Folder Path',
+				name: 'path',
+				type: 'string',
+				default: '/',
+				description: 'Path to list',
+				displayOptions: { show: { action: ['list'] } },
+			},
+			// Search params
+			{
+				displayName: 'Search Pattern',
+				name: 'pattern',
+				type: 'string',
+				required: true,
+				default: '',
+				description: 'Filename or pattern to search',
+				displayOptions: { show: { action: ['search'] } },
+			},
+			// Delete params
+			{
+				displayName: 'File Path',
+				name: 'path',
+				type: 'string',
+				required: true,
+				default: '',
+				description: 'Full path of file to delete',
+				displayOptions: { show: { action: ['delete'] } },
 			},
 		],
 	};
@@ -41,7 +110,6 @@ export class SynologyDriveTool implements INodeType {
 			throw new NodeOperationError(this.getNode(), 'Invalid tool name');
 		}
 
-		const description = this.getNodeParameter('toolDescription', itemIndex) as string;
 		const creds = normalizeCredentials(await this.getCredentials('synologyDsmApi'));
 		const dsm = new DsmClient(creds);
 
@@ -85,7 +153,7 @@ export class SynologyDriveTool implements INodeType {
 
 					case 'search': {
 						const pattern = params.pattern || params.query || '';
-						if (!pattern) return 'Error: pattern or query required';
+						if (!pattern) return 'Error: pattern required';
 						const response = await dsm.callAny(['SYNO.Dsm.Share', 'SYNO.FolderSharing'], ['search', 'query'], {
 							pattern,
 							limit: 20,
@@ -101,7 +169,7 @@ export class SynologyDriveTool implements INodeType {
 					}
 
 					default:
-						return `❌ Unknown action: ${action}. Use: upload, list, search, delete`;
+						return `❌ Unknown action: ${action}`;
 				}
 			} catch (error) {
 				return `Error: ${error instanceof Error ? error.message : 'Unknown error'}`;
@@ -110,7 +178,7 @@ export class SynologyDriveTool implements INodeType {
 
 		const tool = new DynamicTool({
 			name,
-			description,
+			description: 'Manage files in Synology Drive (upload, list, search, delete)',
 			func,
 		});
 

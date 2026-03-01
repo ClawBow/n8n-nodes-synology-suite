@@ -15,7 +15,7 @@ export class SynologyMailTool implements INodeType {
 		icon: 'file:synology-mailplus.png',
 		group: ['output'],
 		version: 1,
-		description: 'Manage email in Synology MailPlus (send, list, move)',
+		description: 'Manage email in Synology MailPlus',
 		defaults: { name: 'Synology Mail' },
 		credentials: [{ name: 'synologyDsmApi', required: true }],
 		inputs: [],
@@ -23,12 +23,99 @@ export class SynologyMailTool implements INodeType {
 		outputNames: ['Tool'],
 		properties: [
 			{
-				displayName: 'Description',
-				name: 'toolDescription',
+				displayName: 'Action',
+				name: 'action',
+				type: 'options',
+				required: true,
+				default: 'listmailboxes',
+				options: [
+					{ name: 'Send Email', value: 'sendemail' },
+					{ name: 'List Mailboxes', value: 'listmailboxes' },
+					{ name: 'List Messages', value: 'listmessages' },
+					{ name: 'Move Message', value: 'movemessage' },
+				],
+			},
+			// Send Email params
+			{
+				displayName: 'To',
+				name: 'to',
 				type: 'string',
 				required: true,
-				default: 'Manage email in Synology MailPlus',
-				description: 'Description for the AI Agent',
+				default: '',
+				description: 'Recipient email address',
+				displayOptions: { show: { action: ['sendemail'] } },
+			},
+			{
+				displayName: 'CC',
+				name: 'cc',
+				type: 'string',
+				default: '',
+				description: 'CC recipients (comma-separated)',
+				displayOptions: { show: { action: ['sendemail'] } },
+			},
+			{
+				displayName: 'BCC',
+				name: 'bcc',
+				type: 'string',
+				default: '',
+				description: 'BCC recipients (comma-separated)',
+				displayOptions: { show: { action: ['sendemail'] } },
+			},
+			{
+				displayName: 'Subject',
+				name: 'subject',
+				type: 'string',
+				required: true,
+				default: '',
+				description: 'Email subject',
+				displayOptions: { show: { action: ['sendemail'] } },
+			},
+			{
+				displayName: 'Body',
+				name: 'body',
+				type: 'string',
+				required: true,
+				default: '',
+				typeOptions: { rows: 5 },
+				description: 'Email body',
+				displayOptions: { show: { action: ['sendemail'] } },
+			},
+			{
+				displayName: 'From',
+				name: 'from',
+				type: 'string',
+				default: '',
+				description: 'Sender email address',
+				displayOptions: { show: { action: ['sendemail'] } },
+			},
+			// List Messages params
+			{
+				displayName: 'Mailbox ID',
+				name: 'mailbox_id',
+				type: 'string',
+				required: true,
+				default: '',
+				description: 'ID of mailbox to query',
+				displayOptions: { show: { action: ['listmessages'] } },
+			},
+			// Move Message params
+			{
+				displayName: 'Message IDs',
+				name: 'message_ids',
+				type: 'string',
+				required: true,
+				default: '',
+				description: 'Comma-separated message IDs',
+				displayOptions: { show: { action: ['movemessage'] } },
+			},
+			{
+				displayName: 'Destination Mailbox ID',
+				name: 'destination_mailbox_id',
+				type: 'string',
+				required: true,
+				default: '',
+				description: 'ID of destination mailbox',
+				displayOptions: { show: { action: ['movemessage'] } },
 			},
 		],
 	};
@@ -41,7 +128,6 @@ export class SynologyMailTool implements INodeType {
 			throw new NodeOperationError(this.getNode(), 'Invalid tool name');
 		}
 
-		const description = this.getNodeParameter('toolDescription', itemIndex) as string;
 		const creds = normalizeCredentials(await this.getCredentials('synologyDsmApi'));
 		const dsm = new DsmClient(creds);
 
@@ -108,15 +194,18 @@ export class SynologyMailTool implements INodeType {
 					case 'movemessage': {
 						if (!params.message_ids || !params.destination_mailbox_id)
 							return 'Error: message_ids and destination_mailbox_id required';
+						const ids = Array.isArray(params.message_ids)
+							? params.message_ids
+							: params.message_ids.split(',').map((id: string) => id.trim());
 						await dsm.callAny(['SYNO.MailClient.Message'], ['move'], {
-							message_ids: Array.isArray(params.message_ids) ? params.message_ids : [params.message_ids],
+							message_ids: ids,
 							destination_mailbox_id: params.destination_mailbox_id,
 						});
 						return `↔️ Message(s) moved`;
 					}
 
 					default:
-						return `❌ Unknown action: ${action}. Use: sendemail, listmailboxes, listmessages, movemessage`;
+						return `❌ Unknown action: ${action}`;
 				}
 			} catch (error) {
 				return `Error: ${error instanceof Error ? error.message : 'Unknown error'}`;
@@ -125,7 +214,7 @@ export class SynologyMailTool implements INodeType {
 
 		const tool = new DynamicTool({
 			name,
-			description,
+			description: 'Manage email in Synology MailPlus (send, list, move)',
 			func,
 		});
 

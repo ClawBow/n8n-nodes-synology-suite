@@ -15,7 +15,7 @@ export class SynologyOfficeTool implements INodeType {
 		icon: 'file:synology-office.png',
 		group: ['output'],
 		version: 1,
-		description: 'Manage spreadsheets in Synology Office (list, read, append)',
+		description: 'Manage spreadsheets in Synology Office',
 		defaults: { name: 'Synology Office' },
 		credentials: [{ name: 'synologyDsmApi', required: true }],
 		inputs: [],
@@ -23,12 +23,45 @@ export class SynologyOfficeTool implements INodeType {
 		outputNames: ['Tool'],
 		properties: [
 			{
-				displayName: 'Description',
-				name: 'toolDescription',
+				displayName: 'Action',
+				name: 'action',
+				type: 'options',
+				required: true,
+				default: 'listspreadsheets',
+				options: [
+					{ name: 'List Spreadsheets', value: 'listspreadsheets' },
+					{ name: 'Read Range', value: 'readrange' },
+					{ name: 'Append Row', value: 'appendrow' },
+				],
+			},
+			// Read Range params
+			{
+				displayName: 'Spreadsheet ID',
+				name: 'spreadsheet_id',
 				type: 'string',
 				required: true,
-				default: 'Manage spreadsheets in Synology Office',
-				description: 'Description for the AI Agent',
+				default: '',
+				description: 'ID of the spreadsheet',
+				displayOptions: { show: { action: ['readrange', 'appendrow'] } },
+			},
+			{
+				displayName: 'Range',
+				name: 'range',
+				type: 'string',
+				default: 'A1:Z100',
+				description: 'Cell range (e.g., A1:Z100)',
+				displayOptions: { show: { action: ['readrange'] } },
+			},
+			// Append Row params
+			{
+				displayName: 'Row Data (JSON)',
+				name: 'rows',
+				type: 'string',
+				required: true,
+				default: '[]',
+				typeOptions: { rows: 3 },
+				description: 'Row data as JSON array',
+				displayOptions: { show: { action: ['appendrow'] } },
 			},
 		],
 	};
@@ -41,7 +74,6 @@ export class SynologyOfficeTool implements INodeType {
 			throw new NodeOperationError(this.getNode(), 'Invalid tool name');
 		}
 
-		const description = this.getNodeParameter('toolDescription', itemIndex) as string;
 		const creds = normalizeCredentials(await this.getCredentials('synologyDsmApi'));
 		const dsm = new DsmClient(creds);
 
@@ -80,17 +112,26 @@ export class SynologyOfficeTool implements INodeType {
 					}
 
 					case 'appendrow': {
-						if (!params.spreadsheet_id || !Array.isArray(params.rows))
-							return 'Error: spreadsheet_id and rows array required';
+						if (!params.spreadsheet_id) return 'Error: spreadsheet_id required';
+						if (!params.rows) return 'Error: rows required';
+						let rows = params.rows;
+						if (typeof rows === 'string') {
+							try {
+								rows = JSON.parse(rows);
+							} catch {
+								return 'Error: rows must be valid JSON array';
+							}
+						}
+						if (!Array.isArray(rows)) return 'Error: rows must be an array';
 						await dsm.callAny(['SYNO.Office.Spreadsheet'], ['appendRow', 'create'], {
 							spreadsheet_id: params.spreadsheet_id,
-							rows: params.rows,
+							rows,
 						});
-						return `➕ Row(s) appended`;
+						return `➕ ${rows.length} row(s) appended`;
 					}
 
 					default:
-						return `❌ Unknown action: ${action}. Use: listspreadsheets, readrange, appendrow`;
+						return `❌ Unknown action: ${action}`;
 				}
 			} catch (error) {
 				return `Error: ${error instanceof Error ? error.message : 'Unknown error'}`;
@@ -99,7 +140,7 @@ export class SynologyOfficeTool implements INodeType {
 
 		const tool = new DynamicTool({
 			name,
-			description,
+			description: 'Manage spreadsheets in Synology Office (list, read, append)',
 			func,
 		});
 

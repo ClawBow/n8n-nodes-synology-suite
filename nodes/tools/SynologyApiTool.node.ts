@@ -15,7 +15,7 @@ export class SynologyApiTool implements INodeType {
 		icon: 'file:synology-api.png',
 		group: ['output'],
 		version: 1,
-		description: 'Query Synology system information (storage, stats)',
+		description: 'Query Synology system information',
 		defaults: { name: 'Synology API' },
 		credentials: [{ name: 'synologyDsmApi', required: true }],
 		inputs: [],
@@ -23,12 +23,12 @@ export class SynologyApiTool implements INodeType {
 		outputNames: ['Tool'],
 		properties: [
 			{
-				displayName: 'Description',
-				name: 'toolDescription',
-				type: 'string',
+				displayName: 'Action',
+				name: 'action',
+				type: 'options',
 				required: true,
-				default: 'Query Synology system information',
-				description: 'Description for the AI Agent',
+				default: 'storagestats',
+				options: [{ name: 'Get Storage Stats', value: 'storagestats' }],
 			},
 		],
 	};
@@ -41,7 +41,6 @@ export class SynologyApiTool implements INodeType {
 			throw new NodeOperationError(this.getNode(), 'Invalid tool name');
 		}
 
-		const description = this.getNodeParameter('toolDescription', itemIndex) as string;
 		const creds = normalizeCredentials(await this.getCredentials('synologyDsmApi'));
 		const dsm = new DsmClient(creds);
 
@@ -88,7 +87,7 @@ export class SynologyApiTool implements INodeType {
 					}
 
 					default:
-						return `❌ Unknown action: ${action}. Use: storagestats`;
+						return `❌ Unknown action: ${action}`;
 				}
 			} catch (error) {
 				return `Error: ${error instanceof Error ? error.message : 'Unknown error'}`;
@@ -97,7 +96,7 @@ export class SynologyApiTool implements INodeType {
 
 		const tool = new DynamicTool({
 			name,
-			description,
+			description: 'Query Synology system information (storage stats)',
 			func,
 		});
 
