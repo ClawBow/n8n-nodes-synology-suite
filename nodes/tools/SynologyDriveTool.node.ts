@@ -17,58 +17,19 @@ export class SynologyDriveTool implements INodeType {
 		usableAsTool: true,
 		properties: [
 			{
-				displayName: 'Action',
-				name: 'action',
+				displayName: 'Operation',
+				name: 'operation',
 				type: 'options',
 				required: true,
-				default: 'list',
+				default: 'listFiles',
 				options: [
-					{ name: 'Upload File', value: 'upload' },
-					{ name: 'List Files', value: 'list' },
-					{ name: 'Search Files', value: 'search' },
-					{ name: 'Delete File', value: 'delete' },
+					{ name: 'List Files', value: 'listFiles' },
+					{ name: 'Search Files', value: 'searchFiles' },
+					{ name: 'Upload File', value: 'uploadFile' },
+					{ name: 'Delete File', value: 'deleteFile' },
 				],
 			},
-			// Upload params
-			{
-				displayName: 'File Name',
-				name: 'filename',
-				type: 'string',
-				required: true,
-				default: '',
-				placeholder: 'document.pdf',
-				description: 'Name of the file to upload',
-				displayOptions: { show: { action: ['upload'] } },
-			},
-			{
-				displayName: 'File Content',
-				name: 'content',
-				type: 'string',
-				required: true,
-				default: '',
-				placeholder: 'File content here',
-				typeOptions: { rows: 5 },
-				description: 'File content (base64 for binary)',
-				displayOptions: { show: { action: ['upload'] } },
-			},
-			{
-				displayName: 'Destination Path',
-				name: 'path',
-				type: 'string',
-				default: '/Documents',
-				placeholder: '/Documents',
-				description: 'Destination folder path',
-				displayOptions: { show: { action: ['upload'] } },
-			},
-			{
-				displayName: 'Overwrite',
-				name: 'overwrite',
-				type: 'boolean',
-				default: false,
-				description: 'Replace if file already exists',
-				displayOptions: { show: { action: ['upload'] } },
-			},
-			// List params
+			// List Files params
 			{
 				displayName: 'Folder Path',
 				name: 'path',
@@ -76,29 +37,112 @@ export class SynologyDriveTool implements INodeType {
 				default: '/',
 				placeholder: '/Documents',
 				description: 'Path to list files from',
-				displayOptions: { show: { action: ['list'] } },
+				displayOptions: { show: { operation: ['listFiles'] } },
 			},
-			// Search params
 			{
-				displayName: 'Search Pattern',
-				name: 'pattern',
+				displayName: 'Recursive',
+				name: 'recursive',
+				type: 'boolean',
+				default: false,
+				description: 'Include subfolders',
+				displayOptions: { show: { operation: ['listFiles'] } },
+			},
+			{
+				displayName: 'Limit',
+				name: 'limit',
+				type: 'number',
+				default: 50,
+				description: 'Maximum files to return',
+				displayOptions: { show: { operation: ['listFiles'] } },
+			},
+			{
+				displayName: 'Include Type',
+				name: 'includeType',
+				type: 'options',
+				default: 'all',
+				options: [
+					{ name: 'Files + Folders', value: 'all' },
+					{ name: 'Files Only', value: 'files' },
+					{ name: 'Folders Only', value: 'folders' },
+				],
+				displayOptions: { show: { operation: ['listFiles'] } },
+			},
+			// Search Files params
+			{
+				displayName: 'Folder Path',
+				name: 'path',
+				type: 'string',
+				default: '/',
+				placeholder: '/Documents',
+				description: 'Path to search in',
+				displayOptions: { show: { operation: ['searchFiles'] } },
+			},
+			{
+				displayName: 'Search Keyword',
+				name: 'keyword',
 				type: 'string',
 				required: true,
 				default: '',
 				placeholder: '*.pdf',
 				description: 'Filename or pattern to search for',
-				displayOptions: { show: { action: ['search'] } },
+				displayOptions: { show: { operation: ['searchFiles'] } },
 			},
-			// Delete params
+			{
+				displayName: 'Recursive',
+				name: 'recursive',
+				type: 'boolean',
+				default: false,
+				displayOptions: { show: { operation: ['searchFiles'] } },
+			},
+			// Upload File params
+			{
+				displayName: 'Destination Folder',
+				name: 'uploadDestPath',
+				type: 'string',
+				required: true,
+				default: '/',
+				placeholder: '/Documents',
+				description: 'Destination folder path',
+				displayOptions: { show: { operation: ['uploadFile'] } },
+			},
+			{
+				displayName: 'File Name',
+				name: 'uploadFileName',
+				type: 'string',
+				required: true,
+				default: '',
+				placeholder: 'document.pdf',
+				description: 'Name for the uploaded file',
+				displayOptions: { show: { operation: ['uploadFile'] } },
+			},
+			{
+				displayName: 'File Content',
+				name: 'uploadContent',
+				type: 'string',
+				required: true,
+				default: '',
+				placeholder: 'File content here',
+				typeOptions: { rows: 5 },
+				description: 'File content (base64 for binary)',
+				displayOptions: { show: { operation: ['uploadFile'] } },
+			},
+			{
+				displayName: 'Overwrite',
+				name: 'uploadOverwrite',
+				type: 'boolean',
+				default: true,
+				displayOptions: { show: { operation: ['uploadFile'] } },
+			},
+			// Delete File params
 			{
 				displayName: 'File Path',
-				name: 'path',
+				name: 'deletePath',
 				type: 'string',
 				required: true,
 				default: '',
 				placeholder: '/Documents/file.pdf',
 				description: 'Full path of file to delete',
-				displayOptions: { show: { action: ['delete'] } },
+				displayOptions: { show: { operation: ['deleteFile'] } },
 			},
 		],
 	};
@@ -108,56 +152,76 @@ export class SynologyDriveTool implements INodeType {
 		const dsm = new DsmClient(creds);
 
 		return executePerItem(this, async (i) => {
-			const action = this.getNodeParameter('action', i) as string;
+			const operation = this.getNodeParameter('operation', i) as string;
 
-			switch (action) {
-				case 'upload': {
-					const filename = this.getNodeParameter('filename', i) as string;
-					const content = this.getNodeParameter('content', i) as string;
-					const path = (this.getNodeParameter('path', i) as string) || `/Documents/${filename}`;
-					const overwrite = this.getNodeParameter('overwrite', i) as boolean;
+			if (operation === 'listFiles') {
+				const path = this.getNodeParameter('path', i) as string;
+				const recursive = this.getNodeParameter('recursive', i) as boolean;
+				const limit = this.getNodeParameter('limit', i) as number;
+				const includeType = this.getNodeParameter('includeType', i) as string;
 
-					if (!filename || !content) return { error: 'filename and content required' };
+				const result = await dsm.callAuto('SYNO.FileStation.List', 'list', {
+					folder_path: path,
+					recursive,
+					offset: 0,
+					limit,
+				});
 
-					await dsm.callAny(['SYNO.Dsm.Share', 'SYNO.FolderSharing'], ['upload', 'create'], {
-						path,
-						content,
-						overwrite: overwrite ? 'true' : 'false',
-					});
-					return { success: true, message: `File uploaded to ${path}` };
+				const pageData = (result.data || {}) as IDataObject;
+				const files = (pageData.files || []) as IDataObject[];
+
+				let filtered = files;
+				if (includeType === 'files') {
+					filtered = files.filter((f) => f.isdir !== true);
+				} else if (includeType === 'folders') {
+					filtered = files.filter((f) => f.isdir === true);
 				}
 
-				case 'list': {
-					const listPath = (this.getNodeParameter('path', i) as string) || '/';
-					const response = await dsm.callAny(['SYNO.Dsm.Share', 'SYNO.FolderSharing'], ['list', 'get'], {
-						path: listPath,
-						limit: 50,
-					});
-					const files = Array.isArray(response) ? response.map((f: any) => f.name || f).slice(0, 10) : [];
-					return { success: true, files, count: files.length };
-				}
-
-				case 'search': {
-					const pattern = this.getNodeParameter('pattern', i) as string;
-					if (!pattern) return { error: 'pattern required' };
-					const response = await dsm.callAny(['SYNO.Dsm.Share', 'SYNO.FolderSharing'], ['search', 'query'], {
-						pattern,
-						limit: 20,
-					});
-					const found = Array.isArray(response) ? response.map((f: any) => f.name).slice(0, 10) : [];
-					return { success: true, found, count: found.length };
-				}
-
-				case 'delete': {
-					const path = this.getNodeParameter('path', i) as string;
-					if (!path) return { error: 'path required' };
-					await dsm.callAny(['SYNO.Dsm.Share', 'SYNO.FolderSharing'], ['delete', 'remove'], { path });
-					return { success: true, message: `Deleted: ${path}` };
-				}
-
-				default:
-					return { error: `Unknown action: ${action}` };
+				return { success: true, data: { files: filtered, count: filtered.length } };
 			}
+
+			if (operation === 'searchFiles') {
+				const path = this.getNodeParameter('path', i) as string;
+				const keyword = this.getNodeParameter('keyword', i) as string;
+				const recursive = this.getNodeParameter('recursive', i) as boolean;
+
+				const result = await dsm.callAuto('SYNO.FileStation.Search', 'start', {
+					folder_path: path,
+					recursive,
+					keyword,
+					limit: 100,
+				});
+
+				return { success: true, data: result };
+			}
+
+			if (operation === 'uploadFile') {
+				const uploadDestPath = this.getNodeParameter('uploadDestPath', i) as string;
+				const uploadFileName = this.getNodeParameter('uploadFileName', i) as string;
+				const uploadContent = this.getNodeParameter('uploadContent', i) as string;
+				const uploadOverwrite = this.getNodeParameter('uploadOverwrite', i) as boolean;
+
+				try {
+					const buffer = Buffer.from(uploadContent, 'base64');
+					const result = await dsm.uploadFile(buffer, uploadFileName, uploadDestPath, uploadOverwrite, true);
+					return { success: true, data: result };
+				} catch (error) {
+					return { success: false, error: error instanceof Error ? error.message : 'Upload failed' };
+				}
+			}
+
+			if (operation === 'deleteFile') {
+				const deletePath = this.getNodeParameter('deletePath', i) as string;
+
+				const result = await dsm.callAuto('SYNO.FileStation.Delete', 'delete', {
+					path: [deletePath],
+					recursive: false,
+				});
+
+				return { success: true, data: result };
+			}
+
+			return { error: `Unknown operation: ${operation}` };
 		});
 	}
 }
