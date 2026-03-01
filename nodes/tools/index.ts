@@ -2,7 +2,7 @@
 export { SynologyMailPlusSendEmailTool } from './SynologyMailPlusSendEmailTool.node';
 export { SynologyMailPlusListMailboxesTool } from './SynologyMailPlusListMailboxesTool.node';
 export { SynologyMailPlusListMessagesTool } from './SynologyMailPlusListMessagesTool.node';
-export { SynologyMailPlusMoveMessageTool } from './SynologyMailPlusMovemessageTool.node';
+export { SynologyMailPlusMoveMessageTool } from './SynologyMailPlusMoveMessageTool.node';
 
 // Drive Tools
 export { SynologyDriveUploadFileTool } from './SynologyDriveUploadFileTool.node';
