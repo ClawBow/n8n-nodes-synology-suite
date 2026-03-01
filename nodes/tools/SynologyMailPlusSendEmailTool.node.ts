@@ -1,8 +1,15 @@
+import { DynamicTool } from '@langchain/core/tools';
 import type {
-	IDataObject,
-	IExecuteFunctions,
 	INodeType,
 	INodeTypeDescription,
+	ISupplyDataFunctions,
+	SupplyData,
+} from 'n8n-workflow';
+import {
+	NodeConnectionTypes,
+	NodeOperationError,
+	nodeNameToToolName,
+	tryToParseAlphanumericString,
 } from 'n8n-workflow';
 import { DsmClient, normalizeCredentials } from '../shared/DsmClient';
 
@@ -15,108 +22,97 @@ export class SynologyMailPlusSendEmailTool implements INodeType {
 		version: 1,
 		description: 'Send an email via Synology MailPlus',
 		defaults: { name: 'Synology Send Email' },
-		inputs: ['main'],
-		outputs: ['main'],
 		credentials: [{ name: 'synologyDsmApi', required: true }],
+		inputs: [],
+		outputs: [NodeConnectionTypes.AiTool],
+		outputNames: ['Tool'],
 		properties: [
 			{
-				displayName: 'To',
-				name: 'to',
+				displayName: 'Tool Description',
+				name: 'toolDescription',
+				type: 'string',
+				required: true,
+				default: 'Send an email via Synology MailPlus',
+				description: 'Description for the AI Agent',
+			},
+			{
+				displayName: 'Default From Address',
+				name: 'defaultFrom',
 				type: 'string',
 				required: true,
 				default: '',
-				description: 'Recipient email address',
-			},
-			{
-				displayName: 'Subject',
-				name: 'subject',
-				type: 'string',
-				required: true,
-				default: '',
-				description: 'Email subject',
-			},
-			{
-				displayName: 'Body',
-				name: 'body',
-				type: 'string',
-				required: true,
-				default: '',
-				typeOptions: { rows: 3 },
-				description: 'Email body',
-			},
-			{
-				displayName: 'CC',
-				name: 'cc',
-				type: 'string',
-				default: '',
-				description: 'CC recipients (comma-separated)',
-			},
-			{
-				displayName: 'BCC',
-				name: 'bcc',
-				type: 'string',
-				default: '',
-				description: 'BCC recipients (comma-separated)',
-			},
-			{
-				displayName: 'Priority',
-				name: 'priority',
-				type: 'options',
-				default: '3',
-				options: [
-					{ name: 'Low', value: '5' },
-					{ name: 'Normal', value: '3' },
-					{ name: 'High', value: '1' },
-				],
+				description: 'Default sender email address',
 			},
 		],
 	};
 
-	async execute(this: IExecuteFunctions) {
+	async supplyData(this: ISupplyDataFunctions, itemIndex: number): Promise<SupplyData> {
+		const name = nodeNameToToolName(this.getNode());
+
+		try {
+			tryToParseAlphanumericString(name);
+		} catch (error) {
+			throw new NodeOperationError(
+				this.getNode(),
+				'The name of this tool is not a valid alphanumeric string',
+				{
+					itemIndex,
+					description:
+						"Only alphanumeric characters and underscores are allowed in the tool's name, and the name cannot start with a number",
+				},
+			);
+		}
+
+		const toolDescription = this.getNodeParameter('toolDescription', itemIndex) as string;
+		const defaultFrom = this.getNodeParameter('defaultFrom', itemIndex) as string;
 		const creds = normalizeCredentials(await this.getCredentials('synologyDsmApi'));
 		const dsm = new DsmClient(creds);
 
-		const items = this.getInputData();
-		const returnData: IDataObject[] = [];
-
-		for (let i = 0; i < items.length; i++) {
+		const func = async (input: string): Promise<string> => {
 			try {
-				const to = this.getNodeParameter('to', i) as string;
-				const subject = this.getNodeParameter('subject', i) as string;
-				const body = this.getNodeParameter('body', i) as string;
-				const cc = this.getNodeParameter('cc', i, '') as string;
-				const bcc = this.getNodeParameter('bcc', i, '') as string;
-				const priority = this.getNodeParameter('priority', i, '3') as string;
+				// Parse input: expects JSON like { to: "...", subject: "...", body: "..." }
+				let params: { to?: string; cc?: string; bcc?: string; subject?: string; body?: string };
+				try {
+					params = JSON.parse(input);
+				} catch {
+					params = { to: input };
+				}
 
-				const params: IDataObject = {
-					to,
-					cc: cc || undefined,
-					bcc: bcc || undefined,
-					subject,
-					body,
-					priority: parseInt(priority, 10),
-				};
+				if (!params.to) {
+					return 'Error: "to" field is required';
+				}
+				if (!params.subject) {
+					return 'Error: "subject" field is required';
+				}
+				if (!params.body) {
+					return 'Error: "body" field is required';
+				}
 
 				const response = await dsm.callAny(
 					['SYNO.MailClient.Send', 'SYNO.MailPlusServer.Send'],
 					['send', 'create'],
-					params,
+					{
+						from: defaultFrom,
+						to: params.to,
+						cc: params.cc,
+						bcc: params.bcc,
+						subject: params.subject,
+						body: params.body,
+					},
 				);
 
-				returnData.push({
-					success: true,
-					to,
-					subject,
-					message: 'Email sent',
-				});
+				return `Email sent successfully to ${params.to}`;
 			} catch (error) {
-				returnData.push({
-					success: false,
-					error: error instanceof Error ? error.message : 'Unknown error',
-				});
+				return `Error: ${error instanceof Error ? error.message : 'Unknown error'}`;
 			}
-		}
+		};
 
-		return [this.helpers.returnJsonArray(returnData)];
+		const tool = new DynamicTool({
+			name,
+			description: toolDescription,
+			func,
+		});
+
+		return { response: tool };
 	}
 }

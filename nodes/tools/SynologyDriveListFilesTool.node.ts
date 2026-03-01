@@ -1,8 +1,15 @@
+import { DynamicTool } from '@langchain/core/tools';
 import type {
-	IDataObject,
-	IExecuteFunctions,
 	INodeType,
 	INodeTypeDescription,
+	ISupplyDataFunctions,
+	SupplyData,
+} from 'n8n-workflow';
+import {
+	NodeConnectionTypes,
+	NodeOperationError,
+	nodeNameToToolName,
+	tryToParseAlphanumericString,
 } from 'n8n-workflow';
 import { DsmClient, normalizeCredentials } from '../shared/DsmClient';
 
@@ -15,78 +22,95 @@ export class SynologyDriveListFilesTool implements INodeType {
 		version: 1,
 		description: 'List files in a Synology Drive folder',
 		defaults: { name: 'Synology List Files' },
-		inputs: ['main'],
-		outputs: ['main'],
 		credentials: [{ name: 'synologyDsmApi', required: true }],
+		inputs: [],
+		outputs: [NodeConnectionTypes.AiTool],
+		outputNames: ['Tool'],
 		properties: [
 			{
-				displayName: 'Folder Path',
-				name: 'path',
+				displayName: 'Tool Description',
+				name: 'toolDescription',
 				type: 'string',
 				required: true,
-				default: '/',
-				description: 'Folder path to list (e.g., /Documents)',
+				default: 'List files in a Synology Drive folder',
+				description: 'Description for the AI Agent',
 			},
 			{
-				displayName: 'Recursive',
-				name: 'recursive',
-				type: 'boolean',
-				default: false,
-				description: 'Include subfolders',
-			},
-			{
-				displayName: 'Limit',
-				name: 'limit',
-				type: 'number',
-				default: 100,
-				description: 'Maximum files to return',
+				displayName: 'Default Folder Path',
+				name: 'defaultPath',
+				type: 'string',
+				required: true,
+				default: '/Documents',
+				description: 'Default folder path to list (e.g., /Documents)',
 			},
 		],
 	};
 
-	async execute(this: IExecuteFunctions) {
+	async supplyData(this: ISupplyDataFunctions, itemIndex: number): Promise<SupplyData> {
+		const name = nodeNameToToolName(this.getNode());
+
+		try {
+			tryToParseAlphanumericString(name);
+		} catch (error) {
+			throw new NodeOperationError(
+				this.getNode(),
+				'The name of this tool is not a valid alphanumeric string',
+				{
+					itemIndex,
+					description:
+						"Only alphanumeric characters and underscores are allowed in the tool's name, and the name cannot start with a number",
+				},
+			);
+		}
+
+		const toolDescription = this.getNodeParameter('toolDescription', itemIndex) as string;
+		const defaultPath = this.getNodeParameter('defaultPath', itemIndex) as string;
 		const creds = normalizeCredentials(await this.getCredentials('synologyDsmApi'));
 		const dsm = new DsmClient(creds);
 
-		const items = this.getInputData();
-		const returnData: IDataObject[] = [];
-
-		for (let i = 0; i < items.length; i++) {
+		const func = async (input: string): Promise<string> => {
 			try {
-				const path = this.getNodeParameter('path', i, '/') as string;
-				const recursive = this.getNodeParameter('recursive', i, false) as boolean;
-				const limit = this.getNodeParameter('limit', i, 100) as number;
-
-				const params: IDataObject = {
-					path,
-					recursive: recursive ? 'true' : 'false',
-					limit,
-				};
+				// Parse input: expects path as string or JSON
+				let path = input;
+				try {
+					const params = JSON.parse(input);
+					if (params.path) {
+						path = params.path;
+					}
+				} catch {
+					path = input || defaultPath;
+				}
 
 				const response = await dsm.callAny(
 					['SYNO.Dsm.Share', 'SYNO.FolderSharing'],
 					['list', 'get'],
-					params,
+					{
+						path,
+						limit: 100,
+					},
 				);
 
-				const files = Array.isArray(response) ? response : 
-					(typeof response === 'object' && response !== null) ? 
-					((response as IDataObject).files as IDataObject[] | undefined) || [] : [];
+				let files: string[] = [];
+				if (Array.isArray(response)) {
+					files = response.map((f: any) => f.name || f);
+				} else if (typeof response === 'object' && response !== null) {
+					const fileArray = (response as any).files || response;
+					files = Array.isArray(fileArray) ? fileArray.map((f: any) => f.name || f) : [];
+				}
 
-				returnData.push({
-					success: true,
-					path,
-					files,
-					count: Array.isArray(files) ? files.length : 0,
-				});
+				const fileList = files.slice(0, 10).join(', ');
+				return `Files in ${path}: ${fileList}${files.length > 10 ? ' ... and more' : ''}`;
 			} catch (error) {
-				returnData.push({
-					success: false,
-					error: error instanceof Error ? error.message : 'Unknown error',
-				});
+				return `Error: ${error instanceof Error ? error.message : 'Unknown error'}`;
 			}
-		}
+		};
 
-		return [this.helpers.returnJsonArray(returnData)];
+		const tool = new DynamicTool({
+			name,
+			description: toolDescription,
+			func,
+		});
+
+		return { response: tool };
 	}
 }

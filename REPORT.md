@@ -1,6 +1,17 @@
 # REPORT
 
-## Synology full-action discovery status (2026-02-18)
+## Current Status (2026-03-01) — Implementation Phase
+
+✅ **Phase Complete: AI Agent Tool Sub-Nodes (v0.5.1)**
+- Created 4 tool sub-nodes for n8n AI Agent integration
+- Published to NPM: `n8n-nodes-synology-suite@0.5.1`
+- Ready for testing in n8n with AI Agent workflows
+
+**Next:** Maxime to test tool nodes in n8n, verify they appear in AI Agent Tools panel
+
+---
+
+## Synology full-action discovery status (2026-02-18 - Discovery Phase Completed)
 
 ### Completed
 1. Implemented exhaustive probing script: `scripts/probe-actions.py`

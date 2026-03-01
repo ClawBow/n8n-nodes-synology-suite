@@ -1,8 +1,15 @@
+import { DynamicTool } from '@langchain/core/tools';
 import type {
-	IDataObject,
-	IExecuteFunctions,
 	INodeType,
 	INodeTypeDescription,
+	ISupplyDataFunctions,
+	SupplyData,
+} from 'n8n-workflow';
+import {
+	NodeConnectionTypes,
+	NodeOperationError,
+	nodeNameToToolName,
+	tryToParseAlphanumericString,
 } from 'n8n-workflow';
 import { DsmClient, normalizeCredentials } from '../shared/DsmClient';
 
@@ -13,22 +20,46 @@ export class SynologyGetStorageStatsTool implements INodeType {
 		icon: 'file:synology.png',
 		group: ['output'],
 		version: 1,
-		description: 'Get NAS storage capacity and usage',
+		description: 'Get NAS storage capacity and usage statistics',
 		defaults: { name: 'Synology Get Storage Stats' },
-		inputs: ['main'],
-		outputs: ['main'],
 		credentials: [{ name: 'synologyDsmApi', required: true }],
-		properties: [],
+		inputs: [],
+		outputs: [NodeConnectionTypes.AiTool],
+		outputNames: ['Tool'],
+		properties: [
+			{
+				displayName: 'Tool Description',
+				name: 'toolDescription',
+				type: 'string',
+				required: true,
+				default: 'Get NAS storage capacity and usage statistics',
+				description: 'Description for the AI Agent',
+			},
+		],
 	};
 
-	async execute(this: IExecuteFunctions) {
+	async supplyData(this: ISupplyDataFunctions, itemIndex: number): Promise<SupplyData> {
+		const name = nodeNameToToolName(this.getNode());
+
+		try {
+			tryToParseAlphanumericString(name);
+		} catch (error) {
+			throw new NodeOperationError(
+				this.getNode(),
+				'The name of this tool is not a valid alphanumeric string',
+				{
+					itemIndex,
+					description:
+						"Only alphanumeric characters and underscores are allowed in the tool's name, and the name cannot start with a number",
+				},
+			);
+		}
+
+		const toolDescription = this.getNodeParameter('toolDescription', itemIndex) as string;
 		const creds = normalizeCredentials(await this.getCredentials('synologyDsmApi'));
 		const dsm = new DsmClient(creds);
 
-		const items = this.getInputData();
-		const returnData: IDataObject[] = [];
-
-		for (let i = 0; i < items.length; i++) {
+		const func = async (input: string): Promise<string> => {
 			try {
 				const response = await dsm.callAny(
 					['SYNO.DiskIO.Status', 'SYNO.Dsm.Volume', 'SYNO.Core.Storage'],
@@ -40,10 +71,10 @@ export class SynologyGetStorageStatsTool implements INodeType {
 				let usedSize = 0;
 
 				if (typeof response === 'object' && response !== null) {
-					const data = response as IDataObject;
-					const volumes = Array.isArray(data.volumes) ? (data.volumes as IDataObject[]) : [data];
+					const data = response as any;
+					const volumes = Array.isArray(data.volumes) ? data.volumes : [data];
 
-					volumes.forEach((volume: IDataObject) => {
+					volumes.forEach((volume: any) => {
 						const size = (volume.total_size as number) || 0;
 						const used = (volume.used_size as number) || 0;
 						totalSize += size;
@@ -52,24 +83,20 @@ export class SynologyGetStorageStatsTool implements INodeType {
 				}
 
 				const availableSize = totalSize - usedSize;
-				const percentUsed = totalSize > 0 ? ((usedSize / totalSize) * 100).toFixed(2) : '0';
+				const percentUsed = totalSize > 0 ? (usedSize / totalSize) * 100 : 0;
 
-				returnData.push({
-					success: true,
-					total: totalSize,
-					used: usedSize,
-					available: availableSize,
-					percentUsed: parseFloat(percentUsed as string),
-					status: parseFloat(percentUsed as string) > 90 ? 'warning' : 'ok',
-				});
+				return `Storage: ${Math.round((usedSize / 1024 / 1024 / 1024))}GB / ${Math.round((totalSize / 1024 / 1024 / 1024))}GB used (${percentUsed.toFixed(1)}%)`;
 			} catch (error) {
-				returnData.push({
-					success: false,
-					error: error instanceof Error ? error.message : 'Unknown error',
-				});
+				return `Error: ${error instanceof Error ? error.message : 'Unknown error'}`;
 			}
-		}
+		};
 
-		return [this.helpers.returnJsonArray(returnData)];
+		const tool = new DynamicTool({
+			name,
+			description: toolDescription,
+			func,
+		});
+
+		return { response: tool };
 	}
 }
