@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-synology-suite",
-  "version": "0.10.2",
+  "version": "0.11.0",
   "description": "n8n community nodes for Synology DSM (Drive, Office/Sheets, MailPlus) - AI Agent compatible",
   "license": "MIT",
   "author": "Maxime Olivier",
@@ -25,8 +25,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc && npm run copy:assets",
-    "copy:assets": "mkdir -p dist/nodes/tools && cp -v nodes/tools/*.png dist/nodes/tools/ && cp -v nodes/tools/*.svg dist/nodes/tools/ 2>/dev/null || true",
+    "build": "tsc",
     "dev": "tsc -w",
     "lint": "eslint nodes credentials package.json",
     "smoke": "bash ./scripts/smoke-check.sh",
@@ -57,11 +56,7 @@
       "dist/nodes/SynologyDrive/SynologyDrive.node.js",
       "dist/nodes/SynologyOffice/SynologyOffice.node.js",
       "dist/nodes/SynologyMailPlus/SynologyMailPlus.node.js",
-      "dist/nodes/SynologyMailPlusTrigger/SynologyMailPlusTrigger.node.js",
-      "dist/nodes/tools/SynologyDriveTool.node.js",
-      "dist/nodes/tools/SynologyMailTool.node.js",
-      "dist/nodes/tools/SynologyOfficeTool.node.js",
-      "dist/nodes/tools/SynologyApiTool.node.js"
+      "dist/nodes/SynologyMailPlusTrigger/SynologyMailPlusTrigger.node.js"
     ]
   }
 }

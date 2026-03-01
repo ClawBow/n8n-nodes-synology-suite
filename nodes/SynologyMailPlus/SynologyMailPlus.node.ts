@@ -21,13 +21,14 @@ export class SynologyMailPlus implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Synology MailPlus',
 		name: 'synologyMailPlus',
-		icon: 'file:synology.png',
+		icon: 'file:synology-mailplus.png',
 		group: ['transform'],
 		version: 1,
 		description: 'Synology MailPlus helper node (client/server API)',
 		defaults: { name: 'Synology MailPlus' },
 		inputs: ['main'],
 		outputs: ['main'],
+		usableAsTool: true,
 		credentials: [{ name: 'synologyDsmApi', required: true }],
 		properties: [
 			{

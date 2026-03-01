@@ -21,7 +21,7 @@ export class SynologyOffice implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Synology Office',
 		name: 'synologyOffice',
-		icon: 'file:synology.png',
+		icon: 'file:synology-office.png',
 		group: ['transform'],
 		version: 1,
 		description: 'Synology Office / Spreadsheet helper node',
@@ -29,6 +29,7 @@ export class SynologyOffice implements INodeType {
 		inputs: ['main'],
 		outputs: ['main'],
 		credentials: [{ name: 'synologyDsmApi', required: true }],
+		usableAsTool: true,
 		properties: [
 			{
 				displayName: 'Operation',

@@ -12,7 +12,7 @@ export class SynologyDrive implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Synology Drive',
 		name: 'synologyDrive',
-		icon: 'file:synology.png',
+		icon: 'file:synology-drive.png',
 		group: ['transform'],
 		version: 1,
 		description: 'Synology Drive / FileStation operations',
@@ -20,6 +20,7 @@ export class SynologyDrive implements INodeType {
 		inputs: ['main'],
 		outputs: ['main'],
 		credentials: [{ name: 'synologyDsmApi', required: true }],
+		usableAsTool: true,
 		properties: [
 			{
 				displayName: 'Operation',

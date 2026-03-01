@@ -11,7 +11,7 @@ export class SynologyApi implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Synology API',
 		name: 'synologyApi',
-		icon: 'file:synology.png',
+		icon: 'file:synology-api.png',
 		group: ['transform'],
 		version: 1,
 		description: 'Generic Synology DSM API caller (covers all DSM APIs)',
@@ -19,6 +19,7 @@ export class SynologyApi implements INodeType {
 		inputs: ['main'],
 		outputs: ['main'],
 		credentials: [{ name: 'synologyDsmApi', required: true }],
+		usableAsTool: true,
 		properties: [
 			{ displayName: 'API Name', name: 'api', type: 'string', default: 'SYNO.API.Info', required: true },
 			{ displayName: 'Method', name: 'method', type: 'string', default: 'query', required: true },

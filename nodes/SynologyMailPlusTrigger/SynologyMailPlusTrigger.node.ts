@@ -41,7 +41,7 @@ export class SynologyMailPlusTrigger implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Synology MailPlus Trigger',
 		name: 'synologyMailPlusTrigger',
-		icon: 'file:synology.png',
+		icon: 'file:synology-mailplus.png',
 		group: ['trigger'],
 		version: 1,
 		description: 'Poll Synology MailPlus for newly received messages',
@@ -49,6 +49,7 @@ export class SynologyMailPlusTrigger implements INodeType {
 		inputs: [],
 		outputs: ['main'],
 		credentials: [{ name: 'synologyDsmApi', required: true }],
+		usableAsTool: true,
 		properties: [
 			{
 				displayName: 'Mailbox ID',
