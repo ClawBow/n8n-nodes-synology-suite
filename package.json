@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-synology-suite",
-  "version": "0.5.0",
+  "version": "0.4.3",
   "description": "n8n community nodes for Synology DSM (Drive, Office/Sheets, MailPlus)",
   "license": "MIT",
   "author": "Maxime Olivier",
@@ -55,11 +55,7 @@
       "dist/nodes/SynologyDrive/SynologyDrive.node.js",
       "dist/nodes/SynologyOffice/SynologyOffice.node.js",
       "dist/nodes/SynologyMailPlus/SynologyMailPlus.node.js",
-      "dist/nodes/SynologyMailPlusTrigger/SynologyMailPlusTrigger.node.js",
-      "dist/nodes/AIAgentTools/SendEmail.node.js",
-      "dist/nodes/AIAgentTools/UploadFile.node.js",
-      "dist/nodes/AIAgentTools/ListFiles.node.js",
-      "dist/nodes/AIAgentTools/GetStorageStats.node.js"
+      "dist/nodes/SynologyMailPlusTrigger/SynologyMailPlusTrigger.node.js"
     ]
   }
 }
