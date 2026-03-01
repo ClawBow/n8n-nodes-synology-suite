@@ -1,26 +1,20 @@
-import { DynamicTool } from '@langchain/core/tools';
-import type { INodeType, INodeTypeDescription, ISupplyDataFunctions, SupplyData } from 'n8n-workflow';
-import {
-	NodeConnectionTypes,
-	NodeOperationError,
-	nodeNameToToolName,
-	tryToParseAlphanumericString,
-} from 'n8n-workflow';
+import type { IDataObject, IExecuteFunctions, INodeType, INodeTypeDescription } from 'n8n-workflow';
 import { DsmClient, normalizeCredentials } from '../shared/DsmClient';
+import { executePerItem } from '../shared/NodeExecution';
 
 export class SynologyDriveTool implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Synology Drive',
 		name: 'synologyDriveTool',
 		icon: 'file:synology-drive.png',
-		group: ['output'],
+		group: ['transform'],
 		version: 1,
 		description: 'Manage files in Synology Drive',
 		defaults: { name: 'Synology Drive' },
+		inputs: ['main'],
+		outputs: ['main'],
 		credentials: [{ name: 'synologyDsmApi', required: true }],
-		inputs: [],
-		outputs: [NodeConnectionTypes.AiTool],
-		outputNames: ['Tool'],
+		usableAsTool: true,
 		properties: [
 			{
 				displayName: 'Action',
@@ -109,86 +103,61 @@ export class SynologyDriveTool implements INodeType {
 		],
 	};
 
-	async supplyData(this: ISupplyDataFunctions, itemIndex: number): Promise<SupplyData> {
-		const name = nodeNameToToolName(this.getNode());
-		try {
-			tryToParseAlphanumericString(name);
-		} catch (error) {
-			throw new NodeOperationError(this.getNode(), 'Invalid tool name');
-		}
-
+	async execute(this: IExecuteFunctions) {
 		const creds = normalizeCredentials(await this.getCredentials('synologyDsmApi'));
 		const dsm = new DsmClient(creds);
 
-		const func = async (input: string): Promise<string> => {
-			try {
-				let params: any = {};
-				try {
-					params = JSON.parse(input);
-				} catch {
-					params = { action: 'list', path: '/' };
+		return executePerItem(this, async (i) => {
+			const action = this.getNodeParameter('action', i) as string;
+
+			switch (action) {
+				case 'upload': {
+					const filename = this.getNodeParameter('filename', i) as string;
+					const content = this.getNodeParameter('content', i) as string;
+					const path = (this.getNodeParameter('path', i) as string) || `/Documents/${filename}`;
+					const overwrite = this.getNodeParameter('overwrite', i) as boolean;
+
+					if (!filename || !content) return { error: 'filename and content required' };
+
+					await dsm.callAny(['SYNO.Dsm.Share', 'SYNO.FolderSharing'], ['upload', 'create'], {
+						path,
+						content,
+						overwrite: overwrite ? 'true' : 'false',
+					});
+					return { success: true, message: `File uploaded to ${path}` };
 				}
 
-				const action = params.action || 'list';
-
-				switch (action) {
-					case 'upload': {
-						if (!params.filename || !params.content) return 'Error: filename and content required';
-						const path = params.path || `/Documents/${params.filename}`;
-						await dsm.callAny(['SYNO.Dsm.Share', 'SYNO.FolderSharing'], ['upload', 'create'], {
-							path,
-							content: params.content,
-							overwrite: params.overwrite ? 'true' : 'false',
-						});
-						return `✅ File uploaded to ${path}`;
-					}
-
-					case 'list': {
-						const listPath = params.path || '/';
-						const response = await dsm.callAny(['SYNO.Dsm.Share', 'SYNO.FolderSharing'], ['list', 'get'], {
-							path: listPath,
-							limit: 50,
-						});
-						const files = Array.isArray(response)
-							? response
-									.map((f: any) => f.name || f)
-									.slice(0, 10)
-									.join(', ')
-							: '';
-						return `📂 ${files}${Array.isArray(response) && response.length > 10 ? ' ...' : ''}`;
-					}
-
-					case 'search': {
-						const pattern = params.pattern || params.query || '';
-						if (!pattern) return 'Error: pattern required';
-						const response = await dsm.callAny(['SYNO.Dsm.Share', 'SYNO.FolderSharing'], ['search', 'query'], {
-							pattern,
-							limit: 20,
-						});
-						const found = Array.isArray(response) ? response.map((f: any) => f.name).slice(0, 10).join(', ') : '';
-						return `🔍 Found: ${found}`;
-					}
-
-					case 'delete': {
-						if (!params.path) return 'Error: path required';
-						await dsm.callAny(['SYNO.Dsm.Share', 'SYNO.FolderSharing'], ['delete', 'remove'], { path: params.path });
-						return `🗑️ Deleted: ${params.path}`;
-					}
-
-					default:
-						return `❌ Unknown action: ${action}`;
+				case 'list': {
+					const listPath = (this.getNodeParameter('path', i) as string) || '/';
+					const response = await dsm.callAny(['SYNO.Dsm.Share', 'SYNO.FolderSharing'], ['list', 'get'], {
+						path: listPath,
+						limit: 50,
+					});
+					const files = Array.isArray(response) ? response.map((f: any) => f.name || f).slice(0, 10) : [];
+					return { success: true, files, count: files.length };
 				}
-			} catch (error) {
-				return `Error: ${error instanceof Error ? error.message : 'Unknown error'}`;
+
+				case 'search': {
+					const pattern = this.getNodeParameter('pattern', i) as string;
+					if (!pattern) return { error: 'pattern required' };
+					const response = await dsm.callAny(['SYNO.Dsm.Share', 'SYNO.FolderSharing'], ['search', 'query'], {
+						pattern,
+						limit: 20,
+					});
+					const found = Array.isArray(response) ? response.map((f: any) => f.name).slice(0, 10) : [];
+					return { success: true, found, count: found.length };
+				}
+
+				case 'delete': {
+					const path = this.getNodeParameter('path', i) as string;
+					if (!path) return { error: 'path required' };
+					await dsm.callAny(['SYNO.Dsm.Share', 'SYNO.FolderSharing'], ['delete', 'remove'], { path });
+					return { success: true, message: `Deleted: ${path}` };
+				}
+
+				default:
+					return { error: `Unknown action: ${action}` };
 			}
-		};
-
-		const tool = new DynamicTool({
-			name,
-			description: 'Manage files in Synology Drive (upload, list, search, delete)',
-			func,
 		});
-
-		return { response: tool };
 	}
 }

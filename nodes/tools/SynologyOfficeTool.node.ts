@@ -1,26 +1,20 @@
-import { DynamicTool } from '@langchain/core/tools';
-import type { INodeType, INodeTypeDescription, ISupplyDataFunctions, SupplyData } from 'n8n-workflow';
-import {
-	NodeConnectionTypes,
-	NodeOperationError,
-	nodeNameToToolName,
-	tryToParseAlphanumericString,
-} from 'n8n-workflow';
+import type { IDataObject, IExecuteFunctions, INodeType, INodeTypeDescription } from 'n8n-workflow';
 import { DsmClient, normalizeCredentials } from '../shared/DsmClient';
+import { executePerItem } from '../shared/NodeExecution';
 
 export class SynologyOfficeTool implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Synology Office',
 		name: 'synologyOfficeTool',
 		icon: 'file:synology-office.png',
-		group: ['output'],
+		group: ['transform'],
 		version: 1,
 		description: 'Manage spreadsheets in Synology Office',
 		defaults: { name: 'Synology Office' },
+		inputs: ['main'],
+		outputs: ['main'],
 		credentials: [{ name: 'synologyDsmApi', required: true }],
-		inputs: [],
-		outputs: [NodeConnectionTypes.AiTool],
-		outputNames: ['Tool'],
+		usableAsTool: true,
 		properties: [
 			{
 				displayName: 'Action',
@@ -69,84 +63,58 @@ export class SynologyOfficeTool implements INodeType {
 		],
 	};
 
-	async supplyData(this: ISupplyDataFunctions, itemIndex: number): Promise<SupplyData> {
-		const name = nodeNameToToolName(this.getNode());
-		try {
-			tryToParseAlphanumericString(name);
-		} catch (error) {
-			throw new NodeOperationError(this.getNode(), 'Invalid tool name');
-		}
-
+	async execute(this: IExecuteFunctions) {
 		const creds = normalizeCredentials(await this.getCredentials('synologyDsmApi'));
 		const dsm = new DsmClient(creds);
 
-		const func = async (input: string): Promise<string> => {
-			try {
-				let params: any = {};
-				try {
-					params = JSON.parse(input);
-				} catch {
-					params = { action: 'listspreadsheets' };
+		return executePerItem(this, async (i) => {
+			const action = this.getNodeParameter('action', i) as string;
+
+			switch (action) {
+				case 'listspreadsheets': {
+					const response = await dsm.callAny(['SYNO.Office.Spreadsheet'], ['list', 'get'], { limit: 20 });
+					const sheets = Array.isArray(response) ? response.map((s: any) => s.name).slice(0, 10) : [];
+					return { success: true, sheets, count: sheets.length };
 				}
 
-				const action = params.action || 'listspreadsheets';
+				case 'readrange': {
+					const spreadsheet_id = this.getNodeParameter('spreadsheet_id', i) as string;
+					const range = (this.getNodeParameter('range', i) as string) || 'A1:Z100';
 
-				switch (action) {
-					case 'listspreadsheets': {
-						const response = await dsm.callAny(['SYNO.Office.Spreadsheet'], ['list', 'get'], { limit: 20 });
-						const sheets = Array.isArray(response)
-							? response
-									.map((s: any) => s.name)
-									.slice(0, 10)
-									.join(', ')
-							: '';
-						return `📊 Spreadsheets: ${sheets}${Array.isArray(response) && response.length > 10 ? ' ...' : ''}`;
-					}
+					if (!spreadsheet_id) return { error: 'spreadsheet_id required' };
 
-					case 'readrange': {
-						if (!params.spreadsheet_id) return 'Error: spreadsheet_id required';
-						const range = params.range || 'A1:Z100';
-						const response = await dsm.callAny(['SYNO.Office.Spreadsheet'], ['readRange', 'read'], {
-							spreadsheet_id: params.spreadsheet_id,
-							range,
-						});
-						const data = Array.isArray(response) ? response.flat().slice(0, 20).join(', ') : '';
-						return `📖 Data: ${data}`;
-					}
+					const response = await dsm.callAny(['SYNO.Office.Spreadsheet'], ['readRange', 'read'], {
+						spreadsheet_id,
+						range,
+					});
+					const data = Array.isArray(response) ? response.flat().slice(0, 50) : [];
+					return { success: true, data, count: data.length };
+				}
 
-					case 'appendrow': {
-						if (!params.spreadsheet_id) return 'Error: spreadsheet_id required';
-						if (!params.rows) return 'Error: rows required';
-						let rows = params.rows;
-						if (typeof rows === 'string') {
-							try {
-								rows = JSON.parse(rows);
-							} catch {
-								return 'Error: rows must be valid JSON array';
-							}
-						}
-						if (!Array.isArray(rows)) return 'Error: rows must be an array';
+				case 'appendrow': {
+					const spreadsheet_id = this.getNodeParameter('spreadsheet_id', i) as string;
+					let rows = this.getNodeParameter('rows', i) as string;
+
+					if (!spreadsheet_id) return { error: 'spreadsheet_id required' };
+					if (!rows) return { error: 'rows required' };
+
+					try {
+						const parsedRows = typeof rows === 'string' ? JSON.parse(rows) : rows;
+						if (!Array.isArray(parsedRows)) return { error: 'rows must be a JSON array' };
+
 						await dsm.callAny(['SYNO.Office.Spreadsheet'], ['appendRow', 'create'], {
-							spreadsheet_id: params.spreadsheet_id,
-							rows,
+							spreadsheet_id,
+							rows: parsedRows,
 						});
-						return `➕ ${rows.length} row(s) appended`;
+						return { success: true, message: `${parsedRows.length} row(s) appended` };
+					} catch (e) {
+						return { error: 'Invalid JSON in rows' };
 					}
-
-					default:
-						return `❌ Unknown action: ${action}`;
 				}
-			} catch (error) {
-				return `Error: ${error instanceof Error ? error.message : 'Unknown error'}`;
+
+				default:
+					return { error: `Unknown action: ${action}` };
 			}
-		};
-
-		const tool = new DynamicTool({
-			name,
-			description: 'Manage spreadsheets in Synology Office (list, read, append)',
-			func,
 		});
-
-		return { response: tool };
 	}
 }

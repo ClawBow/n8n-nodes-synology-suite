@@ -1,26 +1,20 @@
-import { DynamicTool } from '@langchain/core/tools';
-import type { IDataObject, INodeType, INodeTypeDescription, ISupplyDataFunctions, SupplyData } from 'n8n-workflow';
-import {
-	NodeConnectionTypes,
-	NodeOperationError,
-	nodeNameToToolName,
-	tryToParseAlphanumericString,
-} from 'n8n-workflow';
+import type { IDataObject, IExecuteFunctions, INodeType, INodeTypeDescription } from 'n8n-workflow';
 import { DsmClient, normalizeCredentials } from '../shared/DsmClient';
+import { executePerItem } from '../shared/NodeExecution';
 
 export class SynologyApiTool implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Synology API',
 		name: 'synologyApiTool',
 		icon: 'file:synology-api.png',
-		group: ['output'],
+		group: ['transform'],
 		version: 1,
 		description: 'Call any Synology DSM API',
 		defaults: { name: 'Synology API' },
+		inputs: ['main'],
+		outputs: ['main'],
 		credentials: [{ name: 'synologyDsmApi', required: true }],
-		inputs: [],
-		outputs: [NodeConnectionTypes.AiTool],
-		outputNames: ['Tool'],
+		usableAsTool: true,
 		properties: [
 			{
 				displayName: 'API Name',
@@ -72,65 +66,40 @@ export class SynologyApiTool implements INodeType {
 		],
 	};
 
-	async supplyData(this: ISupplyDataFunctions, itemIndex: number): Promise<SupplyData> {
-		const name = nodeNameToToolName(this.getNode());
-		try {
-			tryToParseAlphanumericString(name);
-		} catch (error) {
-			throw new NodeOperationError(this.getNode(), 'Invalid tool name');
-		}
-
+	async execute(this: IExecuteFunctions) {
 		const creds = normalizeCredentials(await this.getCredentials('synologyDsmApi'));
 		const dsm = new DsmClient(creds);
 
-		const func = async (input: string): Promise<string> => {
+		return executePerItem(this, async (i) => {
+			const api = this.getNodeParameter('api', i) as string;
+			const method = this.getNodeParameter('method', i) as string;
+			const versionMode = this.getNodeParameter('versionMode', i) as string;
+			const version = this.getNodeParameter('version', i) as number;
+			let paramsInput = this.getNodeParameter('params', i) as string | IDataObject;
+
+			if (!api) return { error: 'api field is required' };
+			if (!method) return { error: 'method field is required' };
+
+			let params: IDataObject = {};
 			try {
-				let params: any = {};
-				try {
-					params = JSON.parse(input);
-				} catch {
-					return 'Error: Input must be valid JSON with {api, method, params, versionMode?}';
+				if (typeof paramsInput === 'string') {
+					params = JSON.parse(paramsInput);
+				} else {
+					params = paramsInput;
 				}
-
-				// Extract parameters
-				const api = params.api || '';
-				const method = params.method || '';
-				const versionMode = params.versionMode || 'auto';
-				const version = params.version || 1;
-				const apiParams = typeof params.params === 'string' ? JSON.parse(params.params) : params.params || {};
-
-				if (!api) return 'Error: api field is required (e.g., SYNO.API.Info)';
-				if (!method) return 'Error: method field is required (e.g., query, get, list)';
-
-				// Call the API
-				const response = versionMode === 'auto'
-					? await dsm.callAuto(api, method, apiParams)
-					: await dsm.call(api, method, version, apiParams);
-
-				// Format response for LLM
-				if (typeof response === 'object') {
-					// If response has lots of data, summarize
-					const responseStr = JSON.stringify(response);
-					if (responseStr.length > 500) {
-						const keys = Object.keys(response).slice(0, 5).join(', ');
-						return `✅ Response (keys: ${keys}): ${responseStr.substring(0, 200)}...`;
-					}
-					return `✅ ${JSON.stringify(response, null, 2)}`;
-				}
-
-				return `✅ ${response}`;
-			} catch (error) {
-				return `Error: ${error instanceof Error ? error.message : 'Unknown error'}`;
+			} catch (e) {
+				return { error: 'Invalid JSON in params' };
 			}
-		};
 
-		const tool = new DynamicTool({
-			name,
-			description:
-				'Call any Synology DSM API. Input: JSON with {api, method, params, versionMode?}. Example: {"api":"SYNO.API.Info","method":"query","params":{"query":"all"}}',
-			func,
+			try {
+				const response = versionMode === 'auto'
+					? await dsm.callAuto(api, method, params)
+					: await dsm.call(api, method, version, params);
+
+				return { success: true, response };
+			} catch (error) {
+				return { error: error instanceof Error ? error.message : 'Unknown error' };
+			}
 		});
-
-		return { response: tool };
 	}
 }
