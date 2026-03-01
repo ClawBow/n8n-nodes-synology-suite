@@ -1,6 +1,6 @@
 # REPORT
 
-## Current Status (2026-03-01 18:14) — Structured Service-Based Tools Complete
+## Current Status (2026-03-01 19:32) — Full UI Parameterization Complete
 
 ✅ **PHASE 1: Fixed Architecture (v0.5.2-0.5.3)**
 - Rewritten with correct `supplyData()` pattern
@@ -17,7 +17,7 @@
 - Created one Tool per action (SendEmail, ListFiles, DeleteFile, etc.)
 - Published to NPM but needed UI consolidation
 
-✅ **PHASE 4: SERVICE-BASED STRUCTURE (v0.7.0) ⭐⭐**
+✅ **PHASE 4: SERVICE-BASED STRUCTURE (v0.7.0)**
 - **Restructured to 4 Main Service Tools** (cleaner, more organized)
 
 **Synology Drive Tool** (4 actions)
@@ -53,7 +53,41 @@
 
 **Published:** NPM `n8n-nodes-synology-suite@0.7.0` ✅
 
-**Next:** Maxime to install v0.7.0, restart n8n, verify 4 tools appear in AI Agent Tools panel with proper icons
+**Published:** NPM `n8n-nodes-synology-suite@0.7.0` ✅
+
+✅ **PHASE 5: FULL UI PARAMETERIZATION (v0.8.0) ⭐⭐⭐**
+- **Each Tool now has proper n8n UI with field parameterization**
+
+**Synology Drive Tool**
+- Action dropdown: Upload, List, Search, Delete
+- Dynamic fields with displayOptions:
+  - Upload: filename, content, path, overwrite
+  - List: path
+  - Search: pattern
+  - Delete: path
+
+**Synology Mail Tool**
+- Action dropdown: Send Email, List Mailboxes, List Messages, Move Message
+- Dynamic fields:
+  - Send Email: to, cc, bcc, subject, body, from
+  - List Mailboxes: (none)
+  - List Messages: mailbox_id
+  - Move Message: message_ids, destination_mailbox_id
+
+**Synology Office Tool**
+- Action dropdown: List Spreadsheets, Read Range, Append Row
+- Dynamic fields:
+  - List Spreadsheets: (none)
+  - Read Range: spreadsheet_id, range
+  - Append Row: spreadsheet_id, rows (JSON)
+
+**Synology API Tool**
+- Action dropdown: Get Storage Stats
+- No additional fields needed
+
+**Published:** NPM `n8n-nodes-synology-suite@0.8.0` ✅
+
+**Next:** Maxime to install v0.8.0, restart n8n, verify 4 tools appear with full UI parameter blocks
 
 ---
 
