@@ -1,13 +1,22 @@
 # REPORT
 
-## Current Status (2026-03-01) — Implementation Phase
+## Current Status (2026-03-01 18:02) — Tool Sub-Nodes Complete
 
-✅ **Phase Complete: AI Agent Tool Sub-Nodes (v0.5.1)**
-- Created 4 tool sub-nodes for n8n AI Agent integration
-- Published to NPM: `n8n-nodes-synology-suite@0.5.1`
-- Ready for testing in n8n with AI Agent workflows
+✅ **FIXED: AI Agent Tool Sub-Nodes (v0.5.2)**
+- **Previously (v0.5.1):** Created nodes as `execute()` → appeared as regular nodes (wrong)
+- **Now (v0.5.2):** Rewritten with correct architecture:
+  - Use `supplyData()` instead of `execute()`
+  - Output type: `NodeConnectionTypes.AiTool` (not `['main']`)
+  - Return `DynamicTool` from `@langchain/core/tools`
+  - Integrated `nodeNameToToolName()` validation
+- **Published:** NPM `n8n-nodes-synology-suite@0.5.2`
+- **Tools included:**
+  - `SynologyMailPlusSendEmailTool` — Send email via MailPlus
+  - `SynologyDriveUploadFileTool` — Upload file to Drive
+  - `SynologyDriveListFilesTool` — List Drive files
+  - `SynologyGetStorageStatsTool` — Get NAS storage stats
 
-**Next:** Maxime to test tool nodes in n8n, verify they appear in AI Agent Tools panel
+**Next:** Maxime to install v0.5.2, restart n8n, verify tools appear in AI Agent Tools panel
 
 ---
 
