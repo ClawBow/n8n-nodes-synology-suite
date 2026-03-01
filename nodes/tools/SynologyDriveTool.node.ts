@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export class SynologyDriveTool implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Synology Drive',
+		displayName: 'Synology Drive (AI Agent)',
 		name: 'synologyDriveTool',
 		icon: 'file:synology-drive.png',
 		group: ['transform'],

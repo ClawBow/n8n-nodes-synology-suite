@@ -4,7 +4,7 @@ import { executePerItem } from '../shared/NodeExecution';
 
 export class SynologyApiTool implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Synology API',
+		displayName: 'Synology API (AI Agent)',
 		name: 'synologyApiTool',
 		icon: 'file:synology-api.png',
 		group: ['transform'],

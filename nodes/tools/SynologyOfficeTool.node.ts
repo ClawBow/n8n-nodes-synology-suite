@@ -4,7 +4,7 @@ import { executePerItem } from '../shared/NodeExecution';
 
 export class SynologyOfficeTool implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Synology Office',
+		displayName: 'Synology Office (AI Agent)',
 		name: 'synologyOfficeTool',
 		icon: 'file:synology-office.png',
 		group: ['transform'],

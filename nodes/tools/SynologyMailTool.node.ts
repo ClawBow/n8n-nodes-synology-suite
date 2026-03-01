@@ -4,7 +4,7 @@ import { executePerItem } from '../shared/NodeExecution';
 
 export class SynologyMailTool implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Synology Mail',
+		displayName: 'Synology Mail (AI Agent)',
 		name: 'synologyMailTool',
 		icon: 'file:synology-mailplus.png',
 		group: ['transform'],
