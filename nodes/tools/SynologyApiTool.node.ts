@@ -28,7 +28,8 @@ export class SynologyApiTool implements INodeType {
 				type: 'string',
 				required: true,
 				default: 'SYNO.API.Info',
-				description: 'API name (e.g., SYNO.API.Info, SYNO.DiskIO.Status)',
+				placeholder: 'SYNO.API.Info',
+				description: 'Synology API name (e.g., SYNO.API.Info, SYNO.DiskIO.Status)',
 			},
 			{
 				displayName: 'Method',
@@ -36,7 +37,8 @@ export class SynologyApiTool implements INodeType {
 				type: 'string',
 				required: true,
 				default: 'query',
-				description: 'API method (e.g., query, list, get, create)',
+				placeholder: 'query',
+				description: 'API method (e.g., query, get, list, create)',
 			},
 			{
 				displayName: 'Version Mode',
@@ -47,20 +49,24 @@ export class SynologyApiTool implements INodeType {
 					{ name: 'Auto (Use API maxVersion)', value: 'auto' },
 					{ name: 'Manual', value: 'manual' },
 				],
+				description: 'Use latest API version or specify manually',
 			},
 			{
 				displayName: 'Version',
 				name: 'version',
 				type: 'number',
 				default: 1,
-				description: 'API version (if manual mode)',
+				placeholder: '1',
+				description: 'API version number (if manual mode)',
 				displayOptions: { show: { versionMode: ['manual'] } },
 			},
 			{
 				displayName: 'Parameters (JSON)',
 				name: 'params',
-				type: 'json',
+				type: 'string',
 				default: '{"query":"all"}',
+				placeholder: '{"query":"all"}',
+				typeOptions: { rows: 4 },
 				description: 'API parameters as JSON object',
 			},
 		],
@@ -83,7 +89,7 @@ export class SynologyApiTool implements INodeType {
 				try {
 					params = JSON.parse(input);
 				} catch {
-					return 'Error: Input must be valid JSON with api, method, and optional params fields';
+					return 'Error: Input must be valid JSON with {api, method, params, versionMode?}';
 				}
 
 				// Extract parameters
@@ -91,7 +97,7 @@ export class SynologyApiTool implements INodeType {
 				const method = params.method || '';
 				const versionMode = params.versionMode || 'auto';
 				const version = params.version || 1;
-				const apiParams = params.params || {};
+				const apiParams = typeof params.params === 'string' ? JSON.parse(params.params) : params.params || {};
 
 				if (!api) return 'Error: api field is required (e.g., SYNO.API.Info)';
 				if (!method) return 'Error: method field is required (e.g., query, get, list)';
