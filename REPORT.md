@@ -1,22 +1,43 @@
 # REPORT
 
-## Current Status (2026-03-01 18:02) — Tool Sub-Nodes Complete
+## Current Status (2026-03-01 18:08) — Comprehensive Tool Suite Complete
 
-✅ **FIXED: AI Agent Tool Sub-Nodes (v0.5.2)**
-- **Previously (v0.5.1):** Created nodes as `execute()` → appeared as regular nodes (wrong)
-- **Now (v0.5.2):** Rewritten with correct architecture:
-  - Use `supplyData()` instead of `execute()`
-  - Output type: `NodeConnectionTypes.AiTool` (not `['main']`)
-  - Return `DynamicTool` from `@langchain/core/tools`
-  - Integrated `nodeNameToToolName()` validation
-- **Published:** NPM `n8n-nodes-synology-suite@0.5.2`
-- **Tools included:**
-  - `SynologyMailPlusSendEmailTool` — Send email via MailPlus
-  - `SynologyDriveUploadFileTool` — Upload file to Drive
-  - `SynologyDriveListFilesTool` — List Drive files
-  - `SynologyGetStorageStatsTool` — Get NAS storage stats
+✅ **PHASE 1: Fixed Architecture (v0.5.2-0.5.3)**
+- Rewritten with correct `supplyData()` pattern
+- Output: `NodeConnectionTypes.AiTool`
+- Integrated LangChain `DynamicTool`
+- Added proper icons from service families
 
-**Next:** Maxime to install v0.5.2, restart n8n, verify tools appear in AI Agent Tools panel
+✅ **PHASE 2: Icons & Asset Pipeline (v0.5.3)**
+- Icons: MailPlus, Drive, Office, API
+- Auto-copy assets during build
+- Icons appear in n8n UI
+
+✅ **PHASE 3: COMPREHENSIVE TOOL SUITE (v0.6.0) ⭐**
+- **12 Specialized AI Agent Tools** organized by service
+- **MailPlus Tools (4):**
+  - SendEmail — Send emails via MailPlus
+  - ListMailboxes — List available mailboxes
+  - ListMessages — List messages from mailbox
+  - MoveMessage — Move messages between folders
+
+- **Drive Tools (4):**
+  - UploadFile — Upload files to Drive
+  - ListFiles — List files in folders
+  - SearchFiles — Search by filename/pattern
+  - DeleteFile — Delete files permanently
+
+- **Office Tools (3):**
+  - ListSpreadsheets — List available spreadsheets
+  - ReadRange — Read cells/ranges from sheets
+  - AppendRow — Add rows to spreadsheets
+
+- **System Tools (1):**
+  - GetStorageStats — Get NAS storage capacity/usage
+
+**Published:** NPM `n8n-nodes-synology-suite@0.6.0`
+
+**Next:** Maxime to install v0.6.0, restart n8n, verify all 12 tools appear in AI Agent Tools panel organized by service icon
 
 ---
 
