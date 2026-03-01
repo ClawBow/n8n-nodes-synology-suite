@@ -1,6 +1,6 @@
 # REPORT
 
-## Current Status (2026-03-01 19:32) — Full UI Parameterization Complete
+## Current Status (2026-03-01 20:16) — Proper usableAsTool Implementation Complete
 
 ✅ **PHASE 1: Fixed Architecture (v0.5.2-0.5.3)**
 - Rewritten with correct `supplyData()` pattern
@@ -126,7 +126,32 @@
 
 **Published:** NPM `n8n-nodes-synology-suite@0.8.2` ✅
 
-**Next:** Maxime to uninstall v0.8.1, install v0.8.2, update PostgreSQL, verify magic wand buttons appear on text fields
+✅ **PHASE 7: PROPER usableAsTool PATTERN (v0.9.0) ⭐⭐⭐⭐⭐**
+- **MAJOR REFACTOR:** Discovered the correct n8n pattern for AI Agent tools
+- Switched from **Tool sub-nodes** (supplyData) to **regular nodes** (execute) with `usableAsTool: true`
+- Pattern matching: Markdown to Google Docs reference implementation
+
+**Architecture Changes:**
+- Execute function: `execute()` (not `supplyData()`)
+- Output type: `outputs: ['main']` (not `NodeConnectionTypes.AiTool`)
+- Group: `'transform'` (not `'output'`)
+- **Added `usableAsTool: true`** to description
+- Properties, placeholders, typeOptions remain identical
+
+**Why This Works:**
+- `usableAsTool: true` is the correct flag for AI Agent integration
+- Regular nodes with this flag get magic wand buttons (✨ AI fill)
+- Matches n8n's official pattern for AI-capable nodes
+
+**All 4 Tools Refactored:**
+- Synology Drive: upload, list, search, delete
+- Synology Mail: sendemail, listmailboxes, listmessages, movemessage
+- Synology Office: listspreadsheets, readrange, appendrow
+- Synology API: Generic API caller (auto/manual version modes)
+
+**Published:** NPM `n8n-nodes-synology-suite@0.9.0` ✅
+
+**Next:** Maxime to uninstall v0.8.2, install v0.9.0, update PostgreSQL, verify magic wand buttons work on AI Agent nodes
 
 ---
 
