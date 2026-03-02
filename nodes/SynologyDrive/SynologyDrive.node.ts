@@ -166,49 +166,34 @@ export class SynologyDrive implements INodeType {
 				const recursive = this.getNodeParameter('recursive', i) as boolean;
 				const keyword = this.getNodeParameter('keyword', i) as string;
 				const limit = this.getNodeParameter('limit', i) as number;
-				const waitForCompletion = this.getNodeParameter('waitForCompletion', i) as boolean;
-				const pollIntervalMs = this.getNodeParameter('pollIntervalMs', i) as number;
-				const pollTimeoutMs = this.getNodeParameter('pollTimeoutMs', i) as number;
-				const start = await dsm.callAuto('SYNO.FileStation.Search', 'start', {
+
+				// Use FileStation.List with pattern instead of Search (Search API doesn't return results properly)
+				// Build regex pattern from keyword (case-insensitive partial match)
+				let pattern = '.*';
+				if (keyword) {
+					// Escape special regex chars and make case-insensitive
+					const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+					pattern = `(?i).*${escaped}.*`;
+				}
+
+				const result = await dsm.callAuto('SYNO.FileStation.List', 'list', {
 					folder_path: path,
 					recursive,
-					keyword,
+					pattern,
 					limit,
 					...extraParams,
 				});
 
-				if (!waitForCompletion) return start;
-
-				const taskId = String((((start.data || {}) as IDataObject).taskid || ((start.data || {}) as IDataObject).task_id || ''));
-				if (!taskId) return start;
-				const deadline = Date.now() + pollTimeoutMs;
-
-				while (Date.now() < deadline) {
-					const result = await dsm.callAny(['SYNO.FileStation.Search'], ['list', 'get', 'result'], {
-						taskid: taskId,
-						task_id: taskId,
-					});
-					const data = (result.data || {}) as IDataObject;
-					if (data.finished === true || data.complete === true || data.done === true) {
-						// Extract files from search results (key patterns: files, items, shares)
-						const files = (data.files || data.items || data.shares || []) as IDataObject[];
-						return {
-							success: true,
-							data: {
-								...data,
-								files: files,
-							},
-						};
-					}
-					await new Promise((resolve) => setTimeout(resolve, pollIntervalMs));
-				}
+				const data = (result.data || {}) as IDataObject;
+				const files = (data.files || []) as IDataObject[];
 
 				return {
 					success: true,
 					data: {
-						warning: 'Polling timeout reached before search completion',
-						task_id: taskId,
-						start,
+						...data,
+						files: files,
+						matched_count: files.length,
+						keyword_used: keyword,
 					},
 				};
 			}
