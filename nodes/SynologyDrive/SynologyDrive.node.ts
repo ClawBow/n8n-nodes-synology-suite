@@ -189,7 +189,17 @@ export class SynologyDrive implements INodeType {
 						task_id: taskId,
 					});
 					const data = (result.data || {}) as IDataObject;
-					if (data.finished === true || data.complete === true || data.done === true) return result;
+					if (data.finished === true || data.complete === true || data.done === true) {
+						// Extract files from search results (key patterns: files, items, shares)
+						const files = (data.files || data.items || data.shares || []) as IDataObject[];
+						return {
+							success: true,
+							data: {
+								...data,
+								files: files,
+							},
+						};
+					}
 					await new Promise((resolve) => setTimeout(resolve, pollIntervalMs));
 				}
 
