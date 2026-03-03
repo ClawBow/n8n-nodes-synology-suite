@@ -167,32 +167,34 @@ export class SynologyDrive implements INodeType {
 				const keyword = this.getNodeParameter('keyword', i) as string;
 				const limit = this.getNodeParameter('limit', i) as number;
 
-				// Use FileStation.List with pattern instead of Search (Search API doesn't return results properly)
-				// Build regex pattern from keyword (case-insensitive partial match)
-				let pattern = '.*';
-				if (keyword) {
-					// Escape special regex chars and make case-insensitive
-					const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-					pattern = `(?i).*${escaped}.*`;
-				}
-
+				// Use FileStation.List instead of Search (Search API doesn't return results properly)
+				// Don't use pattern param - it doesn't work reliably via API
+				// Return all files and let client-side filter by keyword
 				const result = await dsm.callAuto('SYNO.FileStation.List', 'list', {
 					folder_path: path,
 					recursive,
-					pattern,
 					limit,
 					...extraParams,
 				});
 
 				const data = (result.data || {}) as IDataObject;
-				const files = (data.files || []) as IDataObject[];
+				const allFiles = (data.files || []) as IDataObject[];
+
+				// Client-side filtering by keyword (case-insensitive)
+				const filteredFiles = keyword
+					? allFiles.filter((f) => {
+							const name = String(f.name || '').toLowerCase();
+							return name.includes(keyword.toLowerCase());
+						})
+					: allFiles;
 
 				return {
 					success: true,
 					data: {
 						...data,
-						files: files,
-						matched_count: files.length,
+						files: filteredFiles,
+						total_files: allFiles.length,
+						matched_count: filteredFiles.length,
 						keyword_used: keyword,
 					},
 				};
