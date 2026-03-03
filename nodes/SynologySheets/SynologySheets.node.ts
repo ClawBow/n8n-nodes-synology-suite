@@ -1,8 +1,10 @@
 import type {
 	IDataObject,
 	IExecuteFunctions,
+	ILoadOptionsFunctions,
 	INodeType,
 	INodeTypeDescription,
+	INodePropertyOptions,
 } from 'n8n-workflow';
 import { DsmClient, normalizeCredentials } from '../shared/DsmClient';
 import { executePerItem } from '../shared/NodeExecution';
@@ -66,15 +68,44 @@ export class SynologySheets implements INodeType {
 				],
 			},
 			// List Spreadsheets
-			{ displayName: 'Folder ID', name: 'folderId', type: 'string', default: '0', displayOptions: { show: { operation: ['listSpreadsheets'] } } },
+			{ displayName: 'Folder', name: 'folderId', type: 'options', default: '0', options: [{ name: 'Root', value: '0' }], displayOptions: { show: { operation: ['listSpreadsheets'] } } },
 			{ displayName: 'Offset', name: 'offset', type: 'number', default: 0, displayOptions: { show: { operation: ['listSpreadsheets'] } } },
 			{ displayName: 'Limit', name: 'limit', type: 'number', default: 50, displayOptions: { show: { operation: ['listSpreadsheets'] } } },
 			
-			// File/Spreadsheet ID
-			{ displayName: 'Spreadsheet File ID', name: 'fileId', type: 'string', default: '', displayOptions: { show: { operation: ['getSpreadsheetMetadata', 'listSheets', 'getSheetMetadata', 'readRange', 'writeRange', 'appendRow', 'getRow', 'updateRow', 'deleteRow', 'insertRow', 'deleteColumn', 'insertColumn', 'clearRange', 'createSheet', 'deleteSheet', 'renameSheet', 'setColumnWidth', 'setRowHeight', 'mergeCells', 'unmergeCells', 'getNamedRange', 'createNamedRange', 'deleteNamedRange'] } } },
+			// Spreadsheet selector (dynamic dropdown)
+			{
+				displayName: 'Spreadsheet',
+				name: 'fileId',
+				type: 'options',
+				default: '',
+				required: true,
+				typeOptions: {
+					loadOptionsMethod: 'getSpreadsheets',
+					searchable: true,
+				},
+				displayOptions: {
+					show: {
+						operation: ['getSpreadsheetMetadata', 'listSheets', 'getSheetMetadata', 'readRange', 'writeRange', 'appendRow', 'getRow', 'updateRow', 'deleteRow', 'insertRow', 'deleteColumn', 'insertColumn', 'clearRange', 'createSheet', 'deleteSheet', 'renameSheet', 'setColumnWidth', 'setRowHeight', 'mergeCells', 'unmergeCells', 'getNamedRange', 'createNamedRange', 'deleteNamedRange'],
+					},
+				},
+			},
 			
-			// Sheet ID
-			{ displayName: 'Sheet ID', name: 'sheetId', type: 'string', default: '', displayOptions: { show: { operation: ['getSheetMetadata', 'readRange', 'writeRange', 'appendRow', 'getRow', 'updateRow', 'deleteRow', 'insertRow', 'deleteColumn', 'insertColumn', 'clearRange', 'renameSheet', 'setColumnWidth', 'setRowHeight', 'mergeCells', 'unmergeCells'] } } },
+			// Sheet selector (dynamic dropdown, depends on fileId)
+			{
+				displayName: 'Sheet',
+				name: 'sheetId',
+				type: 'options',
+				default: '',
+				typeOptions: {
+					loadOptionsMethod: 'getSheets',
+					searchable: true,
+				},
+				displayOptions: {
+					show: {
+						operation: ['getSheetMetadata', 'readRange', 'writeRange', 'appendRow', 'getRow', 'updateRow', 'deleteRow', 'insertRow', 'deleteColumn', 'insertColumn', 'clearRange', 'renameSheet', 'setColumnWidth', 'setRowHeight', 'mergeCells', 'unmergeCells'],
+					},
+				},
+			},
 			
 			// Read/Write Range
 			{ displayName: 'Range (A1 notation)', name: 'range', type: 'string', default: 'A1:C10', placeholder: 'A1:C10', displayOptions: { show: { operation: ['readRange', 'writeRange', 'clearRange', 'mergeCells'] } } },
@@ -129,6 +160,56 @@ export class SynologySheets implements INodeType {
 			{ displayName: 'Extra Params (JSON)', name: 'extraParamsJson', type: 'json', default: '{}', description: 'Optional params merged into the API call', displayOptions: { show: { operation: ['listSpreadsheets', 'listSheets', 'readRange', 'writeRange', 'appendRow', 'getRow', 'updateRow', 'deleteRow', 'insertRow', 'clearRange', 'createSheet', 'deleteSheet', 'mergeCells'] } } },
 		],
 	};
+
+	// Load options for Spreadsheets dropdown
+	async getSpreadsheets(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
+		try {
+			const creds = normalizeCredentials(await this.getCredentials('synologyDsmApi'));
+			const dsm = new DsmClient(creds);
+			
+			const result = await dsm.callAny(['SYNO.Office.File', 'SYNO.Office.OFile'], ['list', 'query'], {
+				folder_id: '0',
+				offset: 0,
+				limit: 100,
+				type: 'spreadsheet',
+			});
+
+			const data = (result.data || {}) as IDataObject;
+			const files = (data.files || []) as IDataObject[];
+
+			return files.map((file: IDataObject) => ({
+				name: `${file.name || 'Unnamed'} (${file.id || 'N/A'})`,
+				value: String(file.id || ''),
+			}));
+		} catch (error) {
+			return [];
+		}
+	}
+
+	// Load options for Sheets dropdown (depends on selected fileId)
+	async getSheets(this: ILoadOptionsFunctions): Promise<INodePropertyOptions[]> {
+		try {
+			const fileId = this.getCurrentNodeParameter('fileId') as string;
+			if (!fileId) return [];
+
+			const creds = normalizeCredentials(await this.getCredentials('synologyDsmApi'));
+			const dsm = new DsmClient(creds);
+
+			const result = await dsm.callAny(['SYNO.Office.Sheet', 'SYNO.Office.Node'], ['list', 'query', 'get'], {
+				file_id: fileId,
+			});
+
+			const data = (result.data || {}) as IDataObject;
+			const sheets = (data.sheets || data.nodes || []) as IDataObject[];
+
+			return sheets.map((sheet: IDataObject) => ({
+				name: `${sheet.title || sheet.name || 'Unnamed'} (${sheet.id || 'N/A'})`,
+				value: String(sheet.id || ''),
+			}));
+		} catch (error) {
+			return [];
+		}
+	}
 
 	async execute(this: IExecuteFunctions) {
 		const creds = normalizeCredentials(await this.getCredentials('synologyDsmApi'));
@@ -219,7 +300,6 @@ export class SynologySheets implements INodeType {
 				const fileId = this.getNodeParameter('fileId', i) as string;
 				const sheetId = this.getNodeParameter('sheetId', i) as string;
 				const rowIndex = this.getNodeParameter('rowIndex', i) as number;
-				// Convert row index to range (e.g., row 0 = A1:Z1)
 				const range = `A${rowIndex + 1}:Z${rowIndex + 1}`;
 				return dsm.callAny(['SYNO.Office.Sheet', 'SYNO.Office.Range'], ['read', 'get', 'query'], {
 					file_id: fileId,
@@ -277,7 +357,6 @@ export class SynologySheets implements INodeType {
 				const sheetId = this.getNodeParameter('sheetId', i) as string;
 				const columnLetter = this.getNodeParameter('columnLetter', i) as string;
 				const columnCount = this.getNodeParameter('columnCount', i) as number;
-				// Convert letter to index (A=0, B=1, etc.)
 				const columnIndex = columnLetter.charCodeAt(0) - 65;
 				return dsm.callAny(['SYNO.Office.Sheet', 'SYNO.Office.Range'], ['delete', 'remove'], {
 					file_id: fileId,
