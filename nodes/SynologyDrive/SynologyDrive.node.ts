@@ -264,18 +264,22 @@ export class SynologyDrive implements INodeType {
 					const buffer = await dsm.downloadFile(path);
 					const fileName = path.split('/').pop() || 'downloaded_file';
 					
-					// Set the binary data to the specified field
+					// Return in n8n binary format
 					return {
-						success: true,
-						[downloadBinaryField]: {
-							data: buffer.toString('base64'),
-							mimeType: 'application/octet-stream',
-							fileName: fileName,
+						json: {
+							success: true,
+							metadata: {
+								fileName,
+								size: buffer.length,
+								path,
+							},
 						},
-						metadata: {
-							fileName,
-							size: buffer.length,
-							path,
+						binary: {
+							[downloadBinaryField]: {
+								data: buffer,
+								mimeType: 'application/octet-stream',
+								fileName: fileName,
+							},
 						},
 					};
 				} catch (error) {

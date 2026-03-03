@@ -10,7 +10,17 @@ export async function executePerItem(
 	for (let i = 0; i < items.length; i++) {
 		try {
 			const data = await handler(i);
-			output.push({ json: data });
+			
+			// Check if handler returned { json, binary } structure
+			if (data && typeof data === 'object' && 'json' in data && 'binary' in data) {
+				output.push({
+					json: (data as any).json,
+					binary: (data as any).binary,
+				} as INodeExecutionData);
+			} else {
+				// Otherwise wrap in json property
+				output.push({ json: data } as INodeExecutionData);
+			}
 		} catch (error) {
 			if (context.continueOnFail()) {
 				output.push({
