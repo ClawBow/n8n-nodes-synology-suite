@@ -1,6 +1,40 @@
 # REPORT
 
-## Current Status (2026-03-05 15:40 UTC) — MailPlus API Integration v0.30.0 ✅
+## Current Status (2026-03-05 16:40 UTC) — MailPlus Stability v0.31.0 ✅
+
+### 🎉 MailPlus Retry Logic & Rate Limiting — v0.31.0
+
+**Version:** v0.31.0 (bumped from v0.30.0)
+- **Retry Logic:** Exponential backoff (1s, 2s, 4s) for 402/429 errors ✅
+- **Rate Limiting:** maxConcurrent = 10 (configurable) ✅
+- **Code compiles:** ✅ (`npm run build` clean, zero errors)
+- **Tests passed:** ✅ (5/5 listMailboxes calls with 402 recovery)
+- **Ready for npm publish:** ✅
+
+#### v0.31.0 Features
+
+**Retry Logic (DsmClient.ts)**
+- Exponential backoff: 1s → 2s → 4s
+- Max 3 retries per request
+- Triggers on HTTP 402 (Payment Required), 429 (Too Many Requests)
+- Applied to: `call()`, `login()`, `downloadFile()`, `uploadFile()`
+
+**Rate Limiting (DsmClient.ts)**
+- Request queue management with `maxConcurrent = 10`
+- Prevents server overload
+- Configurable per DsmClient instance
+- Applied to all HTTP operations
+
+**Testing**
+- Created `TEST-RETRY-402-FIXED.js`: 5 consecutive calls with intermittent 402
+- Result: All 5 tests passed with retry backoff ✅
+  - Attempt 1: fails (402) → wait 1s
+  - Attempt 2: fails (402) → wait 2s
+  - Attempt 3: succeeds ✅
+
+---
+
+## Previous Status (2026-03-05 15:40 UTC) — MailPlus API Integration v0.30.0 ✅
 
 ### 🎉 MailPlus API Integration Complete — v0.30.0
 

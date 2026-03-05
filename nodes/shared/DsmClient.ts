@@ -39,6 +39,9 @@ export class DsmClient {
 	private readonly client: AxiosInstance;
 	private sid?: string;
 	private apiInfoCache?: Record<string, ApiInfoEntry>;
+	private requestQueue: Array<() => Promise<any>> = [];
+	private activeRequests = 0;
+	private readonly maxConcurrent = 10;
 
 	constructor(private readonly creds: DsmCredentials) {
 		this.client = axios.create({
@@ -47,91 +50,158 @@ export class DsmClient {
 		});
 	}
 
-	async uploadFile(fileBuffer: Buffer, fileName: string, destPath: string, overwrite: boolean, createParents: boolean): Promise<IDataObject> {
-		if (!this.sid) {
-			await this.login();
-		}
+	private async executeWithRateLimit<T>(fn: () => Promise<T>): Promise<T> {
+		return new Promise<T>((resolve, reject) => {
+			const task = async () => {
+				try {
+					this.activeRequests++;
+					const result = await fn();
+					resolve(result);
+				} catch (error) {
+					reject(error);
+				} finally {
+					this.activeRequests--;
+					this.processQueue();
+				}
+			};
 
-		try {
-			// Build multipart body manually
-			const boundary = '----WebKitFormBoundary7MA4YWxkTrZu0gW';
-			const lines: string[] = [];
-
-			lines.push(`--${boundary}`);
-			lines.push('Content-Disposition: form-data; name="api"');
-			lines.push('');
-			lines.push('SYNO.FileStation.Upload');
-
-			lines.push(`--${boundary}`);
-			lines.push('Content-Disposition: form-data; name="version"');
-			lines.push('');
-			lines.push('2');
-
-			lines.push(`--${boundary}`);
-			lines.push('Content-Disposition: form-data; name="method"');
-			lines.push('');
-			lines.push('upload');
-
-			lines.push(`--${boundary}`);
-			lines.push('Content-Disposition: form-data; name="path"');
-			lines.push('');
-			lines.push(destPath);
-
-			lines.push(`--${boundary}`);
-			lines.push('Content-Disposition: form-data; name="create_parents"');
-			lines.push('');
-			lines.push(createParents ? 'true' : 'false');
-
-			lines.push(`--${boundary}`);
-			lines.push('Content-Disposition: form-data; name="overwrite"');
-			lines.push('');
-			lines.push(overwrite ? 'true' : 'false');
-
-			lines.push(`--${boundary}`);
-			lines.push(`Content-Disposition: form-data; name="file"; filename="${fileName}"`);
-			lines.push('Content-Type: application/octet-stream');
-			lines.push('');
-
-			const header = Buffer.from(lines.join('\r\n') + '\r\n');
-			const footer = Buffer.from(`\r\n--${boundary}--\r\n`);
-			const body = Buffer.concat([header, fileBuffer, footer]);
-
-			const uploadUrl = `${this.creds.baseUrl}/webapi/entry.cgi`;
-			const response = await this.client.post(uploadUrl, body, {
-				params: { _sid: this.sid },
-				headers: { 'Content-Type': `multipart/form-data; boundary=${boundary}` },
-				validateStatus: () => true,
-			});
-
-			const result = response.data as IDataObject;
-
-			if (result.success === true) {
-				return { success: true, fileName, path: destPath, data: result.data };
+			if (this.activeRequests < this.maxConcurrent) {
+				task();
 			} else {
-				return { success: false, error: result.error || 'Upload failed', data: result };
+				this.requestQueue.push(task);
 			}
-		} catch (error) {
-			return { success: false, error: `Upload operation failed: ${error}` };
+		});
+	}
+
+	private processQueue(): void {
+		if (this.requestQueue.length > 0 && this.activeRequests < this.maxConcurrent) {
+			const task = this.requestQueue.shift();
+			if (task) {
+				task().catch(() => {
+					/* error handling done in task */
+				});
+			}
 		}
 	}
 
-	async login(): Promise<void> {
-		const { data } = await this.client.get(`${this.creds.baseUrl}/webapi/entry.cgi`, {
-			params: {
-				api: 'SYNO.API.Auth',
-				version: '7',
-				method: 'login',
-				account: this.creds.username,
-				passwd: this.creds.password,
-				session: this.creds.sessionName,
-				format: 'sid',
-			},
-		});
-
-		if (!data?.success) {
-			throw new Error(`DSM login failed: ${JSON.stringify(data)}`);
+	private async retryWithExponentialBackoff<T>(
+		fn: () => Promise<T>,
+		maxRetries = 3,
+	): Promise<T> {
+		let lastError: any;
+		for (let attempt = 0; attempt < maxRetries; attempt++) {
+			try {
+				return await fn();
+			} catch (error: any) {
+				lastError = error;
+				// Check if it's a 402 error (Payment Required) or rate limit
+				const status = error?.response?.status;
+				const code = error?.response?.data?.error?.code;
+				
+				if (status === 402 || code === 402 || (error?.response?.status >= 429 && error?.response?.status <= 429)) {
+					if (attempt < maxRetries - 1) {
+						const delay = Math.pow(2, attempt) * 1000; // 1s, 2s, 4s
+						await new Promise(resolve => setTimeout(resolve, delay));
+						continue;
+					}
+				}
+				throw error;
+			}
 		}
-		this.sid = data.data.sid;
+		throw lastError;
+	}
+
+	async uploadFile(fileBuffer: Buffer, fileName: string, destPath: string, overwrite: boolean, createParents: boolean): Promise<IDataObject> {
+		return this.executeWithRateLimit(async () => {
+			return this.retryWithExponentialBackoff(async () => {
+				if (!this.sid) {
+					await this.login();
+				}
+
+				try {
+					// Build multipart body manually
+					const boundary = '----WebKitFormBoundary7MA4YWxkTrZu0gW';
+					const lines: string[] = [];
+
+					lines.push(`--${boundary}`);
+					lines.push('Content-Disposition: form-data; name="api"');
+					lines.push('');
+					lines.push('SYNO.FileStation.Upload');
+
+					lines.push(`--${boundary}`);
+					lines.push('Content-Disposition: form-data; name="version"');
+					lines.push('');
+					lines.push('2');
+
+					lines.push(`--${boundary}`);
+					lines.push('Content-Disposition: form-data; name="method"');
+					lines.push('');
+					lines.push('upload');
+
+					lines.push(`--${boundary}`);
+					lines.push('Content-Disposition: form-data; name="path"');
+					lines.push('');
+					lines.push(destPath);
+
+					lines.push(`--${boundary}`);
+					lines.push('Content-Disposition: form-data; name="create_parents"');
+					lines.push('');
+					lines.push(createParents ? 'true' : 'false');
+
+					lines.push(`--${boundary}`);
+					lines.push('Content-Disposition: form-data; name="overwrite"');
+					lines.push('');
+					lines.push(overwrite ? 'true' : 'false');
+
+					lines.push(`--${boundary}`);
+					lines.push(`Content-Disposition: form-data; name="file"; filename="${fileName}"`);
+					lines.push('Content-Type: application/octet-stream');
+					lines.push('');
+
+					const header = Buffer.from(lines.join('\r\n') + '\r\n');
+					const footer = Buffer.from(`\r\n--${boundary}--\r\n`);
+					const body = Buffer.concat([header, fileBuffer, footer]);
+
+					const uploadUrl = `${this.creds.baseUrl}/webapi/entry.cgi`;
+					const response = await this.client.post(uploadUrl, body, {
+						params: { _sid: this.sid },
+						headers: { 'Content-Type': `multipart/form-data; boundary=${boundary}` },
+						validateStatus: () => true,
+					});
+
+					const result = response.data as IDataObject;
+
+					if (result.success === true) {
+						return { success: true, fileName, path: destPath, data: result.data };
+					} else {
+						return { success: false, error: result.error || 'Upload failed', data: result };
+					}
+				} catch (error) {
+					return { success: false, error: `Upload operation failed: ${error}` };
+				}
+			});
+		});
+	}
+
+	async login(): Promise<void> {
+		return this.executeWithRateLimit(async () => {
+			const { data } = await this.client.get(`${this.creds.baseUrl}/webapi/entry.cgi`, {
+				params: {
+					api: 'SYNO.API.Auth',
+					version: '7',
+					method: 'login',
+					account: this.creds.username,
+					passwd: this.creds.password,
+					session: this.creds.sessionName,
+					format: 'sid',
+				},
+			});
+
+			if (!data?.success) {
+				throw new Error(`DSM login failed: ${JSON.stringify(data)}`);
+			}
+			this.sid = data.data.sid;
+		});
 	}
 
 	async getApiInfoMap(forceRefresh = false): Promise<Record<string, ApiInfoEntry>> {
@@ -188,72 +258,81 @@ export class DsmClient {
 		extraParams: IDataObject = {},
 		retryOnAuthError = true,
 	): Promise<IDataObject> {
-		if (!this.sid) await this.login();
+		return this.executeWithRateLimit(async () => {
+			return this.retryWithExponentialBackoff(async () => {
+				if (!this.sid) await this.login();
 
-		const normalized: IDataObject = {};
-		for (const [key, value] of Object.entries(extraParams)) {
-			const normalizedValue = normalizeParamValue(value);
-			if (normalizedValue !== undefined) normalized[key] = normalizedValue;
-		}
+				const normalized: IDataObject = {};
+				for (const [key, value] of Object.entries(extraParams)) {
+					const normalizedValue = normalizeParamValue(value);
+					if (normalizedValue !== undefined) normalized[key] = normalizedValue;
+				}
 
-		const params: IDataObject = {
-			api,
-			method,
-			version,
-			_sid: this.sid as string,
-			...normalized,
-		};
+				const params: IDataObject = {
+					api,
+					method,
+					version,
+					_sid: this.sid as string,
+					...normalized,
+				};
 
-		const { data } = await this.client.get(`${this.creds.baseUrl}/webapi/entry.cgi`, { params });
+				const { data } = await this.client.get(`${this.creds.baseUrl}/webapi/entry.cgi`, { params, validateStatus: () => true });
 
-		if (!data?.success && retryOnAuthError) {
-			const code = data?.error?.code;
-			if ([105, 106, 107, 119].includes(code)) {
-				await this.login();
-				return this.call(api, method, version, extraParams, false);
-			}
-		}
+				if (!data?.success && retryOnAuthError) {
+					const code = data?.error?.code;
+					if ([105, 106, 107, 119].includes(code)) {
+						await this.login();
+						return this.call(api, method, version, extraParams, false);
+					}
+				}
 
-		if (!data?.success) {
-			throw createDsmApiError(api, method, version, data as IDataObject);
-		}
+				if (!data?.success) {
+					throw createDsmApiError(api, method, version, data as IDataObject);
+				}
 
-		return data as IDataObject;
+				return data as IDataObject;
+			});
+		});
 	}
 
 	async downloadFile(filePath: string): Promise<Buffer> {
-		if (!this.sid) {
-			await this.login();
-		}
+		return this.executeWithRateLimit(async () => {
+			return this.retryWithExponentialBackoff(async () => {
+				if (!this.sid) {
+					await this.login();
+				}
 
-		try {
-			const downloadUrl = `${this.creds.baseUrl}/webapi/entry.cgi`;
-			const params = {
-				api: 'SYNO.FileStation.Download',
-				version: 2,
-				method: 'download',
-				path: filePath,
-				mode: 'download',
-				_sid: this.sid as string,
-			};
+				try {
+					const downloadUrl = `${this.creds.baseUrl}/webapi/entry.cgi`;
+					const params = {
+						api: 'SYNO.FileStation.Download',
+						version: 2,
+						method: 'download',
+						path: filePath,
+						mode: 'download',
+						_sid: this.sid as string,
+					};
 
-			const response = await this.client.get(downloadUrl, {
-				params,
-				responseType: 'arraybuffer',
+					const response = await this.client.get(downloadUrl, {
+						params,
+						responseType: 'arraybuffer',
+						validateStatus: () => true,
+					});
+
+					if (!response.data) {
+						throw new Error('No data received from download');
+					}
+
+					return Buffer.from(response.data);
+				} catch (error) {
+					if (error instanceof Error && error.message.includes('401')) {
+						// Session expired, retry with new login
+						await this.login();
+						return this.downloadFile(filePath);
+					}
+					throw error;
+				}
 			});
-
-			if (!response.data) {
-				throw new Error('No data received from download');
-			}
-
-			return Buffer.from(response.data);
-		} catch (error) {
-			if (error instanceof Error && error.message.includes('401')) {
-				// Session expired, retry with new login
-				await this.login();
-				return this.downloadFile(filePath);
-			}
-			throw error;
-		}
+		});
 	}
 }
