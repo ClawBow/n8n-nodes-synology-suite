@@ -1,7 +1,7 @@
 {
   "name": "n8n-nodes-synology-suite",
-  "version": "0.12.1",
-  "description": "n8n community nodes for Synology DSM (Drive, Office/Sheets, MailPlus) - AI Agent compatible",
+  "version": "0.30.0",
+  "description": "n8n community nodes for Synology DSM (Drive, Office/Sheets, MailPlus, Calendar) - AI Agent compatible",
   "license": "MIT",
   "author": "Maxime Olivier",
   "homepage": "https://github.com/darkbowfr/n8n-nodes-synology-suite",
@@ -17,7 +17,11 @@
     "drive",
     "mailplus",
     "office",
-    "spreadsheet"
+    "spreadsheet",
+    "calendar",
+    "note",
+    "photos",
+    "contacts"
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -26,7 +30,7 @@
   ],
   "scripts": {
     "build": "tsc && npm run copy:assets",
-    "copy:assets": "cp nodes/SynologyDrive/*.png dist/nodes/SynologyDrive/ 2>/dev/null; cp nodes/SynologyDrive/*.svg dist/nodes/SynologyDrive/ 2>/dev/null; cp nodes/SynologySheets/*.png dist/nodes/SynologySheets/ 2>/dev/null; cp nodes/SynologySheets/*.svg dist/nodes/SynologySheets/ 2>/dev/null; cp nodes/SynologyMailPlus/*.png dist/nodes/SynologyMailPlus/ 2>/dev/null; cp nodes/SynologyMailPlus/*.svg dist/nodes/SynologyMailPlus/ 2>/dev/null; cp nodes/SynologyMailPlusTrigger/*.png dist/nodes/SynologyMailPlusTrigger/ 2>/dev/null; cp nodes/SynologyMailPlusTrigger/*.svg dist/nodes/SynologyMailPlusTrigger/ 2>/dev/null; cp nodes/SynologyOffice/*.png dist/nodes/SynologyOffice/ 2>/dev/null; cp nodes/SynologyOffice/*.svg dist/nodes/SynologyOffice/ 2>/dev/null; cp nodes/SynologyApi/*.png dist/nodes/SynologyApi/ 2>/dev/null; cp nodes/SynologyApi/*.svg dist/nodes/SynologyApi/ 2>/dev/null; true",
+    "copy:assets": "cp nodes/SynologyDrive/*.png dist/nodes/SynologyDrive/ 2>/dev/null; cp nodes/SynologyDrive/*.svg dist/nodes/SynologyDrive/ 2>/dev/null; cp nodes/SynologySheets/*.png dist/nodes/SynologySheets/ 2>/dev/null; cp nodes/SynologySheets/*.svg dist/nodes/SynologySheets/ 2>/dev/null; cp nodes/SynologyMailPlus/*.png dist/nodes/SynologyMailPlus/ 2>/dev/null; cp nodes/SynologyMailPlus/*.svg dist/nodes/SynologyMailPlus/ 2>/dev/null; cp nodes/SynologyMailPlusTrigger/*.png dist/nodes/SynologyMailPlusTrigger/ 2>/dev/null; cp nodes/SynologyMailPlusTrigger/*.svg dist/nodes/SynologyMailPlusTrigger/ 2>/dev/null; cp nodes/SynologyOffice/*.png dist/nodes/SynologyOffice/ 2>/dev/null; cp nodes/SynologyOffice/*.svg dist/nodes/SynologyOffice/ 2>/dev/null; cp nodes/SynologyApi/*.png dist/nodes/SynologyApi/ 2>/dev/null; cp nodes/SynologyApi/*.svg dist/nodes/SynologyApi/ 2>/dev/null; cp nodes/SynologyCalendar/*.png dist/nodes/SynologyCalendar/ 2>/dev/null; cp nodes/SynologyCalendar/*.svg dist/nodes/SynologyCalendar/ 2>/dev/null; cp nodes/SynologyNote/*.svg dist/nodes/SynologyNote/ 2>/dev/null; cp nodes/SynologyPhotos/*.svg dist/nodes/SynologyPhotos/ 2>/dev/null; cp nodes/SynologyContacts/*.svg dist/nodes/SynologyContacts/ 2>/dev/null; true",
     "dev": "tsc -w",
     "lint": "eslint nodes credentials package.json",
     "smoke": "bash ./scripts/smoke-check.sh",
@@ -50,7 +54,8 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/credentials/SynologyDsmApi.credentials.js"
+      "dist/credentials/SynologyDsmApi.credentials.js",
+      "dist/credentials/SynologySpreadsheetApi.credentials.js"
     ],
     "nodes": [
       "dist/nodes/SynologyApi/SynologyApi.node.js",
@@ -58,7 +63,11 @@
       "dist/nodes/SynologySheets/SynologySheets.node.js",
       "dist/nodes/SynologyOffice/SynologyOffice.node.js",
       "dist/nodes/SynologyMailPlus/SynologyMailPlus.node.js",
-      "dist/nodes/SynologyMailPlusTrigger/SynologyMailPlusTrigger.node.js"
+      "dist/nodes/SynologyMailPlusTrigger/SynologyMailPlusTrigger.node.js",
+      "dist/nodes/SynologyCalendar/SynologyCalendar.node.js",
+      "dist/nodes/SynologyNote/SynologyNote.node.js",
+      "dist/nodes/SynologyPhotos/SynologyPhotos.node.js",
+      "dist/nodes/SynologyContacts/SynologyContacts.node.js"
     ]
   }
 }

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <rect width="256" height="256" fill="#f5f5f5"/>
+  <g transform="translate(128,128)">
+    <!-- Frame -->
+    <rect x="-70" y="-70" width="140" height="140" fill="#002873" rx="8" stroke="#e9a733" stroke-width="2"/>
+    <!-- Photos inside -->
+    <rect x="-60" y="-60" width="50" height="50" fill="#e9a733" rx="4"/>
+    <circle cx="-35" cy="-45" r="6" fill="#002873"/>
+    <polygon points="-60,-10 -40,-30 -30,-15" fill="#90ee90"/>
+    <rect x="-8" y="-60" width="50" height="50" fill="#4CAF50" rx="4"/>
+    <circle cx="17" cy="-45" r="6" fill="#002873"/>
+    <polygon points="-8,-10 10,-30 20,-15" fill="#FFD700"/>
+    <rect x="-60" y="-8" width="50" height="50" fill="#FF9800" rx="4"/>
+    <circle cx="-35" cy="7" r="6" fill="#002873"/>
+    <rect x="-8" y="-8" width="50" height="50" fill="#2196F3" rx="4"/>
+    <circle cx="17" cy="7" r="6" fill="#002873"/>
+    <!-- Camera icon in corner -->
+    <circle cx="50" cy="-50" r="12" fill="#e9a733" stroke="#002873" stroke-width="2"/>
+    <circle cx="50" cy="-50" r="7" fill="none" stroke="#002873" stroke-width="1.5"/>
+  </g>
+</svg>
