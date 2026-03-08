@@ -5,26 +5,6 @@ export class SynologyDsmApi implements ICredentialType {
 	displayName = 'Synology DSM API';
 	documentationUrl = 'https://kb.synology.com';
 
-	test = {
-		request: {
-			method: 'GET' as const,
-			// Lightweight connectivity probe for credential test.
-			// Keep SSL bypass forced here because n8n credential tester can ignore per-credential SSL flags.
-			url: '={{$credentials.baseUrl}}/webapi/query.cgi?api=SYNO.API.Info&version=1&method=query&query=SYNO.API.Auth',
-			skipSslCertificateValidation: true,
-		},
-		rules: [
-			{
-				type: 'responseSuccessBody' as const,
-				properties: {
-					key: 'success',
-					value: true,
-					message: 'DSM connectivity check failed. Check URL or SSL settings.',
-				},
-			},
-		],
-	};
-
 	properties: INodeProperties[] = [
 		{ displayName: 'Base URL', name: 'baseUrl', type: 'string', default: 'https://darknas.tail91a2f7.ts.net:7894', required: true },
 		{ displayName: 'Username', name: 'username', type: 'string', default: '', required: true },
