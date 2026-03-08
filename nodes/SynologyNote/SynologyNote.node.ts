@@ -9,13 +9,13 @@ import { executePerItem } from '../shared/NodeExecution';
 
 export class SynologyNote implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Synology Note',
+		displayName: 'Synology Note Station',
 		name: 'synologyNote',
 		icon: 'file:synology-note-logo.png',
 		group: ['transform'],
 		version: 1,
 		description: 'Create, read, and manage Synology Note notebooks, notes, and to-do lists',
-		defaults: { name: 'Synology Note' },
+		defaults: { name: 'Synology Note Station' },
 		inputs: ['main'],
 		outputs: ['main'],
 		credentials: [{ name: 'synologyDsmApi', required: true }],
