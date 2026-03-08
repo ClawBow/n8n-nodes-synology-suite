@@ -11,7 +11,7 @@ export class SynologyCalendar implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Synology Calendar',
 		name: 'synologyCalendar',
-		icon: 'file:synology-calendar-logo.svg',
+		icon: 'file:synology-calendar-logo.png',
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter.operation}}',
