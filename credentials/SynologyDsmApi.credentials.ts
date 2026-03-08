@@ -8,9 +8,10 @@ export class SynologyDsmApi implements ICredentialType {
 	test = {
 		request: {
 			method: 'GET' as const,
-			// Keep credential test aligned with runtime calls: use entry.cgi on the configured base URL.
-			url: '={{$credentials.baseUrl}}/webapi/entry.cgi',
-			skipSslCertificateValidation: '={{$credentials.ignoreSslIssues}}',
+			// Lightweight connectivity probe for credential test.
+			// Keep SSL bypass forced here because n8n credential tester can ignore per-credential SSL flags.
+			url: '={{$credentials.baseUrl}}/webapi/query.cgi',
+			skipSslCertificateValidation: true,
 			qs: {
 				api: 'SYNO.API.Info',
 				version: '1',
