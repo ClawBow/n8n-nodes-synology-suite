@@ -31,7 +31,7 @@ export class SynologySheets implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Synology Sheets',
 		name: 'synologySheets',
-		icon: 'file:synology-sheets.svg',
+		icon: 'file:synology-sheets.png',
 		group: ['transform'],
 		version: 1,
 		description: 'Create, read, write, and manage Synology spreadsheets via Docker API',

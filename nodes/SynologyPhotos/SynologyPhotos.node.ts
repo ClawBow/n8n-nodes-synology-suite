@@ -11,7 +11,7 @@ export class SynologyPhotos implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Synology Photos',
 		name: 'synologyPhotos',
-		icon: 'file:synology-photos-logo.svg',
+		icon: 'file:synology-photos-logo.png',
 		group: ['transform'],
 		version: 1,
 		description: 'Browse, manage, and organize Synology Photos (albums, items, sharing)',

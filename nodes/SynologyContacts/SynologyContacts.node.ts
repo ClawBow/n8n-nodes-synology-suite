@@ -11,7 +11,7 @@ export class SynologyContacts implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Synology Contacts',
 		name: 'synologyContacts',
-		icon: 'file:synology-contacts-logo.svg',
+		icon: 'file:synology-contacts-logo.png',
 		group: ['transform'],
 		version: 1,
 		description: 'Manage Synology Contacts (addressbooks, contacts, labels)',
