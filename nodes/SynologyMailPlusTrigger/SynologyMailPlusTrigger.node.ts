@@ -49,7 +49,6 @@ export class SynologyMailPlusTrigger implements INodeType {
 		inputs: [],
 		outputs: ['main'],
 		credentials: [{ name: 'synologyDsmApi', required: true }],
-		usableAsTool: true,
 		properties: [
 			{
 				displayName: 'Mailbox ID',

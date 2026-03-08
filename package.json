@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-synology-suite",
-  "version": "0.31.15",
+  "version": "0.31.16",
   "description": "n8n community nodes for Synology DSM (Drive, Office/Sheets, MailPlus, Calendar) - AI Agent compatible",
   "license": "MIT",
   "author": "Maxime Olivier",
