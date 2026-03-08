@@ -12,13 +12,10 @@ export class SynologyDsmApi implements ICredentialType {
 			url: '={{$credentials.baseUrl}}/webapi/entry.cgi',
 			skipSslCertificateValidation: '={{$credentials.ignoreSslIssues}}',
 			qs: {
-				api: 'SYNO.API.Auth',
-				version: '7',
-				method: 'login',
-				account: '={{$credentials.username}}',
-				passwd: '={{$credentials.password}}',
-				session: '={{$credentials.sessionName || "FileStation"}}',
-				format: 'sid',
+				api: 'SYNO.API.Info',
+				version: '1',
+				method: 'query',
+				query: 'SYNO.API.Auth',
 			},
 		},
 		rules: [
@@ -27,7 +24,7 @@ export class SynologyDsmApi implements ICredentialType {
 				properties: {
 					key: 'success',
 					value: true,
-					message: 'DSM authentication failed. Check URL, user/password, or SSL settings.',
+					message: 'DSM connectivity check failed. Check URL or SSL settings.',
 				},
 			},
 		],
