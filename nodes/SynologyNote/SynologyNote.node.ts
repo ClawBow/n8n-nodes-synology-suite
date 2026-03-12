@@ -113,6 +113,9 @@ export class SynologyNote implements INodeType {
 
 		return executePerItem(this, async (i) => {
 			const operation = this.getNodeParameter('operation', i) as string;
+			const notebookApis = ['SYNO.NoteStation.Notebook', 'SYNO.NoteStation.Book'];
+			const noteApis = ['SYNO.NoteStation.Note', 'SYNO.NoteStation.Entry'];
+			const tagApis = ['SYNO.NoteStation.Tag', 'SYNO.NoteStation.Label'];
 
 			if (operation === 'listApis') {
 				return dsm.queryApis('SYNO.NoteStation.*');
@@ -122,23 +125,23 @@ export class SynologyNote implements INodeType {
 			if (operation === 'listNotebooks') {
 				const limit = this.getNodeParameter('limit', i) as number;
 				const offset = this.getNodeParameter('offset', i) as number;
-				return dsm.callAuto('SYNO.NoteStation.Notebook', 'list', { limit, offset });
+				return dsm.callAny(notebookApis, ['list', 'get'], { limit, offset });
 			}
 
 			if (operation === 'createNotebook') {
 				const notebookName = this.getNodeParameter('notebookName', i) as string;
-				return dsm.callAuto('SYNO.NoteStation.Notebook', 'create', { name: notebookName });
+				return dsm.callAny(notebookApis, ['create', 'add'], { name: notebookName });
 			}
 
 			if (operation === 'getNotebook') {
 				const notebookId = this.getNodeParameter('notebookId', i) as string;
-				return dsm.callAuto('SYNO.NoteStation.Notebook', 'get', { notebook_id: notebookId });
+				return dsm.callAny(notebookApis, ['get', 'list'], { notebook_id: notebookId, id: notebookId });
 			}
 
 			if (operation === 'updateNotebook') {
 				const notebookId = this.getNodeParameter('notebookId', i) as string;
 				const notebookName = this.getNodeParameter('notebookName', i) as string;
-				return dsm.callAuto('SYNO.NoteStation.Notebook', 'update', { notebook_id: notebookId, name: notebookName });
+				return dsm.callAny(notebookApis, ['update', 'set'], { notebook_id: notebookId, id: notebookId, name: notebookName });
 			}
 
 			if (operation === 'deleteNotebook') {
@@ -151,7 +154,7 @@ export class SynologyNote implements INodeType {
 				const notebookId = this.getNodeParameter('notebookId', i) as string;
 				const limit = this.getNodeParameter('limit', i) as number;
 				const offset = this.getNodeParameter('offset', i) as number;
-				return dsm.callAuto('SYNO.NoteStation.Note', 'list', { notebook_id: notebookId, limit, offset });
+				return dsm.callAny(noteApis, ['list', 'get'], { notebook_id: notebookId, limit, offset });
 			}
 
 			if (operation === 'createNote') {
@@ -163,7 +166,7 @@ export class SynologyNote implements INodeType {
 
 			if (operation === 'getNote') {
 				const noteId = this.getNodeParameter('noteId', i) as string;
-				return dsm.callAuto('SYNO.NoteStation.Note', 'get', { note_id: noteId });
+				return dsm.callAny(noteApis, ['get', 'list'], { note_id: noteId, id: noteId });
 			}
 
 			if (operation === 'updateNote') {
@@ -181,23 +184,23 @@ export class SynologyNote implements INodeType {
 			// Tags
 			if (operation === 'listTags') {
 				const limit = this.getNodeParameter('limit', i) as number;
-				return dsm.callAuto('SYNO.NoteStation.Tag', 'list', { limit });
+				return dsm.callAny(tagApis, ['list', 'get'], { limit, offset: 0 });
 			}
 
 			if (operation === 'createTag') {
 				const tagName = this.getNodeParameter('tagName', i) as string;
-				return dsm.callAuto('SYNO.NoteStation.Tag', 'create', { name: tagName });
+				return dsm.callAny(tagApis, ['create', 'add'], { name: tagName });
 			}
 
 			if (operation === 'updateTag') {
 				const tagId = this.getNodeParameter('tagId', i) as string;
 				const tagName = this.getNodeParameter('tagName', i) as string;
-				return dsm.callAuto('SYNO.NoteStation.Tag', 'update', { tag_id: tagId, name: tagName });
+				return dsm.callAny(tagApis, ['update', 'set'], { tag_id: tagId, id: tagId, name: tagName });
 			}
 
 			if (operation === 'deleteTag') {
 				const tagId = this.getNodeParameter('tagId', i) as string;
-				return dsm.callAuto('SYNO.NoteStation.Tag', 'delete', { tag_id: tagId });
+				return dsm.callAny(tagApis, ['delete', 'remove'], { tag_id: tagId, id: tagId });
 			}
 
 			// Shortcuts

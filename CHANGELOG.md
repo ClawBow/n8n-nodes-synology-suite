@@ -14,6 +14,15 @@ The format is inspired by Keep a Changelog and Semantic Versioning.
 
 ---
 
+## [0.32.2] - 2026-03-13
+
+### Changed
+- Stabilization audit pass across key nodes to reduce DSM-variant runtime failures.
+- Added broader `callAny` API/method fallback patterns in Photos, Contacts, FileStation, Chat, Drive, Note, and Security Observability.
+- Added explicit pagination/default compatibility parameters in variant-prone operations.
+- Preserved binary output behavior for file download operations.
+- Added audit report: `AUDIT_2026-03-13_STABILIZATION.md`.
+
 ## [0.32.0] - 2026-03-13
 
 ### Added

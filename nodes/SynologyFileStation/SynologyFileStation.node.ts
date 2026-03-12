@@ -77,12 +77,17 @@ export class SynologyFileStation implements INodeType {
 
 		return executePerItem(this, async (i) => {
 			const operation = this.getNodeParameter('operation', i) as string;
+			const listApis = ['SYNO.FileStation.List', 'SYNO.FileStation.Browse'];
+			const createFolderApis = ['SYNO.FileStation.CreateFolder', 'SYNO.FileStation.Dir'];
+			const renameApis = ['SYNO.FileStation.Rename', 'SYNO.FileStation.Manage'];
+			const deleteApis = ['SYNO.FileStation.Delete', 'SYNO.FileStation.Manage'];
+			const copyMoveApis = ['SYNO.FileStation.CopyMove', 'SYNO.FileStation.Manage'];
 
 			if (operation === 'list') {
 				const path = this.getNodeParameter('path', i) as string;
 				const offset = this.getNodeParameter('offset', i) as number;
 				const limit = this.getNodeParameter('limit', i) as number;
-				return dsm.callAuto('SYNO.FileStation.List', 'list', {
+				return dsm.callAny(listApis, ['list', 'get'], {
 					folder_path: path,
 					offset,
 					limit,
@@ -114,7 +119,7 @@ export class SynologyFileStation implements INodeType {
 			if (operation === 'createFolder') {
 				const path = this.getNodeParameter('path', i) as string;
 				const folderName = this.getNodeParameter('folderName', i) as string;
-				return dsm.callAuto('SYNO.FileStation.CreateFolder', 'create', {
+				return dsm.callAny(createFolderApis, ['create', 'add'], {
 					folder_path: path,
 					name: folderName,
 				});
@@ -123,7 +128,7 @@ export class SynologyFileStation implements INodeType {
 			if (operation === 'rename') {
 				const filePath = this.getNodeParameter('filePath', i) as string;
 				const newName = this.getNodeParameter('newName', i) as string;
-				return dsm.callAuto('SYNO.FileStation.Rename', 'rename', {
+				return dsm.callAny(renameApis, ['rename', 'update'], {
 					path: filePath,
 					name: newName,
 				});
@@ -132,7 +137,7 @@ export class SynologyFileStation implements INodeType {
 			if (operation === 'delete') {
 				const filePath = this.getNodeParameter('filePath', i) as string;
 				const recursive = this.getNodeParameter('recursive', i) as boolean;
-				return dsm.callAuto('SYNO.FileStation.Delete', 'delete', {
+				return dsm.callAny(deleteApis, ['delete', 'remove'], {
 					path: [filePath],
 					recursive,
 				});
@@ -143,7 +148,7 @@ export class SynologyFileStation implements INodeType {
 				const destFolderPath = this.getNodeParameter('destFolderPath', i) as string;
 				const removeSrc = this.getNodeParameter('removeSrc', i) as boolean;
 				const overwrite = this.getNodeParameter('overwrite', i) as boolean;
-				return dsm.callAuto('SYNO.FileStation.CopyMove', 'start', {
+				return dsm.callAny(copyMoveApis, ['start', 'copy', 'move'], {
 					path: [sourcePath],
 					dest_folder_path: destFolderPath,
 					remove_src: removeSrc,
@@ -153,13 +158,13 @@ export class SynologyFileStation implements INodeType {
 
 			if (operation === 'dirsizeStart') {
 				const path = this.getNodeParameter('path', i) as string;
-				return dsm.callAuto('SYNO.FileStation.DirSize', 'start', { path });
+				return dsm.callAny(['SYNO.FileStation.DirSize', 'SYNO.FileStation.BackgroundTask'], ['start', 'create'], { path });
 			}
 
 			if (operation === 'backgroundList') {
 				const offset = this.getNodeParameter('offset', i) as number;
 				const limit = this.getNodeParameter('limit', i) as number;
-				return dsm.callAuto('SYNO.FileStation.BackgroundTask', 'list', { offset, limit });
+				return dsm.callAny(['SYNO.FileStation.BackgroundTask', 'SYNO.FileStation.Task'], ['list', 'get'], { offset, limit });
 			}
 
 			if (operation === 'download') {

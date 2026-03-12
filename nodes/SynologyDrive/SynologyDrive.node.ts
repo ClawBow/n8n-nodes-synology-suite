@@ -205,6 +205,9 @@ export class SynologyDrive implements INodeType {
 		return executePerItem(this, async (i) => {
 			const operation = this.getNodeParameter('operation', i) as string;
 			const extraParams = this.getNodeParameter('extraParamsJson', i, {}) as IDataObject;
+			const driveFileApis = ['SYNO.SynologyDrive.Files', 'SYNO.SynologyDrive.File'];
+			const driveLabelApis = ['SYNO.SynologyDrive.Labels', 'SYNO.SynologyDrive.Label'];
+			const driveWebhookApis = ['SYNO.SynologyDrive.Webhooks', 'SYNO.SynologyDrive.Webhook'];
 
 			if (operation === 'listDriveApis') {
 				return dsm.queryApis('SYNO.SynologyDrive.*,SYNO.FileStation.*');
@@ -225,7 +228,7 @@ export class SynologyDrive implements INodeType {
 				};
 
 				if (!returnAll) {
-					const page = await dsm.callAuto('SYNO.FileStation.List', 'list', {
+					const page = await dsm.callAny(['SYNO.FileStation.List', 'SYNO.FileStation.Browse'], ['list', 'get'], {
 						folder_path: path,
 						recursive,
 						offset,
@@ -241,7 +244,7 @@ export class SynologyDrive implements INodeType {
 				let cursor = offset;
 				let pages = 0;
 				while (pages < 200) {
-					const page = await dsm.callAuto('SYNO.FileStation.List', 'list', {
+					const page = await dsm.callAny(['SYNO.FileStation.List', 'SYNO.FileStation.Browse'], ['list', 'get'], {
 						folder_path: path,
 						recursive,
 						offset: cursor,
@@ -268,7 +271,7 @@ export class SynologyDrive implements INodeType {
 				// Use FileStation.List instead of Search (Search API doesn't return results properly)
 				// Don't use pattern param - it doesn't work reliably via API
 				// Return all files and let client-side filter by keyword
-				const result = await dsm.callAuto('SYNO.FileStation.List', 'list', {
+				const result = await dsm.callAny(['SYNO.FileStation.List', 'SYNO.FileStation.Browse'], ['list', 'get'], {
 					folder_path: path,
 					recursive,
 					limit,
@@ -431,25 +434,25 @@ export class SynologyDrive implements INodeType {
 			if (operation === 'listStarredFiles') {
 				const limit = this.getNodeParameter('limitQuery', i) as number;
 				const offset = this.getNodeParameter('offsetQuery', i) as number;
-				return dsm.callAuto('SYNO.SynologyDrive.Files', 'list_starred', { limit, offset, ...extraParams });
+				return dsm.callAny(driveFileApis, ['list_starred', 'starred', 'list'], { limit, offset, ...extraParams });
 			}
 
 			if (operation === 'listRecentFiles') {
 				const limit = this.getNodeParameter('limitQuery', i) as number;
 				const offset = this.getNodeParameter('offsetQuery', i) as number;
-				return dsm.callAuto('SYNO.SynologyDrive.Files', 'list_recent', { limit, offset, ...extraParams });
+				return dsm.callAny(driveFileApis, ['list_recent', 'recent', 'list'], { limit, offset, ...extraParams });
 			}
 
 			if (operation === 'listSharedWithMe') {
 				const limit = this.getNodeParameter('limitQuery', i) as number;
 				const offset = this.getNodeParameter('offsetQuery', i) as number;
-				return dsm.callAuto('SYNO.SynologyDrive.Files', 'list_shared_with_me', { limit, offset, ...extraParams });
+				return dsm.callAny(driveFileApis, ['list_shared_with_me', 'shared_with_me', 'list'], { limit, offset, ...extraParams });
 			}
 
 			if (operation === 'listSharedWithOthers') {
 				const limit = this.getNodeParameter('limitQuery', i) as number;
 				const offset = this.getNodeParameter('offsetQuery', i) as number;
-				return dsm.callAuto('SYNO.SynologyDrive.Files', 'list_shared_with_others', { limit, offset, ...extraParams });
+				return dsm.callAny(driveFileApis, ['list_shared_with_others', 'shared_with_others', 'list'], { limit, offset, ...extraParams });
 			}
 
 			if (operation === 'getAncestors') {
@@ -459,13 +462,13 @@ export class SynologyDrive implements INodeType {
 
 			// LABELS
 			if (operation === 'listLabels') {
-				return dsm.callAuto('SYNO.SynologyDrive.Labels', 'list', { ...extraParams });
+				return dsm.callAny(driveLabelApis, ['list', 'get'], { ...extraParams });
 			}
 
 			if (operation === 'createLabel') {
 				const labelName = this.getNodeParameter('labelName', i) as string;
 				const labelColor = this.getNodeParameter('labelColor', i) as string;
-				return dsm.callAuto('SYNO.SynologyDrive.Labels', 'create', { 
+				return dsm.callAny(driveLabelApis, ['create', 'add'], { 
 					name: labelName, 
 					color: labelColor, 
 					...extraParams 
@@ -476,7 +479,7 @@ export class SynologyDrive implements INodeType {
 				const labelId = this.getNodeParameter('labelId', i) as string;
 				const labelName = this.getNodeParameter('labelName', i) as string;
 				const labelColor = this.getNodeParameter('labelColor', i) as string;
-				return dsm.callAuto('SYNO.SynologyDrive.Labels', 'update', { 
+				return dsm.callAny(driveLabelApis, ['update', 'set'], { 
 					label_id: labelId,
 					name: labelName, 
 					color: labelColor, 
@@ -486,7 +489,7 @@ export class SynologyDrive implements INodeType {
 
 			if (operation === 'deleteLabel') {
 				const labelId = this.getNodeParameter('labelId', i) as string;
-				return dsm.callAuto('SYNO.SynologyDrive.Labels', 'delete', { label_id: labelId, ...extraParams });
+				return dsm.callAny(driveLabelApis, ['delete', 'remove'], { label_id: labelId, ...extraParams });
 			}
 
 			if (operation === 'addLabelToFile') {
@@ -547,7 +550,7 @@ export class SynologyDrive implements INodeType {
 				const webhookUrl = this.getNodeParameter('webhookUrl', i) as string;
 				const webhookEvents = this.getNodeParameter('webhookEvents', i) as string[];
 				const appId = this.getNodeParameter('appId', i) as string;
-				return dsm.callAuto('SYNO.SynologyDrive.Webhooks', 'create', { 
+				return dsm.callAny(driveWebhookApis, ['create', 'add'], { 
 					app_id: appId,
 					url: webhookUrl,
 					events: webhookEvents,
@@ -557,7 +560,7 @@ export class SynologyDrive implements INodeType {
 
 			if (operation === 'listWebhooks') {
 				const appId = this.getNodeParameter('appId', i) as string;
-				return dsm.callAuto('SYNO.SynologyDrive.Webhooks', 'list', { 
+				return dsm.callAny(driveWebhookApis, ['list', 'get'], { 
 					app_id: appId,
 					...extraParams 
 				});
@@ -566,7 +569,7 @@ export class SynologyDrive implements INodeType {
 			if (operation === 'deleteWebhook') {
 				const webhookId = this.getNodeParameter('webhookId', i) as string;
 				const appId = this.getNodeParameter('appId', i) as string;
-				return dsm.callAuto('SYNO.SynologyDrive.Webhooks', 'delete', { 
+				return dsm.callAny(driveWebhookApis, ['delete', 'remove'], { 
 					webhook_id: webhookId,
 					app_id: appId,
 					...extraParams 
@@ -576,7 +579,7 @@ export class SynologyDrive implements INodeType {
 			if (operation === 'getWebhook') {
 				const webhookId = this.getNodeParameter('webhookId', i) as string;
 				const appId = this.getNodeParameter('appId', i) as string;
-				return dsm.callAuto('SYNO.SynologyDrive.Webhooks', 'get', { 
+				return dsm.callAny(driveWebhookApis, ['get', 'list'], { 
 					webhook_id: webhookId,
 					app_id: appId,
 					...extraParams 
@@ -587,7 +590,7 @@ export class SynologyDrive implements INodeType {
 				const webhookId = this.getNodeParameter('webhookId', i) as string;
 				const appId = this.getNodeParameter('appId', i) as string;
 				const webhookEvents = this.getNodeParameter('webhookEvents', i) as string[];
-				return dsm.callAuto('SYNO.SynologyDrive.Webhooks', 'update', { 
+				return dsm.callAny(driveWebhookApis, ['update', 'set'], { 
 					webhook_id: webhookId,
 					app_id: appId,
 					events: webhookEvents,

@@ -67,16 +67,21 @@ export class SynologyChat implements INodeType {
 
 		return executePerItem(this, async (i) => {
 			const operation = this.getNodeParameter('operation', i) as string;
+			const chatApis = ['SYNO.Chat.Channel', 'SYNO.Chat.ChannelV2'];
+			const postApis = ['SYNO.Chat.Post', 'SYNO.Chat.Message'];
+			const userApis = ['SYNO.Chat.User', 'SYNO.Chat.Member'];
+			const webhookApis = ['SYNO.Chat.Webhook.Incoming', 'SYNO.Chat.Webhook'];
+			const appApis = ['SYNO.Chat.App', 'SYNO.Chat.Bot'];
 
 			if (operation === 'listChannels') {
-				const offset = this.getNodeParameter('offset', i) as number;
-				const limit = this.getNodeParameter('limit', i) as number;
-				return dsm.callAuto('SYNO.Chat.Channel', 'list', { offset, limit });
+				const offset = this.getNodeParameter('offset', i, 0) as number;
+				const limit = this.getNodeParameter('limit', i, 50) as number;
+				return dsm.callAny(chatApis, ['list', 'get'], { offset, limit });
 			}
 
 			if (operation === 'getChannel') {
 				const channelId = this.getNodeParameter('channelId', i) as string;
-				const response = await dsm.callAuto('SYNO.Chat.Channel', 'list', { offset: 0, limit: 500 });
+				const response = await dsm.callAny(chatApis, ['list', 'get'], { offset: 0, limit: 500 });
 				const channels = ((response.data as IDataObject | undefined)?.channels as IDataObject[] | undefined) || [];
 				const channel = channels.find((c) => String((c as IDataObject).channel_id) === String(channelId));
 				if (!channel) {
@@ -93,46 +98,46 @@ export class SynologyChat implements INodeType {
 
 			if (operation === 'listPosts') {
 				const channelId = this.getNodeParameter('channelId', i) as string;
-				const offset = this.getNodeParameter('offset', i) as number;
-				const limit = this.getNodeParameter('limit', i) as number;
-				return dsm.callAuto('SYNO.Chat.Post', 'list', { channel_id: channelId, offset, limit });
+				const offset = this.getNodeParameter('offset', i, 0) as number;
+				const limit = this.getNodeParameter('limit', i, 50) as number;
+				return dsm.callAny(postApis, ['list', 'get'], { channel_id: channelId, offset, limit });
 			}
 
 			if (operation === 'listUsers') {
-				const offset = this.getNodeParameter('offset', i) as number;
-				const limit = this.getNodeParameter('limit', i) as number;
-				return dsm.callAuto('SYNO.Chat.User', 'list', { offset, limit });
+				const offset = this.getNodeParameter('offset', i, 0) as number;
+				const limit = this.getNodeParameter('limit', i, 50) as number;
+				return dsm.callAny(userApis, ['list', 'get'], { offset, limit });
 			}
 
 			if (operation === 'getUser') {
 				const userId = this.getNodeParameter('userId', i) as string;
 				const params: IDataObject = {};
 				if (userId) params.user_id = userId;
-				return dsm.callAuto('SYNO.Chat.User', 'get', params);
+				return dsm.callAny(userApis, ['get', 'list'], params);
 			}
 
 			if (operation === 'sendMessage') {
 				const channelId = this.getNodeParameter('channelId', i) as string;
 				const message = this.getNodeParameter('message', i) as string;
-				return dsm.callAuto('SYNO.Chat.Post', 'create', { channel_id: channelId, message });
+				return dsm.callAny(postApis, ['create', 'send'], { channel_id: channelId, message });
 			}
 
 			if (operation === 'listIncomingWebhooks') {
-				const offset = this.getNodeParameter('offset', i) as number;
-				const limit = this.getNodeParameter('limit', i) as number;
-				return dsm.callAuto('SYNO.Chat.Webhook.Incoming', 'list', { offset, limit });
+				const offset = this.getNodeParameter('offset', i, 0) as number;
+				const limit = this.getNodeParameter('limit', i, 50) as number;
+				return dsm.callAny(webhookApis, ['list', 'get'], { offset, limit });
 			}
 
 			if (operation === 'createIncomingWebhook') {
 				const channelId = this.getNodeParameter('channelId', i) as string;
 				const webhookName = this.getNodeParameter('webhookName', i) as string;
-				return dsm.callAuto('SYNO.Chat.Webhook.Incoming', 'create', { channel_id: channelId, name: webhookName });
+				return dsm.callAny(webhookApis, ['create', 'add'], { channel_id: channelId, name: webhookName });
 			}
 
 			if (operation === 'listApps') {
-				const offset = this.getNodeParameter('offset', i) as number;
-				const limit = this.getNodeParameter('limit', i) as number;
-				return dsm.callAuto('SYNO.Chat.App', 'list', { offset, limit });
+				const offset = this.getNodeParameter('offset', i, 0) as number;
+				const limit = this.getNodeParameter('limit', i, 50) as number;
+				return dsm.callAny(appApis, ['list', 'get'], { offset, limit });
 			}
 
 			const api = this.getNodeParameter('api', i) as string;

@@ -104,6 +104,9 @@ export class SynologyPhotos implements INodeType {
 
 		return executePerItem(this, async (i) => {
 			const operation = this.getNodeParameter('operation', i) as string;
+			const albumApis = ['SYNO.Foto.Browse.Album', 'SYNO.Foto.Album'];
+			const itemApis = ['SYNO.Foto.Browse.Item', 'SYNO.Foto.Item'];
+			const shareApis = ['SYNO.Foto.PublicSharing', 'SYNO.Foto.Sharing.Misc'];
 
 			if (operation === 'listApis') {
 				return dsm.queryApis('SYNO.Foto.*');
@@ -120,31 +123,31 @@ export class SynologyPhotos implements INodeType {
 			if (operation === 'listFolders') {
 				const limit = this.getNodeParameter('limit', i) as number;
 				const offset = this.getNodeParameter('offset', i) as number;
-				return dsm.callAuto('SYNO.Foto.Browse.Folder', 'list', { limit, offset });
+				return dsm.callAny(['SYNO.Foto.Browse.Folder', 'SYNO.Foto.Folder'], ['list', 'get'], { limit, offset });
 			}
 
 			if (operation === 'listAlbums') {
 				const limit = this.getNodeParameter('limit', i) as number;
 				const offset = this.getNodeParameter('offset', i) as number;
-				return dsm.callAuto('SYNO.Foto.Browse.Album', 'list', { limit, offset });
+				return dsm.callAny(albumApis, ['list', 'get'], { limit, offset });
 			}
 
 			if (operation === 'getAlbum') {
 				const albumId = this.getNodeParameter('albumId', i) as string;
-				return dsm.callAuto('SYNO.Foto.Browse.Album', 'get', { album_id: albumId });
+				return dsm.callAny(albumApis, ['get', 'list'], { album_id: albumId, id: albumId });
 			}
 
 			if (operation === 'listItems') {
 				const folderId = this.getNodeParameter('folderId', i) as string;
 				const limit = this.getNodeParameter('limit', i) as number;
 				const offset = this.getNodeParameter('offset', i) as number;
-				return dsm.callAuto('SYNO.Foto.Browse.Item', 'list', { folder_id: folderId, limit, offset });
+				return dsm.callAny(itemApis, ['list', 'get'], { folder_id: folderId, limit, offset });
 			}
 
 			if (operation === 'listRecent') {
 				const limit = this.getNodeParameter('limit', i) as number;
 				const offset = this.getNodeParameter('offset', i) as number;
-				return dsm.callAuto('SYNO.Foto.Browse.RecentlyAdded', 'list', { limit, offset });
+				return dsm.callAny(['SYNO.Foto.Browse.RecentlyAdded', 'SYNO.Foto.Browse.Recent'], ['list', 'get'], { limit, offset });
 			}
 
 			if (operation === 'listTimeline') {
@@ -161,55 +164,55 @@ export class SynologyPhotos implements INodeType {
 			if (operation === 'searchPhotos') {
 				const keyword = this.getNodeParameter('searchKeyword', i) as string;
 				const limit = this.getNodeParameter('limit', i) as number;
-				return dsm.callAuto('SYNO.Foto.Search.Search', 'list', { keyword, limit });
+				return dsm.callAny(['SYNO.Foto.Search.Search', 'SYNO.Foto.Search'], ['list', 'query', 'search'], { keyword, limit, offset: 0 });
 			}
 
 			if (operation === 'getSearchFilters') {
-				return dsm.callAuto('SYNO.Foto.Search.Filter', 'list', {});
+				return dsm.callAny(['SYNO.Foto.Search.Filter', 'SYNO.Foto.Search'], ['list', 'get_filter'], { limit: 100, offset: 0 });
 			}
 
 			// Album Management
 			if (operation === 'createAlbum') {
 				const albumName = this.getNodeParameter('albumName', i) as string;
-				return dsm.callAuto('SYNO.Foto.Browse.Album', 'create', { name: albumName });
+				return dsm.callAny(albumApis, ['create', 'add'], { name: albumName });
 			}
 
 			if (operation === 'updateAlbum') {
 				const albumId = this.getNodeParameter('albumId', i) as string;
 				const albumName = this.getNodeParameter('albumName', i) as string;
-				return dsm.callAuto('SYNO.Foto.Browse.Album', 'update', { album_id: albumId, name: albumName });
+				return dsm.callAny(albumApis, ['update', 'set'], { album_id: albumId, id: albumId, name: albumName });
 			}
 
 			if (operation === 'deleteAlbum') {
 				const albumId = this.getNodeParameter('albumId', i) as string;
-				return dsm.callAuto('SYNO.Foto.Browse.Album', 'delete', { album_id: albumId });
+				return dsm.callAny(albumApis, ['delete', 'remove'], { album_id: albumId, id: albumId });
 			}
 
 			// Items
 			if (operation === 'getItem') {
 				const itemId = this.getNodeParameter('itemId', i) as string;
-				return dsm.callAuto('SYNO.Foto.Browse.Item', 'get', { item_id: itemId });
+				return dsm.callAny(itemApis, ['get', 'list'], { item_id: itemId, id: itemId });
 			}
 
 			if (operation === 'updateItem') {
 				const itemId = this.getNodeParameter('itemId', i) as string;
-				return dsm.callAuto('SYNO.Foto.Browse.Item', 'update', { item_id: itemId });
+				return dsm.callAny(itemApis, ['update', 'set'], { item_id: itemId, id: itemId });
 			}
 
 			if (operation === 'deleteItem') {
 				const itemId = this.getNodeParameter('itemId', i) as string;
-				return dsm.callAuto('SYNO.Foto.Browse.Item', 'delete', { item_id: itemId });
+				return dsm.callAny(itemApis, ['delete', 'remove'], { item_id: itemId, id: itemId });
 			}
 
 			// Favorites
 			if (operation === 'addFavorite') {
 				const itemId = this.getNodeParameter('itemId', i) as string;
-				return dsm.callAuto('SYNO.Foto.Favorite', 'add', { item_id: itemId });
+				return dsm.callAny(['SYNO.Foto.Favorite'], ['add', 'create'], { item_id: itemId });
 			}
 
 			if (operation === 'removeFavorite') {
 				const itemId = this.getNodeParameter('itemId', i) as string;
-				return dsm.callAuto('SYNO.Foto.Favorite', 'remove', { item_id: itemId });
+				return dsm.callAny(['SYNO.Foto.Favorite'], ['remove', 'delete'], { item_id: itemId });
 			}
 
 			// Sharing
@@ -240,7 +243,7 @@ export class SynologyPhotos implements INodeType {
 				const linkName = this.getNodeParameter('shareLinkName', i) as string;
 				const password = this.getNodeParameter('sharePassword', i) as string;
 				const permission = this.getNodeParameter('sharePermission', i) as string;
-				return dsm.callAuto('SYNO.Foto.Sharing.Misc', 'create', { 
+				return dsm.callAny(shareApis, ['create', 'add'], { 
 					album_id: albumId, 
 					name: linkName, 
 					password: password || undefined,
@@ -251,33 +254,33 @@ export class SynologyPhotos implements INodeType {
 			if (operation === 'updateSharing') {
 				const linkName = this.getNodeParameter('shareLinkName', i) as string;
 				const password = this.getNodeParameter('sharePassword', i) as string;
-				return dsm.callAuto('SYNO.Foto.Sharing.Misc', 'update', { name: linkName, password: password || undefined });
+				return dsm.callAny(shareApis, ['update', 'set'], { name: linkName, password: password || undefined, passphrase: password || undefined });
 			}
 
 			if (operation === 'deleteSharing') {
 				const linkName = this.getNodeParameter('shareLinkName', i) as string;
-				return dsm.callAuto('SYNO.Foto.Sharing.Misc', 'delete', { name: linkName });
+				return dsm.callAny(shareApis, ['delete', 'remove'], { name: linkName });
 			}
 
 			// Thumbnails & Download
 			if (operation === 'getThumbnail') {
 				const itemId = this.getNodeParameter('itemId', i) as string;
 				const size = this.getNodeParameter('thumbnailSize', i) as string;
-				return dsm.callAuto('SYNO.Foto.Thumbnail', 'get', { item_id: itemId, size });
+				return dsm.callAny(['SYNO.Foto.Thumbnail'], ['get', 'list'], { item_id: itemId, size });
 			}
 
 			if (operation === 'downloadItem') {
 				const itemId = this.getNodeParameter('itemId', i) as string;
-				return dsm.callAuto('SYNO.Foto.Download', 'get', { item_id: itemId });
+				return dsm.callAny(['SYNO.Foto.Download'], ['get', 'download'], { item_id: itemId });
 			}
 
 			// Settings
 			if (operation === 'getSettings') {
-				return dsm.callAuto('SYNO.Foto.Setting.User', 'get', {});
+				return dsm.callAny(['SYNO.Foto.Setting.User', 'SYNO.Foto.Setting'], ['get', 'list'], {});
 			}
 
 			if (operation === 'updateSettings') {
-				return dsm.callAuto('SYNO.Foto.Setting.User', 'update', {});
+				return dsm.callAny(['SYNO.Foto.Setting.User', 'SYNO.Foto.Setting'], ['update', 'set'], {});
 			}
 
 			// Quota

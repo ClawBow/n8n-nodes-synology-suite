@@ -168,13 +168,17 @@ export class SynologySecurityObservability implements INodeType {
 
 			if (operation === 'getLoginActivityUser') {
 				const userName = this.getNodeParameter('userName', i) as string;
-				const offset = this.getNodeParameter('offset', i) as number;
-				const limit = this.getNodeParameter('limit', i) as number;
+				const offset = this.getNodeParameter('offset', i, 0) as number;
+				const limit = this.getNodeParameter('limit', i, 100) as number;
 				const params: IDataObject = { offset, limit };
 				if (userName) params.username = userName;
 
 				try {
-					return await dsm.call('SYNO.SecurityAdvisor.LoginActivity.User', 'get', 1, params);
+					return await dsm.callAny(
+						['SYNO.SecurityAdvisor.LoginActivity.User', 'SYNO.SecurityAdvisor.LoginActivity'],
+						['get', 'list'],
+						params,
+					);
 				} catch (error) {
 					rethrowWithDsmGuidance(error, 'SYNO.SecurityAdvisor.LoginActivity.User', 'get', 1);
 				}

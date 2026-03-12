@@ -26,40 +26,27 @@ export class SynologyContacts implements INodeType {
 				name: 'operation',
 				type: 'options',
 				options: [
-					// Addressbooks
 					{ name: 'List Addressbooks', value: 'listAddressbooks' },
 					{ name: 'Get Addressbook', value: 'getAddressbook' },
 					{ name: 'Create Addressbook', value: 'createAddressbook' },
 					{ name: 'Update Addressbook', value: 'updateAddressbook' },
 					{ name: 'Delete Addressbook', value: 'deleteAddressbook' },
-					
-					// Contacts
 					{ name: 'List Contacts', value: 'listContacts' },
 					{ name: 'Get Contact', value: 'getContact' },
 					{ name: 'Create Contact', value: 'createContact' },
 					{ name: 'Update Contact', value: 'updateContact' },
 					{ name: 'Delete Contact', value: 'deleteContact' },
-					
-					// Labels/Groups
 					{ name: 'List Labels', value: 'listLabels' },
 					{ name: 'Create Label', value: 'createLabel' },
 					{ name: 'Update Label', value: 'updateLabel' },
 					{ name: 'Delete Label', value: 'deleteLabel' },
-					
-					// Search
 					{ name: 'Search Contacts', value: 'searchContacts' },
-					
-					// Settings
 					{ name: 'Get Info', value: 'getInfo' },
 					{ name: 'Get Settings', value: 'getSettings' },
-					
-					// Utility
 					{ name: 'List Contacts APIs', value: 'listApis' },
 				],
 				default: 'listAddressbooks',
 			},
-
-			// Common params
 			{ displayName: 'Addressbook ID', name: 'addressbookId', type: 'string', default: '', required: true, displayOptions: { show: { operation: ['getAddressbook', 'updateAddressbook', 'deleteAddressbook', 'listContacts', 'createContact'] } } },
 			{ displayName: 'Addressbook Name', name: 'addressbookName', type: 'string', default: '', required: true, displayOptions: { show: { operation: ['createAddressbook', 'updateAddressbook'] } } },
 			{ displayName: 'Contact ID', name: 'contactId', type: 'string', default: '', required: true, displayOptions: { show: { operation: ['getContact', 'updateContact', 'deleteContact'] } } },
@@ -82,6 +69,9 @@ export class SynologyContacts implements INodeType {
 
 		return executePerItem(this, async (i) => {
 			const operation = this.getNodeParameter('operation', i) as string;
+			const addressbookApis = ['SYNO.Contacts.Addressbook', 'SYNO.AddressBook.AddressBook'];
+			const contactApis = ['SYNO.Contacts.Contact', 'SYNO.AddressBook.Contact'];
+			const labelApis = ['SYNO.Contacts.Label', 'SYNO.AddressBook.Label', 'SYNO.AddressBook.Group'];
 
 			if (operation === 'listApis') {
 				const all = await dsm.getApiInfoMap();
@@ -102,45 +92,43 @@ export class SynologyContacts implements INodeType {
 				};
 			}
 
-			// Addressbooks
 			if (operation === 'listAddressbooks') {
-				const limit = this.getNodeParameter('limit', i) as number;
-				const offset = this.getNodeParameter('offset', i) as number;
-				return dsm.callAuto('SYNO.Contacts.Addressbook', 'list', { limit, offset });
+				const limit = this.getNodeParameter('limit', i, 50) as number;
+				const offset = this.getNodeParameter('offset', i, 0) as number;
+				return dsm.callAny(addressbookApis, ['list', 'get'], { limit, offset });
 			}
 
 			if (operation === 'getAddressbook') {
 				const addressbookId = this.getNodeParameter('addressbookId', i) as string;
-				return dsm.callAuto('SYNO.Contacts.Addressbook', 'get', { addressbook_id: addressbookId });
+				return dsm.callAny(addressbookApis, ['get', 'list'], { addressbook_id: addressbookId, id: addressbookId });
 			}
 
 			if (operation === 'createAddressbook') {
 				const addressbookName = this.getNodeParameter('addressbookName', i) as string;
-				return dsm.callAuto('SYNO.Contacts.Addressbook', 'create', { name: addressbookName });
+				return dsm.callAny(addressbookApis, ['create', 'add'], { name: addressbookName });
 			}
 
 			if (operation === 'updateAddressbook') {
 				const addressbookId = this.getNodeParameter('addressbookId', i) as string;
 				const addressbookName = this.getNodeParameter('addressbookName', i) as string;
-				return dsm.callAuto('SYNO.Contacts.Addressbook', 'update', { addressbook_id: addressbookId, name: addressbookName });
+				return dsm.callAny(addressbookApis, ['update', 'set'], { addressbook_id: addressbookId, id: addressbookId, name: addressbookName });
 			}
 
 			if (operation === 'deleteAddressbook') {
 				const addressbookId = this.getNodeParameter('addressbookId', i) as string;
-				return dsm.callAuto('SYNO.Contacts.Addressbook', 'delete', { addressbook_id: addressbookId });
+				return dsm.callAny(addressbookApis, ['delete', 'remove'], { addressbook_id: addressbookId, id: addressbookId });
 			}
 
-			// Contacts
 			if (operation === 'listContacts') {
 				const addressbookId = this.getNodeParameter('addressbookId', i) as string;
-				const limit = this.getNodeParameter('limit', i) as number;
-				const offset = this.getNodeParameter('offset', i) as number;
-				return dsm.callAuto('SYNO.Contacts.Contact', 'list', { addressbook_id: addressbookId, limit, offset });
+				const limit = this.getNodeParameter('limit', i, 50) as number;
+				const offset = this.getNodeParameter('offset', i, 0) as number;
+				return dsm.callAny(contactApis, ['list', 'get'], { addressbook_id: addressbookId, limit, offset });
 			}
 
 			if (operation === 'getContact') {
 				const contactId = this.getNodeParameter('contactId', i) as string;
-				return dsm.callAuto('SYNO.Contacts.Contact', 'get', { contact_id: contactId });
+				return dsm.callAny(contactApis, ['get', 'list'], { contact_id: contactId, id: contactId });
 			}
 
 			if (operation === 'createContact') {
@@ -150,7 +138,7 @@ export class SynologyContacts implements INodeType {
 				const email = this.getNodeParameter('contactEmail', i) as string;
 				const phone = this.getNodeParameter('contactPhone', i) as string;
 				const org = this.getNodeParameter('contactOrg', i) as string;
-				return dsm.callAuto('SYNO.Contacts.Contact', 'create', { 
+				return dsm.callAny(contactApis, ['create', 'add'], {
 					addressbook_id: addressbookId,
 					first_name: firstName,
 					last_name: lastName || undefined,
@@ -167,8 +155,9 @@ export class SynologyContacts implements INodeType {
 				const email = this.getNodeParameter('contactEmail', i) as string;
 				const phone = this.getNodeParameter('contactPhone', i) as string;
 				const org = this.getNodeParameter('contactOrg', i) as string;
-				return dsm.callAuto('SYNO.Contacts.Contact', 'update', { 
+				return dsm.callAny(contactApis, ['update', 'set'], {
 					contact_id: contactId,
+					id: contactId,
 					first_name: firstName,
 					last_name: lastName || undefined,
 					email: email || undefined,
@@ -179,45 +168,44 @@ export class SynologyContacts implements INodeType {
 
 			if (operation === 'deleteContact') {
 				const contactId = this.getNodeParameter('contactId', i) as string;
-				return dsm.callAuto('SYNO.Contacts.Contact', 'delete', { contact_id: contactId });
+				return dsm.callAny(contactApis, ['delete', 'remove'], { contact_id: contactId, id: contactId });
 			}
 
-			// Labels
 			if (operation === 'listLabels') {
-				const limit = this.getNodeParameter('limit', i) as number;
-				return dsm.callAuto('SYNO.Contacts.Label', 'list', { limit });
+				const limit = this.getNodeParameter('limit', i, 50) as number;
+				const offset = this.getNodeParameter('offset', i, 0) as number;
+				return dsm.callAny(labelApis, ['list', 'get'], { limit, offset });
 			}
 
 			if (operation === 'createLabel') {
 				const labelName = this.getNodeParameter('labelName', i) as string;
-				return dsm.callAuto('SYNO.Contacts.Label', 'create', { name: labelName });
+				return dsm.callAny(labelApis, ['create', 'add'], { name: labelName });
 			}
 
 			if (operation === 'updateLabel') {
 				const labelId = this.getNodeParameter('labelId', i) as string;
 				const labelName = this.getNodeParameter('labelName', i) as string;
-				return dsm.callAuto('SYNO.Contacts.Label', 'update', { label_id: labelId, name: labelName });
+				return dsm.callAny(labelApis, ['update', 'set'], { label_id: labelId, id: labelId, name: labelName });
 			}
 
 			if (operation === 'deleteLabel') {
 				const labelId = this.getNodeParameter('labelId', i) as string;
-				return dsm.callAuto('SYNO.Contacts.Label', 'delete', { label_id: labelId });
+				return dsm.callAny(labelApis, ['delete', 'remove'], { label_id: labelId, id: labelId });
 			}
 
-			// Search
 			if (operation === 'searchContacts') {
 				const keyword = this.getNodeParameter('searchKeyword', i) as string;
-				const limit = this.getNodeParameter('limit', i) as number;
-				return dsm.callAuto('SYNO.Contacts.Contact', 'search', { keyword, limit });
+				const limit = this.getNodeParameter('limit', i, 50) as number;
+				const offset = this.getNodeParameter('offset', i, 0) as number;
+				return dsm.callAny(contactApis, ['search', 'query', 'list'], { keyword, q: keyword, limit, offset });
 			}
 
-			// Info
 			if (operation === 'getInfo') {
-				return dsm.callAuto('SYNO.Contacts.Info', 'get', {});
+				return dsm.callAny(['SYNO.Contacts.Info', 'SYNO.AddressBook.Info'], ['get', 'list'], {});
 			}
 
 			if (operation === 'getSettings') {
-				return dsm.callAuto('SYNO.Contacts.AdminSetting', 'get', {});
+				return dsm.callAny(['SYNO.Contacts.AdminSetting', 'SYNO.AddressBook.Settings'], ['get', 'list'], {});
 			}
 
 			throw new Error(`Unknown operation: ${operation}`);
