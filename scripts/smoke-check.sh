@@ -17,5 +17,6 @@ test -f dist/nodes/SynologyDrive/SynologyDrive.node.js
 test -f dist/nodes/SynologyOffice/SynologyOffice.node.js
 test -f dist/nodes/SynologyMailPlus/SynologyMailPlus.node.js
 test -f dist/nodes/SynologyDownloadStation2/SynologyDownloadStation2.node.js
+test -f dist/nodes/SynologyStorageManager/SynologyStorageManager.node.js
 
 echo "[smoke] ok"

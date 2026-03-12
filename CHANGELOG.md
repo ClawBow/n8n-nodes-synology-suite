@@ -14,6 +14,18 @@ The format is inspired by Keep a Changelog and Semantic Versioning.
 
 ---
 
+## [0.32.0] - 2026-03-13
+
+### Added
+- New **Synology Storage Manager** node (read-only, `usableAsTool`) with operations:
+  - List Storage APIs (`SYNO.Storage*`, `SYNO.Core.Storage*`)
+  - List Volumes
+  - List Storage Pools
+  - List Disks
+  - Get Disk Health
+  - List RAIDs (best-effort depending on DSM API availability)
+- DSM-variant fallback logic for Storage APIs using `callAny` / `callAuto` patterns.
+
 ## [0.31.25] - 2026-03-12
 
 ### Fixed
