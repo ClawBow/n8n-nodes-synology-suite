@@ -6,7 +6,7 @@
 - Contraintes respectées: **aucun write/delete/restart** (DSM)
 - Sources utilisées:
   1) Probe live read-only (sans SID et test auth)
-  2) Historique authentifié `ACTIONS_MATRIX.json` (repo)
+  2) Historique authentifié `API_PROBE_RESULTS.json` (repo)
 
 ---
 
@@ -62,7 +62,7 @@ Tentatives `SYNO.API.Auth` (v7/v6/v3/v2, sessions `FileStation`/`DownloadStation
 - résultat dominant: **401** (auth refusée)
 - donc pas de SID exploitable actuellement dans ce run
 
-## 2.3 Historique authentifié (`ACTIONS_MATRIX.json`)
+## 2.3 Historique authentifié (`API_PROBE_RESULTS.json`)
 Sur les mêmes APIs WebStation (probe antérieur avec SID valide):
 - pas de `success` sur méthodes read candidates
 - beaucoup de `105` (insufficient privilege) sur `list` et/ou `get`

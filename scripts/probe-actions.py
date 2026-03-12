@@ -7,8 +7,8 @@
 - Probes method candidates per API
 - Skips potentially destructive methods unless --allow-destructive
 - Writes:
-  - ACTIONS_MATRIX.json
-  - ACTIONS_MATRIX.md
+  - API_PROBE_RESULTS.json
+  - API_PROBE_SUMMARY.md
 """
 
 from __future__ import annotations
@@ -187,7 +187,7 @@ def load_catalog_apis(catalog_path: Path) -> Dict[str, ApiDef]:
 def build_markdown(matrix: Dict[str, Any]) -> str:
     stats = matrix["stats"]
     lines: List[str] = []
-    lines.append("# ACTIONS_MATRIX")
+    lines.append("# API_PROBE_SUMMARY")
     lines.append("")
     lines.append("## Summary")
     lines.append("")
@@ -250,8 +250,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Probe Synology API methods safely")
     parser.add_argument("--catalog", default=str(repo_root / "synology-api-catalog.full.json"), help="Path to catalog JSON")
     parser.add_argument("--env-file", default=str(default_env), help="Path to .env with DSM credentials")
-    parser.add_argument("--output-json", default=str(repo_root / "ACTIONS_MATRIX.json"), help="Output ACTIONS_MATRIX.json path")
-    parser.add_argument("--output-md", default=str(repo_root / "ACTIONS_MATRIX.md"), help="Output ACTIONS_MATRIX.md path")
+    parser.add_argument("--output-json", default=str(repo_root / "API_PROBE_RESULTS.json"), help="Output API_PROBE_RESULTS.json path")
+    parser.add_argument("--output-md", default=str(repo_root / "API_PROBE_SUMMARY.md"), help="Output API_PROBE_SUMMARY.md path")
     parser.add_argument("--allow-destructive", action="store_true", help="Allow probing potentially destructive methods")
     parser.add_argument("--sleep-ms", type=int, default=0, help="Delay between requests")
     args = parser.parse_args()

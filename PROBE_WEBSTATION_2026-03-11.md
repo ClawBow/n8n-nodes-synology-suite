@@ -50,8 +50,8 @@
 
 Observation: plusieurs APIs répondent `119` sur `list` ou `get`, ce qui indique que la méthode est probablement reconnue mais nécessite session/auth.
 
-## 2.2 Historique probe authentifié (ACTIONS_MATRIX existant)
-Source: `n8n-nodes-synology-suite/ACTIONS_MATRIX.json` (généré 2026-02-18)
+## 2.2 Historique probe authentifié (API_PROBE_RESULTS existant)
+Source: `n8n-nodes-synology-suite/API_PROBE_RESULTS.json` (généré 2026-02-18)
 
 Sur WebStation:
 - Aucun `success` observé

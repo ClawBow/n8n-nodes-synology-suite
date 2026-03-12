@@ -6,7 +6,7 @@
 
 ## Méthode
 1. Tentative de probe live (auth + appels read-only) via les scripts skill `synology-audio-station`.
-2. En parallèle, exploitation des artefacts de probe exhaustif existants (`ACTIONS_MATRIX.json`) générés depuis `SYNO.API.Info` sur la même cible DSM.
+2. En parallèle, exploitation des artefacts de probe exhaustif existants (`API_PROBE_RESULTS.json`) générés depuis `SYNO.API.Info` sur la même cible DSM.
 
 ## Résultat auth live (aujourd'hui)
 Tentative login `SYNO.API.Auth` (sessions: `AudioStation`, `FileStation`, `DSM`, etc.) avec les credentials `.env`:
@@ -16,7 +16,7 @@ Tentative login `SYNO.API.Auth` (sessions: `AudioStation`, `FileStation`, `DSM`,
 > Interprétation probable: étape de sécurité/auth complémentaire requise côté DSM (ex: OTP/2FA/policy), credentials seuls insuffisants actuellement.
 
 ## 1) APIs AudioStation disponibles (via `SYNO.API.Info` — artefact probe existant)
-Source: `ACTIONS_MATRIX.json` (generatedAt `2026-02-18T12:29:39Z`, base `https://darknas.tail91a2f7.ts.net:7894`).
+Source: `API_PROBE_RESULTS.json` (generatedAt `2026-02-18T12:29:39Z`, base `https://darknas.tail91a2f7.ts.net:7894`).
 
 Total détecté: **27 APIs** `SYNO.AudioStation.*`:
 - `SYNO.AudioStation.Album` (`AudioStation/album.cgi`, v1..3)

@@ -308,8 +308,8 @@
    - Supports opt-in destructive mode with `--allow-destructive`.
 
 2. Generated outputs:
-   - `ACTIONS_MATRIX.json` (full matrix)
-   - `ACTIONS_MATRIX.md` (human summary + coverage)
+   - `API_PROBE_RESULTS.json` (full matrix)
+   - `API_PROBE_SUMMARY.md` (human summary + coverage)
 
 3. Wired npm scripts:
    - `npm run probe:actions` (safe default)

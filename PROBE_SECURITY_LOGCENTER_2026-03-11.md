@@ -8,7 +8,7 @@
 ## Méthode
 1. **Discovery live** via `SYNO.API.Info` (query all + filtrage des familles cibles).
 2. **Probe read-only live (sessionless)** des méthodes candidates (`list/get/status/query/info`) pour observer les codes d’erreur actuels.
-3. **Cross-check** avec l’artefact runtime existant `ACTIONS_MATRIX.json` (probe exhaustif historique) pour identifier ce qui a déjà fonctionné/échoué avec session valide dans le passé.
+3. **Cross-check** avec l’artefact runtime existant `API_PROBE_RESULTS.json` (probe exhaustif historique) pour identifier ce qui a déjà fonctionné/échoué avec session valide dans le passé.
 
 ---
 
@@ -57,7 +57,7 @@ Exemples représentatifs:
 ---
 
 ## 3) Ce qui marche/échoue (codes) — d’après artefact runtime existant
-Source: `/root/.openclaw/workspace/n8n-nodes-synology-suite/ACTIONS_MATRIX.json` (probe historique exhaustif, non destructif).
+Source: `/root/.openclaw/workspace/n8n-nodes-synology-suite/API_PROBE_RESULTS.json` (probe historique exhaustif, non destructif).
 
 ### Security Advisor
 - **Succès confirmé**:

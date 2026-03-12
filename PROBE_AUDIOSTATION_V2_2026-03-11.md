@@ -2,7 +2,7 @@
 
 ## TL;DR
 - Probe **non destructif** effectué (read-only uniquement).
-- Découverte `SYNO.AudioStation.*` faite via artefact `ACTIONS_MATRIX.json` (issu de `SYNO.API.Info` live antérieur sur la même cible DSM).
+- Découverte `SYNO.AudioStation.*` faite via artefact `API_PROBE_RESULTS.json` (issu de `SYNO.API.Info` live antérieur sur la même cible DSM).
 - Revalidation live tentée aujourd’hui via skill `synology-audio-station`, mais bloquée à l’auth (`SYNO.API.Auth.login` code **401**).
 - Pour le scope demandé (artists/albums/songs/search/playlists/folders/info), la matrice OK/KO est exploitable pour préparer un node n8n v1 read-only.
 
@@ -10,7 +10,7 @@
 
 ## 1) Discovery `SYNO.AudioStation.*` via API.Info
 Source utilisée:
-- `n8n-nodes-synology-suite/ACTIONS_MATRIX.json`
+- `n8n-nodes-synology-suite/API_PROBE_RESULTS.json`
 - `generatedAt`: `2026-02-18T12:29:39.801242+00:00`
 - `context.baseUrl`: `https://darknas.tail91a2f7.ts.net:7894`
 

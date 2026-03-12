@@ -22,7 +22,7 @@ Objectifs couverts:
 - Impact: impossible de refaire un probe live complet aujourd’hui sans credentials/session valides.
 
 ### B) Fallback fiable (dernier probe complet disponible)
-- Source: `ACTIONS_MATRIX.json`
+- Source: `API_PROBE_RESULTS.json`
 - Timestamp: `2026-02-18T12:29:39.322287+00:00`
 - Contexte: mode safe (`allowDestructive=false`), méthode candidates incluant read-only + méthodes destructives **skippées**.
 
@@ -131,7 +131,7 @@ Sans montée de privilèges, le node Docker v1 restera KO en exécution réelle.
 ---
 
 ## Artefacts utilisés
-- `/root/.openclaw/workspace/n8n-nodes-synology-suite/ACTIONS_MATRIX.json`
+- `/root/.openclaw/workspace/n8n-nodes-synology-suite/API_PROBE_RESULTS.json`
 - Tentatives live 2026-03-11 (auth failures):
   - `syno_cli.py list --prefix SYNO.Docker` => code 400
   - script Python direct via `SYNO_DSM_*` => code 401
