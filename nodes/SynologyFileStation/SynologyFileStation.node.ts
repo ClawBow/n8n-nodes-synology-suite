@@ -165,7 +165,12 @@ export class SynologyFileStation implements INodeType {
 			if (operation === 'download') {
 				const filePath = this.getNodeParameter('filePath', i) as string;
 				const data = await dsm.downloadFile(filePath);
-				return { success: true, filePath, base64: data.toString('base64') };
+				const fileName = (filePath.split('/').filter(Boolean).pop() || 'download.bin');
+				const binaryData = await this.helpers.prepareBinaryData(data, fileName);
+				return {
+					json: { success: true, filePath, fileName, size: data.length },
+					binary: { data: binaryData },
+				} as unknown as IDataObject;
 			}
 
 			if (operation === 'uploadBase64') {
