@@ -136,7 +136,7 @@ npm run probe:actions:destructive
 
 ## About Synology Office API docs/slides access
 
-Some Synology Office API docs/slides or private support resources are not publicly accessible via API and may require Synology-side access/enablement.
+Based on Synology support feedback, Synology Office API docs/slides resources are currently not accessible.
 
 If you need access, open a request via official channels:
 - Synology Support Center: https://account.synology.com/support
