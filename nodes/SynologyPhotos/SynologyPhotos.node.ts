@@ -147,7 +147,11 @@ export class SynologyPhotos implements INodeType {
 			if (operation === 'listTimeline') {
 				const limit = this.getNodeParameter('limit', i) as number;
 				const offset = this.getNodeParameter('offset', i) as number;
-				return dsm.callAuto('SYNO.Foto.Browse.Timeline', 'list', { limit, offset });
+				return dsm.callAny(
+					['SYNO.Foto.Browse.Timeline'],
+					['get', 'list'],
+					{ limit, offset },
+				);
 			}
 
 			// Search
