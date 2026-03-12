@@ -6,6 +6,9 @@ import {
 	INodeTypeDescription,
 	NodeOperationError,
 } from 'n8n-workflow';
+import axios from 'axios';
+import https from 'https';
+import { normalizeCredentials } from '../shared/DsmClient';
 
 export class SynologyCalendar implements INodeType {
 	description: INodeTypeDescription = {
@@ -208,6 +211,54 @@ export class SynologyCalendar implements INodeType {
 		const items = this.getInputData();
 		const returnData: INodeExecutionData[] = [];
 		const operation = this.getNodeParameter('operation', 0) as string;
+		const creds = normalizeCredentials(await this.getCredentials('synologyDsmApi'));
+		const client = axios.create({
+			timeout: 60000,
+			httpsAgent: new https.Agent({ rejectUnauthorized: !creds.ignoreSslIssues }),
+		});
+		let sid: string | undefined;
+
+		const login = async (): Promise<void> => {
+			const { data } = await client.get(`${creds.baseUrl}/webapi/auth.cgi`, {
+				params: {
+					api: 'SYNO.API.Auth',
+					version: '7',
+					method: 'login',
+					account: creds.username,
+					passwd: creds.password,
+					session: creds.sessionName,
+					format: 'sid',
+				},
+				validateStatus: () => true,
+			});
+			if (!data?.success || !data?.data?.sid) {
+				throw new NodeOperationError(this.getNode(), `DSM Calendar login failed: ${JSON.stringify(data)}`);
+			}
+			sid = data.data.sid;
+		};
+
+		const requestSynology = async (options: { method: IHttpRequestMethods; url: string; body?: unknown; timeout?: number; retryAuth?: boolean; [key: string]: unknown }) => {
+			if (!sid) await login();
+			const run = async () => client.request({
+				method: options.method,
+				url: `${creds.baseUrl}${options.url}`,
+				data: options.body,
+				timeout: options.timeout ?? 10000,
+				headers: {
+					'X-SYNO-TOKEN': sid as string,
+					Cookie: `id=${sid as string}`,
+				},
+				validateStatus: () => true,
+			});
+
+			let response = await run();
+			const d = response.data;
+			if (!d?.success && [105, 106, 107, 119].includes(Number(d?.error?.code)) && options.retryAuth !== false) {
+				await login();
+				response = await run();
+			}
+			return response.data;
+		};
 
 		for (let i = 0; i < items.length; i++) {
 			try {
@@ -223,7 +274,7 @@ export class SynologyCalendar implements INodeType {
 
 						const body = { cal_id: calendarId, summary, is_all_day: isAllDay, dtstart, dtend };
 
-						responseData = await this.helpers.request({
+						responseData = await requestSynology({
 							method: 'POST' as IHttpRequestMethods,
 							url: '/api/Calendar/default/v1/event',
 							json: true,
@@ -235,7 +286,7 @@ export class SynologyCalendar implements INodeType {
 
 					case 'getEvent': {
 						const eventId = this.getNodeParameter('eventId', i) as number;
-						responseData = await this.helpers.request({
+						responseData = await requestSynology({
 							method: 'GET' as IHttpRequestMethods,
 							url: `/api/Calendar/default/v1/event?evt_id=${eventId}`,
 							json: true,
@@ -245,7 +296,7 @@ export class SynologyCalendar implements INodeType {
 					}
 
 					case 'listEvents': {
-						responseData = await this.helpers.request({
+						responseData = await requestSynology({
 							method: 'POST' as IHttpRequestMethods,
 							url: '/api/Calendar/default/v1/event/list',
 							json: true,
@@ -263,7 +314,7 @@ export class SynologyCalendar implements INodeType {
 
 						const body = { evt_id: eventId, summary, dtstart, dtend };
 
-						responseData = await this.helpers.request({
+						responseData = await requestSynology({
 							method: 'PUT' as IHttpRequestMethods,
 							url: '/api/Calendar/default/v1/event',
 							json: true,
@@ -275,7 +326,7 @@ export class SynologyCalendar implements INodeType {
 
 					case 'deleteEvent': {
 						const eventId = this.getNodeParameter('eventId', i) as number;
-						responseData = await this.helpers.request({
+						responseData = await requestSynology({
 							method: 'DELETE' as IHttpRequestMethods,
 							url: `/api/Calendar/default/v1/event?evt_id=${eventId}`,
 							json: true,
@@ -286,7 +337,7 @@ export class SynologyCalendar implements INodeType {
 
 					case 'createTask': {
 						const taskTitle = this.getNodeParameter('taskTitle', i) as string;
-						responseData = await this.helpers.request({
+						responseData = await requestSynology({
 							method: 'POST' as IHttpRequestMethods,
 							url: '/api/Calendar/default/v1/task',
 							json: true,
@@ -298,7 +349,7 @@ export class SynologyCalendar implements INodeType {
 
 					case 'getTask': {
 						const taskId = this.getNodeParameter('taskId', i) as number;
-						responseData = await this.helpers.request({
+						responseData = await requestSynology({
 							method: 'GET' as IHttpRequestMethods,
 							url: `/api/Calendar/default/v1/task?evt_id=${taskId}`,
 							json: true,
@@ -308,7 +359,7 @@ export class SynologyCalendar implements INodeType {
 					}
 
 					case 'listTasks': {
-						responseData = await this.helpers.request({
+						responseData = await requestSynology({
 							method: 'POST' as IHttpRequestMethods,
 							url: '/api/Calendar/default/v1/task/list',
 							json: true,
@@ -322,7 +373,7 @@ export class SynologyCalendar implements INodeType {
 						const taskId = this.getNodeParameter('taskId', i) as number;
 						const taskTitle = this.getNodeParameter('taskTitle', i) as string;
 
-						responseData = await this.helpers.request({
+						responseData = await requestSynology({
 							method: 'PUT' as IHttpRequestMethods,
 							url: '/api/Calendar/default/v1/task',
 							json: true,
@@ -334,7 +385,7 @@ export class SynologyCalendar implements INodeType {
 
 					case 'deleteTask': {
 						const taskId = this.getNodeParameter('taskId', i) as number;
-						responseData = await this.helpers.request({
+						responseData = await requestSynology({
 							method: 'DELETE' as IHttpRequestMethods,
 							url: `/api/Calendar/default/v1/task?evt_id=${taskId}`,
 							json: true,
@@ -346,7 +397,7 @@ export class SynologyCalendar implements INodeType {
 					case 'createCalendar': {
 						const calendarName = this.getNodeParameter('calendarName', i) as string;
 						const calendarType = this.getNodeParameter('calendarType', i, 'event') as string;
-						responseData = await this.helpers.request({
+						responseData = await requestSynology({
 							method: 'POST' as IHttpRequestMethods,
 							url: '/api/Calendar/default/v1/cal',
 							json: true,
@@ -371,7 +422,7 @@ export class SynologyCalendar implements INodeType {
 
 					case 'getCalendar': {
 						const calendarIdParam = this.getNodeParameter('calendarIdParam', i) as string;
-						responseData = await this.helpers.request({
+						responseData = await requestSynology({
 							method: 'GET' as IHttpRequestMethods,
 							url: `/api/Calendar/default/v1/cal?cal_id=${encodeURIComponent(calendarIdParam)}`,
 							json: true,
@@ -384,7 +435,7 @@ export class SynologyCalendar implements INodeType {
 						const calendarIdParam = this.getNodeParameter('calendarIdParam', i) as string;
 						const calendarName = this.getNodeParameter('calendarName', i, 'Updated Calendar') as string;
 
-						responseData = await this.helpers.request({
+						responseData = await requestSynology({
 							method: 'PUT' as IHttpRequestMethods,
 							url: '/api/Calendar/default/v1/cal',
 							json: true,
@@ -410,7 +461,7 @@ export class SynologyCalendar implements INodeType {
 
 					case 'deleteCalendar': {
 						const calendarIdParam = this.getNodeParameter('calendarIdParam', i) as string;
-						responseData = await this.helpers.request({
+						responseData = await requestSynology({
 							method: 'DELETE' as IHttpRequestMethods,
 							url: `/api/Calendar/default/v1/cal?cal_id=${encodeURIComponent(calendarIdParam)}`,
 							json: true,
@@ -420,7 +471,7 @@ export class SynologyCalendar implements INodeType {
 					}
 
 					case 'updateSettings': {
-						responseData = await this.helpers.request({
+						responseData = await requestSynology({
 							method: 'PUT' as IHttpRequestMethods,
 							url: '/api/Calendar/default/v1/setting',
 							json: true,
@@ -432,7 +483,7 @@ export class SynologyCalendar implements INodeType {
 
 					case 'listCalendars': {
 						const calendarType = this.getNodeParameter('calendarType', i, 'all') as string;
-						responseData = await this.helpers.request({
+						responseData = await requestSynology({
 							method: 'GET' as IHttpRequestMethods,
 							url: `/api/Calendar/default/v1/cal/list?cal_type=${encodeURIComponent(calendarType)}`,
 							json: true,
@@ -442,7 +493,7 @@ export class SynologyCalendar implements INodeType {
 					}
 
 					case 'getSettings': {
-						responseData = await this.helpers.request({
+						responseData = await requestSynology({
 							method: 'GET' as IHttpRequestMethods,
 							url: '/api/Calendar/default/v1/setting',
 							json: true,
@@ -452,7 +503,7 @@ export class SynologyCalendar implements INodeType {
 					}
 
 					case 'listTimezones': {
-						responseData = await this.helpers.request({
+						responseData = await requestSynology({
 							method: 'GET' as IHttpRequestMethods,
 							url: '/api/Calendar/default/v1/timezone',
 							json: true,
@@ -462,7 +513,7 @@ export class SynologyCalendar implements INodeType {
 					}
 
 					case 'listContacts': {
-						responseData = await this.helpers.request({
+						responseData = await requestSynology({
 							method: 'GET' as IHttpRequestMethods,
 							url: '/api/Calendar/default/v1/contact',
 							json: true,
@@ -487,7 +538,7 @@ export class SynologyCalendar implements INodeType {
 							options.body = body;
 						}
 
-						responseData = await this.helpers.request(options);
+						responseData = await requestSynology(options);
 						break;
 					}
 
