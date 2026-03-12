@@ -84,7 +84,22 @@ export class SynologyContacts implements INodeType {
 			const operation = this.getNodeParameter('operation', i) as string;
 
 			if (operation === 'listApis') {
-				return dsm.queryApis('SYNO.Contacts.*');
+				const all = await dsm.getApiInfoMap();
+				const entries = Object.entries(all)
+					.filter(([name]) =>
+						name.startsWith('SYNO.Contacts.') ||
+						name.startsWith('SYNO.AddressBook.') ||
+						name.startsWith('SYNO.Cal.Contact')
+					)
+					.sort(([a], [b]) => a.localeCompare(b));
+
+				const data = Object.fromEntries(entries);
+				return {
+					success: true,
+					count: entries.length,
+					apis: entries.map(([name]) => name),
+					data,
+				};
 			}
 
 			// Addressbooks
