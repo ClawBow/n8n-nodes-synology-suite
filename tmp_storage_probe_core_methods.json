@@ -1,0 +1,374 @@
+{
+  "SYNO.Storage.CGI.Storage": [
+    {
+      "method": "get",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "list",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "query",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "info",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "status",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "health",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "read",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "search",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "load",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "overview",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "summary",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "monitor",
+      "success": false,
+      "code": 103
+    }
+  ],
+  "SYNO.Storage.CGI.Pool": [
+    {
+      "method": "get",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "list",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "query",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "info",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "status",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "health",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "read",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "search",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "load",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "overview",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "summary",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "monitor",
+      "success": false,
+      "code": 103
+    }
+  ],
+  "SYNO.Storage.CGI.Volume": [
+    {
+      "method": "get",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "list",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "query",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "info",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "status",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "health",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "read",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "search",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "load",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "overview",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "summary",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "monitor",
+      "success": false,
+      "code": 103
+    }
+  ],
+  "SYNO.Storage.CGI.HddMan": [
+    {
+      "method": "get",
+      "success": false,
+      "code": 119
+    },
+    {
+      "method": "list",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "query",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "info",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "status",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "health",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "read",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "search",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "load",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "overview",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "summary",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "monitor",
+      "success": false,
+      "code": 103
+    }
+  ],
+  "SYNO.Storage.CGI.Smart": [
+    {
+      "method": "get",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "list",
+      "success": false,
+      "code": 119
+    },
+    {
+      "method": "query",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "info",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "status",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "health",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "read",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "search",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "load",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "overview",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "summary",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "monitor",
+      "success": false,
+      "code": 103
+    }
+  ],
+  "SYNO.Storage.CGI.Check": [
+    {
+      "method": "get",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "list",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "query",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "info",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "status",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "health",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "read",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "search",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "load",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "overview",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "summary",
+      "success": false,
+      "code": 103
+    },
+    {
+      "method": "monitor",
+      "success": false,
+      "code": 103
+    }
+  ]
+}

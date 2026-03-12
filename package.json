@@ -1,13 +1,16 @@
 {
   "name": "n8n-nodes-synology-suite",
-  "version": "0.31.18",
+  "version": "0.31.22",
   "description": "n8n community nodes for Synology DSM (Drive, Office/Sheets, MailPlus, Calendar) - AI Agent compatible",
   "license": "MIT",
   "author": "Maxime Olivier",
-  "homepage": "https://github.com/darkbowfr/n8n-nodes-synology-suite",
+  "homepage": "https://github.com/ClawBow/n8n-nodes-synology-suite#readme",
+  "bugs": {
+    "url": "https://github.com/ClawBow/n8n-nodes-synology-suite/issues"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/darkbowfr/n8n-nodes-synology-suite.git"
+    "url": "git+https://github.com/ClawBow/n8n-nodes-synology-suite.git"
   },
   "keywords": [
     "n8n-community-node-package",
@@ -21,7 +24,17 @@
     "calendar",
     "note",
     "photos",
-    "contacts"
+    "contacts",
+    "filestation",
+    "chat",
+    "security",
+    "observability",
+    "logcenter",
+    "security-advisor",
+    "downloadstation",
+    "downloadstation2",
+    "torrent",
+    "rss"
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -30,7 +43,7 @@
   ],
   "scripts": {
     "build": "tsc && npm run copy:assets",
-    "copy:assets": "cp nodes/SynologyDrive/*.png dist/nodes/SynologyDrive/ 2>/dev/null; cp nodes/SynologyDrive/*.svg dist/nodes/SynologyDrive/ 2>/dev/null; cp nodes/SynologySheets/*.png dist/nodes/SynologySheets/ 2>/dev/null; cp nodes/SynologySheets/*.svg dist/nodes/SynologySheets/ 2>/dev/null; cp nodes/SynologyMailPlus/*.png dist/nodes/SynologyMailPlus/ 2>/dev/null; cp nodes/SynologyMailPlus/*.svg dist/nodes/SynologyMailPlus/ 2>/dev/null; cp nodes/SynologyMailPlusTrigger/*.png dist/nodes/SynologyMailPlusTrigger/ 2>/dev/null; cp nodes/SynologyMailPlusTrigger/*.svg dist/nodes/SynologyMailPlusTrigger/ 2>/dev/null; cp nodes/SynologyOffice/*.png dist/nodes/SynologyOffice/ 2>/dev/null; cp nodes/SynologyOffice/*.svg dist/nodes/SynologyOffice/ 2>/dev/null; cp nodes/SynologyApi/*.png dist/nodes/SynologyApi/ 2>/dev/null; cp nodes/SynologyApi/*.svg dist/nodes/SynologyApi/ 2>/dev/null; cp nodes/SynologyCalendar/*.png dist/nodes/SynologyCalendar/ 2>/dev/null; cp nodes/SynologyCalendar/*.svg dist/nodes/SynologyCalendar/ 2>/dev/null; cp nodes/SynologyNote/*.png dist/nodes/SynologyNote/ 2>/dev/null; cp nodes/SynologyNote/*.svg dist/nodes/SynologyNote/ 2>/dev/null; cp nodes/SynologyPhotos/*.png dist/nodes/SynologyPhotos/ 2>/dev/null; cp nodes/SynologyPhotos/*.svg dist/nodes/SynologyPhotos/ 2>/dev/null; cp nodes/SynologyContacts/*.png dist/nodes/SynologyContacts/ 2>/dev/null; cp nodes/SynologyContacts/*.svg dist/nodes/SynologyContacts/ 2>/dev/null; true",
+    "copy:assets": "cp nodes/SynologyDrive/*.png dist/nodes/SynologyDrive/ 2>/dev/null; cp nodes/SynologyDrive/*.svg dist/nodes/SynologyDrive/ 2>/dev/null; cp nodes/SynologySheets/*.png dist/nodes/SynologySheets/ 2>/dev/null; cp nodes/SynologySheets/*.svg dist/nodes/SynologySheets/ 2>/dev/null; cp nodes/SynologyMailPlus/*.png dist/nodes/SynologyMailPlus/ 2>/dev/null; cp nodes/SynologyMailPlus/*.svg dist/nodes/SynologyMailPlus/ 2>/dev/null; cp nodes/SynologyMailPlusTrigger/*.png dist/nodes/SynologyMailPlusTrigger/ 2>/dev/null; cp nodes/SynologyMailPlusTrigger/*.svg dist/nodes/SynologyMailPlusTrigger/ 2>/dev/null; cp nodes/SynologyOffice/*.png dist/nodes/SynologyOffice/ 2>/dev/null; cp nodes/SynologyOffice/*.svg dist/nodes/SynologyOffice/ 2>/dev/null; cp nodes/SynologyApi/*.png dist/nodes/SynologyApi/ 2>/dev/null; cp nodes/SynologyApi/*.svg dist/nodes/SynologyApi/ 2>/dev/null; cp nodes/SynologyCalendar/*.png dist/nodes/SynologyCalendar/ 2>/dev/null; cp nodes/SynologyCalendar/*.svg dist/nodes/SynologyCalendar/ 2>/dev/null; cp nodes/SynologyNote/*.png dist/nodes/SynologyNote/ 2>/dev/null; cp nodes/SynologyNote/*.svg dist/nodes/SynologyNote/ 2>/dev/null; cp nodes/SynologyPhotos/*.png dist/nodes/SynologyPhotos/ 2>/dev/null; cp nodes/SynologyPhotos/*.svg dist/nodes/SynologyPhotos/ 2>/dev/null; cp nodes/SynologyContacts/*.png dist/nodes/SynologyContacts/ 2>/dev/null; cp nodes/SynologyContacts/*.svg dist/nodes/SynologyContacts/ 2>/dev/null; cp nodes/SynologyFileStation/*.png dist/nodes/SynologyFileStation/ 2>/dev/null; cp nodes/SynologyFileStation/*.svg dist/nodes/SynologyFileStation/ 2>/dev/null; cp nodes/SynologyChat/*.png dist/nodes/SynologyChat/ 2>/dev/null; cp nodes/SynologyChat/*.svg dist/nodes/SynologyChat/ 2>/dev/null; cp nodes/SynologySecurityObservability/*.png dist/nodes/SynologySecurityObservability/ 2>/dev/null; cp nodes/SynologySecurityObservability/*.svg dist/nodes/SynologySecurityObservability/ 2>/dev/null; cp nodes/SynologyDownloadStation2/*.png dist/nodes/SynologyDownloadStation2/ 2>/dev/null; cp nodes/SynologyDownloadStation2/*.svg dist/nodes/SynologyDownloadStation2/ 2>/dev/null; true",
     "dev": "tsc -w",
     "lint": "eslint nodes credentials package.json",
     "smoke": "bash ./scripts/smoke-check.sh",
@@ -67,7 +80,11 @@
       "dist/nodes/SynologyCalendar/SynologyCalendar.node.js",
       "dist/nodes/SynologyNote/SynologyNote.node.js",
       "dist/nodes/SynologyPhotos/SynologyPhotos.node.js",
-      "dist/nodes/SynologyContacts/SynologyContacts.node.js"
+      "dist/nodes/SynologyContacts/SynologyContacts.node.js",
+      "dist/nodes/SynologyFileStation/SynologyFileStation.node.js",
+      "dist/nodes/SynologyChat/SynologyChat.node.js",
+      "dist/nodes/SynologySecurityObservability/SynologySecurityObservability.node.js",
+      "dist/nodes/SynologyDownloadStation2/SynologyDownloadStation2.node.js"
     ]
   }
 }

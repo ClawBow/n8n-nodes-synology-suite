@@ -2,11 +2,25 @@
 
 Community nodes for Synology DSM WebAPI.
 
-## Included nodes
-- **Synology API**: generic caller (`api + method + version + params`).
-- **Synology Drive**: file listing/search/create/move/share + custom call.
-- **Synology Office**: Spreadsheet-focused operations + custom call fallback.
-- **Synology MailPlus**: mailbox/message practical actions + custom call fallback.
+- **NPM**: https://www.npmjs.com/package/n8n-nodes-synology-suite
+- **GitHub**: https://github.com/ClawBow/n8n-nodes-synology-suite
+- **Issues**: https://github.com/ClawBow/n8n-nodes-synology-suite/issues
+
+## Included nodes (current)
+- **Synology API**: generic DSM caller (`api + method + version + params`).
+- **Synology Drive**
+- **Synology Sheets**
+- **Synology Office**
+- **Synology MailPlus**
+- **Synology MailPlus Trigger**
+- **Synology Calendar**
+- **Synology Note**
+- **Synology Photos**
+- **Synology Contacts**
+- **Synology File Station**
+- **Synology Chat**
+- **Synology Security Observability**
+- **Synology DownloadStation2**
 
 ## Credential
 `Synology DSM API`
@@ -63,12 +77,10 @@ npm run smoke
 - **Office sheet operation fails**: different Office method names exist between builds. Operation mode already attempts multiple method candidates; if still failing, switch to custom call.
 
 ## API inventories captured from your NAS
-- `synology-api-catalog.full.json` (full discovered catalog)
-- `ALL_APIS.md` (human-readable full list)
-- `../syno-drive-apis.json`
-- `../syno-office-apis.json`
-- `../syno-mailplus-server-apis.json`
-- `../syno-mailclient-apis.json`
+- [`synology-api-catalog.full.json`](https://github.com/ClawBow/n8n-nodes-synology-suite/blob/main/synology-api-catalog.full.json) (full discovered catalog)
+- [`ALL_APIS.md`](https://github.com/ClawBow/n8n-nodes-synology-suite/blob/main/ALL_APIS.md) (human-readable full list)
+
+Additional per-service inventories (`syno-drive-apis.json`, `syno-office-apis.json`, `syno-mailplus-server-apis.json`, `syno-mailclient-apis.json`) are generated in the **workspace root** during local probing and are not part of this repository by default.
 
 ## Full-action discovery (exhaustive probe)
 The repository includes an exhaustive action discovery script that probes a conservative method set on every discovered DSM API:

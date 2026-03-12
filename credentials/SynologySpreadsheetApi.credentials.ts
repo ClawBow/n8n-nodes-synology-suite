@@ -1,4 +1,4 @@
-import type { ICredentialType, INodeProperties } from 'n8n-workflow';
+import type { ICredentialType, INodeProperties, ICredentialTestRequest } from 'n8n-workflow';
 
 export class SynologySpreadsheetApi implements ICredentialType {
 	name = 'synologySpreadsheetApi';
@@ -58,4 +58,23 @@ export class SynologySpreadsheetApi implements ICredentialType {
 			description: 'Protocol for DSM Office connection. Use HTTP for LAN connections',
 		},
 	];
+
+	// Test: try to authorize and get a token
+	test: ICredentialTestRequest = {
+		request: {
+			baseURL: '={{ $credentials.baseUrl }}',
+			url: '/spreadsheets/authorize',
+			method: 'POST',
+			body: {
+				username: '={{ $credentials.username }}',
+				password: '={{ $credentials.password }}',
+				host: '={{ $credentials.host }}',
+				protocol: '={{ $credentials.protocol }}',
+			},
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			timeout: 15000,
+		},
+	};
 }

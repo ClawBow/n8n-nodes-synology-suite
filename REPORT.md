@@ -1,5 +1,40 @@
 # REPORT
 
+## Current Status (2026-03-11 12:52 Europe/Paris) — FileStation + Chat v2 ✅
+
+### ✅ New in v0.31.22
+- Added **Synology File Station** node (`SynologyFileStation`) with operations:
+  - list, info, search, createFolder, rename, delete, copyMove,
+  - dirsizeStart, backgroundList, download, uploadBase64, customCall
+- Added **Synology Chat** node (`SynologyChat`) v2 operations:
+  - listChannels, listUsers, getUser, sendMessage,
+  - getChannel, listPosts, createIncomingWebhook, listIncomingWebhooks, listApps, customChatCall
+- Integrated real Synology Chat icon (`Chat.png`) from NAS assets.
+
+### Runtime validation notes
+- FileStation: most operations OK; `uploadBase64` previously failing with error `119` investigated and patched in `DsmClient.uploadFile()` with auth-relogin retry for session errors.
+- Chat v2: `listPosts` and `createIncomingWebhook` validated; direct `SYNO.Chat.Channel.get` not available on this NAS, handled via list+filter fallback.
+
+### Build status
+- `npm run build` ✅
+- `npm run smoke` ✅
+
+
+## Current Status (2026-03-10 16:10 Europe/Paris) — Maintenance + Benchmark packaging ✅
+
+### ✅ Ops update (today)
+- Synology benchmark NAS package completed under `/OpenClaw/team-folder/benchmark_anap_20260309_v2`
+- Structure validated per prompt folder (A01..D08) with image sets + `prompt.txt` + `evaluation.txt`
+- Added Leonardo models where available:
+  - `flux.png`, `seedance.png`, `lucid.png` on 30 prompts
+  - D07/D08 missing for Leonardo source dataset (not generated in original run)
+- `evaluation.txt` refreshed with per-image notes + per-prompt comparative ranking
+
+### ℹ️ Dataset completeness notes
+- v2 local set: OpenAI / Gemini / ComfyUI = 32 prompts complete
+- Leonardo set: Flux / Seedream / Lucid = 30 prompts (D07, D08 absent)
+- Grok: no local generated dataset found yet (requires dedicated run)
+
 ## Current Status (2026-03-05 16:40 UTC) — MailPlus Stability v0.31.0 ✅
 
 ### 🎉 MailPlus Retry Logic & Rate Limiting — v0.31.0

@@ -140,9 +140,9 @@ export class SynologyCalendar implements INodeType {
 				name: 'calendarName',
 				type: 'string',
 				required: true,
-				displayOptions: { show: { operation: ['createCalendar'] } },
+				displayOptions: { show: { operation: ['createCalendar', 'updateCalendar'] } },
 				default: '',
-				description: 'New calendar name',
+				description: 'Calendar display name',
 			},
 			{
 				displayName: 'Calendar ID',
@@ -153,6 +153,19 @@ export class SynologyCalendar implements INodeType {
 				displayOptions: { show: { operation: ['getCalendar', 'updateCalendar', 'deleteCalendar'] } },
 				default: '',
 				description: 'Calendar ID',
+			},
+			{
+				displayName: 'Calendar Type',
+				name: 'calendarType',
+				type: 'options',
+				displayOptions: { show: { operation: ['createCalendar', 'listCalendars'] } },
+				options: [
+					{ name: 'All', value: 'all' },
+					{ name: 'Event', value: 'event' },
+					{ name: 'Todo', value: 'todo' },
+				],
+				default: 'all',
+				description: 'Calendar type filter',
 			},
 
 			// CUSTOM CALL
@@ -224,7 +237,7 @@ export class SynologyCalendar implements INodeType {
 						const eventId = this.getNodeParameter('eventId', i) as number;
 						responseData = await this.helpers.request({
 							method: 'GET' as IHttpRequestMethods,
-							url: `/api/Calendar/default/v1/event?event_id=${eventId}`,
+							url: `/api/Calendar/default/v1/event?evt_id=${eventId}`,
 							json: true,
 							timeout: 10000,
 						});
@@ -248,7 +261,7 @@ export class SynologyCalendar implements INodeType {
 						const dtstart = this.getNodeParameter('dtstart', i) as number;
 						const dtend = this.getNodeParameter('dtend', i) as number;
 
-						const body = { event_id: eventId, summary, dtstart, dtend };
+						const body = { evt_id: eventId, summary, dtstart, dtend };
 
 						responseData = await this.helpers.request({
 							method: 'PUT' as IHttpRequestMethods,
@@ -264,7 +277,7 @@ export class SynologyCalendar implements INodeType {
 						const eventId = this.getNodeParameter('eventId', i) as number;
 						responseData = await this.helpers.request({
 							method: 'DELETE' as IHttpRequestMethods,
-							url: `/api/Calendar/default/v1/event?event_id=${eventId}`,
+							url: `/api/Calendar/default/v1/event?evt_id=${eventId}`,
 							json: true,
 							timeout: 10000,
 						});
@@ -287,7 +300,7 @@ export class SynologyCalendar implements INodeType {
 						const taskId = this.getNodeParameter('taskId', i) as number;
 						responseData = await this.helpers.request({
 							method: 'GET' as IHttpRequestMethods,
-							url: `/api/Calendar/default/v1/task?task_id=${taskId}`,
+							url: `/api/Calendar/default/v1/task?evt_id=${taskId}`,
 							json: true,
 							timeout: 10000,
 						});
@@ -314,7 +327,7 @@ export class SynologyCalendar implements INodeType {
 							url: '/api/Calendar/default/v1/task',
 							json: true,
 							timeout: 15000,
-							body: { task_id: taskId, summary: taskTitle },
+							body: { evt_id: taskId, summary: taskTitle },
 						});
 						break;
 					}
@@ -323,7 +336,7 @@ export class SynologyCalendar implements INodeType {
 						const taskId = this.getNodeParameter('taskId', i) as number;
 						responseData = await this.helpers.request({
 							method: 'DELETE' as IHttpRequestMethods,
-							url: `/api/Calendar/default/v1/task?task_id=${taskId}`,
+							url: `/api/Calendar/default/v1/task?evt_id=${taskId}`,
 							json: true,
 							timeout: 10000,
 						});
@@ -332,12 +345,26 @@ export class SynologyCalendar implements INodeType {
 
 					case 'createCalendar': {
 						const calendarName = this.getNodeParameter('calendarName', i) as string;
+						const calendarType = this.getNodeParameter('calendarType', i, 'event') as string;
 						responseData = await this.helpers.request({
 							method: 'POST' as IHttpRequestMethods,
 							url: '/api/Calendar/default/v1/cal',
 							json: true,
 							timeout: 15000,
-							body: { cal_name: calendarName },
+							body: {
+								cal_displayname: calendarName,
+								cal_description: '',
+								cal_color: '#2E6BE6',
+								is_hidden_in_cal: false,
+								is_hidden_in_list: false,
+								notify_alarm_by_browser: true,
+								notify_alarm_by_mail: false,
+								notify_evt_by_browser: true,
+								notify_evt_by_mail: false,
+								notify_import_cal_by_browser: true,
+								notify_import_cal_by_mail: false,
+								cal_type: calendarType,
+							},
 						});
 						break;
 					}
@@ -362,7 +389,21 @@ export class SynologyCalendar implements INodeType {
 							url: '/api/Calendar/default/v1/cal',
 							json: true,
 							timeout: 15000,
-							body: { cal_id: calendarIdParam, cal_name: calendarName },
+							body: {
+								cal_id: calendarIdParam,
+								original_cal_id: calendarIdParam,
+								cal_displayname: calendarName,
+								cal_description: '',
+								cal_color: '#2E6BE6',
+								is_hidden_in_cal: false,
+								is_hidden_in_list: false,
+								notify_alarm_by_browser: true,
+								notify_alarm_by_mail: false,
+								notify_evt_by_browser: true,
+								notify_evt_by_mail: false,
+								notify_import_cal_by_browser: true,
+								notify_import_cal_by_mail: false,
+							},
 						});
 						break;
 					}
@@ -390,12 +431,12 @@ export class SynologyCalendar implements INodeType {
 					}
 
 					case 'listCalendars': {
+						const calendarType = this.getNodeParameter('calendarType', i, 'all') as string;
 						responseData = await this.helpers.request({
-							method: 'POST' as IHttpRequestMethods,
-							url: '/api/Calendar/default/v1/cal/list',
+							method: 'GET' as IHttpRequestMethods,
+							url: `/api/Calendar/default/v1/cal/list?cal_type=${encodeURIComponent(calendarType)}`,
 							json: true,
 							timeout: 10000,
-							body: { limit: 100 },
 						});
 						break;
 					}

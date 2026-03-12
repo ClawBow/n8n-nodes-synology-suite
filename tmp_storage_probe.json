@@ -1,0 +1,1095 @@
+{
+  "generatedAt": "2026-03-11T18:40:55.789860+00:00",
+  "baseUrl": "https://darknas.tail91a2f7.ts.net:7894",
+  "auth": {
+    "error": {
+      "code": 401
+    },
+    "success": false
+  },
+  "storageApiCount": 22,
+  "apis": {
+    "SYNO.Storage.CGI.BtrfsDedupe": {
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1,
+      "tests": [
+        {
+          "method": "list",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "get",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "query",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "info",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "status",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "health",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        }
+      ]
+    },
+    "SYNO.Storage.CGI.Cache.Protection": {
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1,
+      "tests": [
+        {
+          "method": "list",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "get",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "query",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "info",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "status",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "health",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        }
+      ]
+    },
+    "SYNO.Storage.CGI.Check": {
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1,
+      "tests": [
+        {
+          "method": "list",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "get",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "query",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "info",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "status",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "health",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        }
+      ]
+    },
+    "SYNO.Storage.CGI.DetectedPool": {
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1,
+      "tests": [
+        {
+          "method": "list",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "get",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "query",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "info",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "status",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "health",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        }
+      ]
+    },
+    "SYNO.Storage.CGI.DualEnclosure": {
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1,
+      "tests": [
+        {
+          "method": "list",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "get",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "query",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "info",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "status",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "health",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        }
+      ]
+    },
+    "SYNO.Storage.CGI.Enclosure": {
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1,
+      "tests": [
+        {
+          "method": "list",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "get",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "query",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "info",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "status",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "health",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        }
+      ]
+    },
+    "SYNO.Storage.CGI.EncryptionKeyVault": {
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1,
+      "tests": [
+        {
+          "method": "list",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "get",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "query",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "info",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "status",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "health",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        }
+      ]
+    },
+    "SYNO.Storage.CGI.EncryptionKeyVault.UnlockMode": {
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1,
+      "tests": [
+        {
+          "method": "list",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "get",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "query",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "info",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "status",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "health",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        }
+      ]
+    },
+    "SYNO.Storage.CGI.Flashcache": {
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1,
+      "tests": [
+        {
+          "method": "list",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "get",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "query",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "info",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "status",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "health",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        }
+      ]
+    },
+    "SYNO.Storage.CGI.HddMan": {
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1,
+      "tests": [
+        {
+          "method": "list",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "get",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 119
+        },
+        {
+          "method": "query",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "info",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "status",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "health",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        }
+      ]
+    },
+    "SYNO.Storage.CGI.KMIP": {
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1,
+      "tests": [
+        {
+          "method": "list",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "get",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 119
+        },
+        {
+          "method": "query",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "info",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "status",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "health",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        }
+      ]
+    },
+    "SYNO.Storage.CGI.Pool": {
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1,
+      "tests": [
+        {
+          "method": "list",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "get",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "query",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "info",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "status",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "health",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        }
+      ]
+    },
+    "SYNO.Storage.CGI.Scrubbing": {
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1,
+      "tests": [
+        {
+          "method": "list",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "get",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "query",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "info",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "status",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "health",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        }
+      ]
+    },
+    "SYNO.Storage.CGI.Smart": {
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1,
+      "tests": [
+        {
+          "method": "list",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 119
+        },
+        {
+          "method": "get",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "query",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "info",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "status",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "health",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        }
+      ]
+    },
+    "SYNO.Storage.CGI.Smart.Scheduler": {
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1,
+      "tests": [
+        {
+          "method": "list",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 119
+        },
+        {
+          "method": "get",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 119
+        },
+        {
+          "method": "query",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "info",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "status",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "health",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        }
+      ]
+    },
+    "SYNO.Storage.CGI.Spare": {
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1,
+      "tests": [
+        {
+          "method": "list",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 119
+        },
+        {
+          "method": "get",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "query",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "info",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "status",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "health",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        }
+      ]
+    },
+    "SYNO.Storage.CGI.Spare.Conf": {
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1,
+      "tests": [
+        {
+          "method": "list",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "get",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 119
+        },
+        {
+          "method": "query",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "info",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "status",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "health",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        }
+      ]
+    },
+    "SYNO.Storage.CGI.Storage": {
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1,
+      "tests": [
+        {
+          "method": "list",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "get",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "query",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "info",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "status",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "health",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        }
+      ]
+    },
+    "SYNO.Storage.CGI.TaipeiEnclosure": {
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1,
+      "tests": [
+        {
+          "method": "list",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "get",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "query",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "info",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "status",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "health",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        }
+      ]
+    },
+    "SYNO.Storage.CGI.Volume": {
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1,
+      "tests": [
+        {
+          "method": "list",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "get",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "query",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "info",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "status",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "health",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        }
+      ]
+    },
+    "SYNO.Storage.CGI.Volume.Installer": {
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1,
+      "tests": [
+        {
+          "method": "list",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "get",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "query",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "info",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "status",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "health",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        }
+      ]
+    },
+    "SYNO.Storage.CGI.Volume.OfflineOp": {
+      "path": "entry.cgi",
+      "minVersion": 1,
+      "maxVersion": 1,
+      "tests": [
+        {
+          "method": "list",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "get",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "query",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "info",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "status",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        },
+        {
+          "method": "health",
+          "params": {},
+          "http": 200,
+          "success": false,
+          "code": 103
+        }
+      ]
+    }
+  },
+  "codeCounts": {
+    "103": 125,
+    "119": 7
+  }
+}

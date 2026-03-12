@@ -1,4 +1,8 @@
-import type { ICredentialType, INodeProperties } from 'n8n-workflow';
+import type {
+	ICredentialType,
+	INodeProperties,
+	ICredentialTestRequest,
+} from 'n8n-workflow';
 
 export class SynologyDsmApi implements ICredentialType {
 	name = 'synologyDsmApi';
@@ -12,4 +16,21 @@ export class SynologyDsmApi implements ICredentialType {
 		{ displayName: 'Session Name', name: 'sessionName', type: 'string', default: 'FileStation' },
 		{ displayName: 'Ignore SSL Issues', name: 'ignoreSslIssues', type: 'boolean', default: true },
 	];
+
+	// Test avec retry côté n8n (le framework gère les retries sur 401/403)
+	test: ICredentialTestRequest = {
+		request: {
+			baseURL: '={{ $credentials.baseUrl }}',
+			url: '/webapi/query.cgi',
+			method: 'GET',
+			qs: {
+				api: 'SYNO.API.Info',
+				version: '1',
+				method: 'query',
+				query: 'all',
+			},
+			skipSslCertificateValidation: '={{ $credentials.ignoreSslIssues }}',
+			timeout: 15000,
+		},
+	};
 }

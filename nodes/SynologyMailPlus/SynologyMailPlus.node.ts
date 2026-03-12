@@ -37,39 +37,39 @@ export class SynologyMailPlus implements INodeType {
 				type: 'options',
 				default: 'listMailboxes',
 				options: [
-					// Authorization (2)
-					{ name: '[AUTH] Login', value: 'login' },
-					{ name: '[AUTH] Logout', value: 'logout' },
-					// Mailbox Configuration (5)
-					{ name: '[MAILBOX] Get', value: 'getMailboxes' },
-					{ name: '[MAILBOX] List', value: 'listMailboxes' },
-					{ name: '[MAILBOX] Create', value: 'createMailbox' },
-					{ name: '[MAILBOX] Update', value: 'updateMailbox' },
-					{ name: '[MAILBOX] Delete', value: 'deleteMailbox' },
-					// Label Configuration (5)
-					{ name: '[LABEL] Get', value: 'getLabels' },
-					{ name: '[LABEL] List', value: 'listLabels' },
-					{ name: '[LABEL] Create', value: 'createLabel' },
-					{ name: '[LABEL] Update', value: 'updateLabel' },
-					{ name: '[LABEL] Delete', value: 'deleteLabel' },
-					// Filter Configuration (5)
-					{ name: '[FILTER] Get', value: 'getFilters' },
-					{ name: '[FILTER] List', value: 'listFilters' },
-					{ name: '[FILTER] Create', value: 'createFilter' },
-					{ name: '[FILTER] Update', value: 'updateFilter' },
-					{ name: '[FILTER] Delete', value: 'deleteFilter' },
-					// Send Mail (1)
-					{ name: '[MAIL] Send Email', value: 'sendEmail' },
-					// Legacy Support (9)
-					{ name: '[LEGACY] List Mail APIs', value: 'listApis' },
-					{ name: '[LEGACY] Get Mail Server Version', value: 'serverVersion' },
-					{ name: '[LEGACY] List Messages', value: 'listMessages' },
-					{ name: '[LEGACY] Get Message Detail', value: 'getMessage' },
-					{ name: '[LEGACY] Move Message', value: 'moveMessage' },
-					{ name: '[LEGACY] Mark Read / Unread', value: 'markReadStatus' },
-					{ name: '[LEGACY] Add / Remove Label', value: 'labelMessage' },
-					{ name: '[LEGACY] Get Account Info', value: 'getAccountInfo' },
-					{ name: '[LEGACY] Custom Mail Call', value: 'customMailCall' },
+					// Mailbox
+					{ name: 'Get Mailboxes', value: 'getMailboxes' },
+					{ name: 'List Mailboxes', value: 'listMailboxes' },
+					{ name: 'Create Mailbox', value: 'createMailbox' },
+					{ name: 'Update Mailbox', value: 'updateMailbox' },
+					{ name: 'Delete Mailbox', value: 'deleteMailbox' },
+					// Labels
+					{ name: 'Get Labels', value: 'getLabels' },
+					{ name: 'List Labels', value: 'listLabels' },
+					{ name: 'Create Label', value: 'createLabel' },
+					{ name: 'Update Label', value: 'updateLabel' },
+					{ name: 'Delete Label', value: 'deleteLabel' },
+					// Filters
+					{ name: 'Get Filters', value: 'getFilters' },
+					{ name: 'List Filters', value: 'listFilters' },
+					{ name: 'Create Filter', value: 'createFilter' },
+					{ name: 'Update Filter', value: 'updateFilter' },
+					{ name: 'Delete Filter', value: 'deleteFilter' },
+					// Mail
+					{ name: 'Send Email', value: 'sendEmail' },
+					// Advanced auth/debug
+					{ name: 'Advanced: Login (debug)', value: 'login' },
+					{ name: 'Advanced: Logout (debug)', value: 'logout' },
+					// Legacy support
+					{ name: 'Legacy: List Mail APIs', value: 'listApis' },
+					{ name: 'Legacy: Get Mail Server Version', value: 'serverVersion' },
+					{ name: 'Legacy: List Messages', value: 'listMessages' },
+					{ name: 'Legacy: Get Message Detail', value: 'getMessage' },
+					{ name: 'Legacy: Move Message', value: 'moveMessage' },
+					{ name: 'Legacy: Mark Read / Unread', value: 'markReadStatus' },
+					{ name: 'Legacy: Add / Remove Label', value: 'labelMessage' },
+					{ name: 'Legacy: Get Account Info', value: 'getAccountInfo' },
+					{ name: 'Legacy: Custom Mail Call', value: 'customMailCall' },
 				],
 			},
 			// Authentication fields

@@ -43,6 +43,33 @@ export class DsmClient {
 	private activeRequests = 0;
 	private readonly maxConcurrent = 10;
 
+	private buildWebApiUrl(path = 'entry.cgi'): string {
+		const cleanPath = String(path || 'entry.cgi').replace(/^\/+/, '');
+		return `${this.creds.baseUrl}/webapi/${cleanPath}`;
+	}
+
+	private async resolveApiPath(api: string): Promise<string> {
+		// Core APIs are always available via entry.cgi
+		if (api === 'SYNO.API.Info' || api === 'SYNO.API.Auth') {
+			return 'entry.cgi';
+		}
+
+		if (this.apiInfoCache?.[api]?.path) {
+			return String(this.apiInfoCache[api].path);
+		}
+
+		try {
+			const map = await this.getApiInfoMap();
+			if (map?.[api]?.path) {
+				return String(map[api].path);
+			}
+		} catch {
+			// Fallback to entry.cgi when API map is unavailable
+		}
+
+		return 'entry.cgi';
+	}
+
 	constructor(private readonly creds: DsmCredentials) {
 		this.client = axios.create({
 			timeout: 60000,
@@ -94,17 +121,35 @@ export class DsmClient {
 				return await fn();
 			} catch (error: any) {
 				lastError = error;
-				// Check if it's a 402 error (Payment Required) or rate limit
-				const status = error?.response?.status;
-				const code = error?.response?.data?.error?.code;
-				
-				if (status === 402 || code === 402 || (error?.response?.status >= 429 && error?.response?.status <= 429)) {
-					if (attempt < maxRetries - 1) {
-						const delay = Math.pow(2, attempt) * 1000; // 1s, 2s, 4s
-						await new Promise(resolve => setTimeout(resolve, delay));
-						continue;
-					}
+
+				// Retry policy for transient load/rate issues
+				let shouldRetry = false;
+				let code: number | undefined;
+				let status: number | undefined;
+
+				// Axios-style errors
+				status = error?.response?.status;
+				code = error?.response?.data?.error?.code;
+
+				// DSM wrapped errors (DsmApiError)
+				if (error instanceof DsmApiError) {
+					const dsmCode = Number(error.details?.code);
+					if (!Number.isNaN(dsmCode)) code = dsmCode;
 				}
+
+				// 402 = System is too busy (DSM), 408 timeout, 429 rate limit
+				if (code === 402 || code === 408 || status === 402 || status === 408 || status === 429) {
+					shouldRetry = true;
+				}
+
+				if (shouldRetry && attempt < maxRetries - 1) {
+					const baseDelay = Math.pow(2, attempt) * 1000; // 1s, 2s, 4s
+					const jitter = Math.floor(Math.random() * 300);
+					const delay = baseDelay + jitter;
+					await new Promise(resolve => setTimeout(resolve, delay));
+					continue;
+				}
+
 				throw error;
 			}
 		}
@@ -118,9 +163,14 @@ export class DsmClient {
 					await this.login();
 				}
 
-				try {
+				const uploadVersion = (() => {
+					const v = this.apiInfoCache?.['SYNO.FileStation.Upload']?.maxVersion;
+					return typeof v === 'number' && v >= 2 ? Math.min(v, 3) : 2;
+				})();
+
+				const doUpload = async (): Promise<IDataObject> => {
 					// Build multipart body manually
-					const boundary = '----WebKitFormBoundary7MA4YWxkTrZu0gW';
+					const boundary = `----OpenClawBoundary${Date.now().toString(16)}`;
 					const lines: string[] = [];
 
 					lines.push(`--${boundary}`);
@@ -131,7 +181,7 @@ export class DsmClient {
 					lines.push(`--${boundary}`);
 					lines.push('Content-Disposition: form-data; name="version"');
 					lines.push('');
-					lines.push('2');
+					lines.push(String(uploadVersion));
 
 					lines.push(`--${boundary}`);
 					lines.push('Content-Disposition: form-data; name="method"');
@@ -164,43 +214,63 @@ export class DsmClient {
 
 					const uploadUrl = `${this.creds.baseUrl}/webapi/entry.cgi`;
 					const response = await this.client.post(uploadUrl, body, {
-						params: { _sid: this.sid },
+						params: { _sid: this.sid as string },
 						headers: { 'Content-Type': `multipart/form-data; boundary=${boundary}` },
 						validateStatus: () => true,
 					});
 
-					const result = response.data as IDataObject;
+					return (response.data || {}) as IDataObject;
+				};
 
-					if (result.success === true) {
-						return { success: true, fileName, path: destPath, data: result.data };
-					} else {
-						return { success: false, error: result.error || 'Upload failed', data: result };
+				let result = await doUpload();
+				if (result.success !== true) {
+					const code = Number((result.error as IDataObject | undefined)?.code);
+					if ([105, 106, 107, 119].includes(code)) {
+						await this.login();
+						result = await doUpload();
 					}
-				} catch (error) {
-					return { success: false, error: `Upload operation failed: ${error}` };
 				}
+
+				if (result.success === true) {
+					return { success: true, fileName, path: destPath, data: result.data };
+				}
+
+				return { success: false, error: result.error || 'Upload failed', data: result };
 			});
 		});
 	}
 
 	async login(): Promise<void> {
 		return this.executeWithRateLimit(async () => {
-			const { data } = await this.client.get(`${this.creds.baseUrl}/webapi/entry.cgi`, {
-				params: {
-					api: 'SYNO.API.Auth',
-					version: '7',
-					method: 'login',
-					account: this.creds.username,
-					passwd: this.creds.password,
-					session: this.creds.sessionName,
-					format: 'sid',
-				},
-			});
+			const authPaths = ['entry.cgi', 'auth.cgi'];
+			const authVersions = [7, 6, 3, 2];
+			const failures: Array<{ path: string; version: number; data?: unknown }> = [];
 
-			if (!data?.success) {
-				throw new Error(`DSM login failed: ${JSON.stringify(data)}`);
+			for (const path of authPaths) {
+				for (const version of authVersions) {
+					const { data } = await this.client.get(this.buildWebApiUrl(path), {
+						params: {
+							api: 'SYNO.API.Auth',
+							version: String(version),
+							method: 'login',
+							account: this.creds.username,
+							passwd: this.creds.password,
+							session: this.creds.sessionName,
+							format: 'sid',
+						},
+						validateStatus: () => true,
+					});
+
+					if (data?.success && data?.data?.sid) {
+						this.sid = data.data.sid;
+						return;
+					}
+
+					failures.push({ path, version, data });
+				}
 			}
-			this.sid = data.data.sid;
+
+			throw new Error(`DSM login failed on all auth variants: ${JSON.stringify(failures)}`);
 		});
 	}
 
@@ -276,7 +346,8 @@ export class DsmClient {
 					...normalized,
 				};
 
-				const { data } = await this.client.get(`${this.creds.baseUrl}/webapi/entry.cgi`, { params, validateStatus: () => true });
+				const apiPath = await this.resolveApiPath(api);
+				const { data } = await this.client.get(this.buildWebApiUrl(apiPath), { params, validateStatus: () => true });
 
 				if (!data?.success && retryOnAuthError) {
 					const code = data?.error?.code;
