@@ -5,6 +5,7 @@ import type {
 	INodeTypeDescription,
 } from 'n8n-workflow';
 import { DsmClient, normalizeCredentials } from '../shared/DsmClient';
+import { DsmApiError } from '../shared/DsmError';
 import { executePerItem } from '../shared/NodeExecution';
 
 export class SynologyPhotos implements INodeType {
@@ -81,7 +82,7 @@ export class SynologyPhotos implements INodeType {
 			{ displayName: 'Item ID', name: 'itemId', type: 'string', default: '', required: true, displayOptions: { show: { operation: ['getItem', 'updateItem', 'deleteItem', 'addFavorite', 'removeFavorite', 'downloadItem', 'getThumbnail'] } } },
 			{ displayName: 'Search Keyword', name: 'searchKeyword', type: 'string', default: '', required: true, displayOptions: { show: { operation: ['searchPhotos'] } } },
 			{ displayName: 'Share Link Name', name: 'shareLinkName', type: 'string', default: '', required: true, displayOptions: { show: { operation: ['createSharing', 'updateSharing'] } } },
-			{ displayName: 'Share Password', name: 'sharePassword', type: 'string', typeOptions: { password: true }, default: '', displayOptions: { show: { operation: ['createSharing', 'updateSharing'] } } },
+			{ displayName: 'Share Password / Passphrase', name: 'sharePassword', type: 'string', typeOptions: { password: true }, default: '', displayOptions: { show: { operation: ['createSharing', 'updateSharing', 'listSharing'] } } },
 			{ displayName: 'Share Permission', name: 'sharePermission', type: 'options', options: [
 				{ name: 'View', value: 'view' },
 				{ name: 'Download', value: 'download' },
@@ -92,8 +93,8 @@ export class SynologyPhotos implements INodeType {
 				{ name: 'Medium (256px)', value: 'md' },
 				{ name: 'Large (512px)', value: 'lg' },
 			], default: 'md', displayOptions: { show: { operation: ['getThumbnail'] } } },
-			{ displayName: 'Limit', name: 'limit', type: 'number', default: 50, displayOptions: { show: { operation: ['listFolders', 'listAlbums', 'listItems', 'listRecent', 'listTimeline', 'searchPhotos'] } } },
-			{ displayName: 'Offset', name: 'offset', type: 'number', default: 0, displayOptions: { show: { operation: ['listFolders', 'listAlbums', 'listItems', 'listRecent', 'listTimeline', 'searchPhotos'] } } },
+			{ displayName: 'Limit', name: 'limit', type: 'number', default: 50, displayOptions: { show: { operation: ['listFolders', 'listAlbums', 'listItems', 'listRecent', 'listTimeline', 'searchPhotos', 'listSharing', 'getUserInfo', 'getUserQuota'] } } },
+			{ displayName: 'Offset', name: 'offset', type: 'number', default: 0, displayOptions: { show: { operation: ['listFolders', 'listAlbums', 'listItems', 'listRecent', 'listTimeline', 'searchPhotos', 'listSharing', 'getUserInfo', 'getUserQuota'] } } },
 		],
 	};
 
@@ -110,7 +111,9 @@ export class SynologyPhotos implements INodeType {
 
 			// User Info
 			if (operation === 'getUserInfo') {
-				return dsm.callAuto('SYNO.Foto.UserInfo', 'get', {});
+				const limit = this.getNodeParameter('limit', i, 50) as number;
+				const offset = this.getNodeParameter('offset', i, 0) as number;
+				return dsm.callAny(['SYNO.Foto.UserInfo'], ['get', 'list'], { id: '0', limit, offset });
 			}
 
 			// Browse
@@ -211,7 +214,25 @@ export class SynologyPhotos implements INodeType {
 
 			// Sharing
 			if (operation === 'listSharing') {
-				return dsm.callAuto('SYNO.Foto.Sharing.Misc', 'list', {});
+				const limit = this.getNodeParameter('limit', i, 50) as number;
+				const offset = this.getNodeParameter('offset', i, 0) as number;
+				const passphrase = this.getNodeParameter('sharePassword', i, '') as string;
+				try {
+					return await dsm.callAny(
+						['SYNO.Foto.PublicSharing', 'SYNO.Foto.Sharing.Misc'],
+						['get', 'list', 'query'],
+						{ limit, offset, passphrase },
+					);
+				} catch (error) {
+					if (error instanceof DsmApiError && Number(error.details?.code) === 120 && !passphrase) {
+						return {
+							success: false,
+							warning: 'Synology Photos requires a passphrase for listing public sharing links on this DSM build. Set "Share Password / Passphrase" and retry.',
+							error: error.details,
+						};
+					}
+					throw error;
+				}
 			}
 
 			if (operation === 'createSharing') {
@@ -261,7 +282,9 @@ export class SynologyPhotos implements INodeType {
 
 			// Quota
 			if (operation === 'getUserQuota') {
-				return dsm.callAuto('SYNO.Foto.UserInfo', 'get', {});
+				const limit = this.getNodeParameter('limit', i, 1) as number;
+				const offset = this.getNodeParameter('offset', i, 0) as number;
+				return dsm.callAny(['SYNO.Foto.UserInfo'], ['get', 'list'], { id: '0', limit, offset });
 			}
 
 			throw new Error(`Unknown operation: ${operation}`);
