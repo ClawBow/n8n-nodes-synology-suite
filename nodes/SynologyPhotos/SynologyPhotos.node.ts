@@ -92,8 +92,8 @@ export class SynologyPhotos implements INodeType {
 				{ name: 'Medium (256px)', value: 'md' },
 				{ name: 'Large (512px)', value: 'lg' },
 			], default: 'md', displayOptions: { show: { operation: ['getThumbnail'] } } },
-			{ displayName: 'Limit', name: 'limit', type: 'number', default: 50, displayOptions: { show: { operation: ['listFolders', 'listAlbums', 'listItems', 'listRecent', 'searchPhotos'] } } },
-			{ displayName: 'Offset', name: 'offset', type: 'number', default: 0, displayOptions: { show: { operation: ['listFolders', 'listAlbums', 'listItems', 'listRecent', 'searchPhotos'] } } },
+			{ displayName: 'Limit', name: 'limit', type: 'number', default: 50, displayOptions: { show: { operation: ['listFolders', 'listAlbums', 'listItems', 'listRecent', 'listTimeline', 'searchPhotos'] } } },
+			{ displayName: 'Offset', name: 'offset', type: 'number', default: 0, displayOptions: { show: { operation: ['listFolders', 'listAlbums', 'listItems', 'listRecent', 'listTimeline', 'searchPhotos'] } } },
 		],
 	};
 
@@ -140,12 +140,14 @@ export class SynologyPhotos implements INodeType {
 
 			if (operation === 'listRecent') {
 				const limit = this.getNodeParameter('limit', i) as number;
-				return dsm.callAuto('SYNO.Foto.Browse.RecentlyAdded', 'list', { limit });
+				const offset = this.getNodeParameter('offset', i) as number;
+				return dsm.callAuto('SYNO.Foto.Browse.RecentlyAdded', 'list', { limit, offset });
 			}
 
 			if (operation === 'listTimeline') {
 				const limit = this.getNodeParameter('limit', i) as number;
-				return dsm.callAuto('SYNO.Foto.Browse.Timeline', 'list', { limit });
+				const offset = this.getNodeParameter('offset', i) as number;
+				return dsm.callAuto('SYNO.Foto.Browse.Timeline', 'list', { limit, offset });
 			}
 
 			// Search
