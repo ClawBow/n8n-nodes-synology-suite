@@ -145,6 +145,11 @@ If you need access, open a request via official channels:
 
 If you already received specific support links from Synology, add them here so other users can request the same access path.
 
+## Release workflow
+
+- See [RELEASE_CHECKLIST.md](https://github.com/ClawBow/n8n-nodes-synology-suite/blob/main/RELEASE_CHECKLIST.md) for a safe publish process.
+- See [CHANGELOG.md](https://github.com/ClawBow/n8n-nodes-synology-suite/blob/main/CHANGELOG.md) for version history.
+
 ## Additional examples
 
 See [EXAMPLES.md](https://github.com/ClawBow/n8n-nodes-synology-suite/blob/main/EXAMPLES.md) for sample n8n workflow JSON snippets.
