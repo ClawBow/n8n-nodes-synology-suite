@@ -147,4 +147,4 @@ If you already received specific support links from Synology, add them here so o
 
 ## Additional examples
 
-See [EXAMPLES.md](./EXAMPLES.md) for sample n8n workflow JSON snippets.
+See [EXAMPLES.md](https://github.com/ClawBow/n8n-nodes-synology-suite/blob/main/EXAMPLES.md) for sample n8n workflow JSON snippets.
